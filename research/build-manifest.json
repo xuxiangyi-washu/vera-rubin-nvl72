@@ -1,59 +1,59 @@
 {
-  "builtAt": "2026-10-10T03:35:18.294Z",
+  "builtAt": "2026-10-10T09:04:03.933Z",
   "files": [
     {
       "path": "index.html",
-      "bytes": 674,
+      "bytes": 677,
       "gzipBytes": 438,
-      "sha256": "690f7d39edebb818a4526712622d504b44d235c09592a439a128f928e2bc29d5"
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33"
     },
     {
-      "path": "assets/ResearchModal-DDi0ZLha.js",
+      "path": "assets/ResearchModal-DRZWDwwD.js",
       "bytes": 5081,
-      "gzipBytes": 2193,
-      "sha256": "e9ecf0ef6c6bd58b9af19013421820da8ca2ff069336b538251b0820787bcebb"
+      "gzipBytes": 2197,
+      "sha256": "fbec25edae48132a50890525c2d54dddadfa5315a9da2a895eab64edc71d66ad"
     },
     {
-      "path": "assets/SceneCanvas-CMoAqfMs.js",
+      "path": "assets/SceneCanvas-0XhSfoL3.js",
       "bytes": 889529,
-      "gzipBytes": 237244,
-      "sha256": "8d661d6528b004a3600b1a6589376d1e89614afd23735a349116fe464397f650"
+      "gzipBytes": 237246,
+      "sha256": "284b2b0d71381f9f29615dc8168c97d1e5bfb2c4ee5c9ecfcc4f2ed001671baa"
     },
     {
-      "path": "assets/SecurityGuide-DSXNbq89.js",
-      "bytes": 94712,
-      "gzipBytes": 30520,
-      "sha256": "eb3071f1ff9dfa1f3e138b28979b4c569a0e9cc5eb79245698714bf1dccc64ed"
+      "path": "assets/SecurityGuide-DjEWCP6R.js",
+      "bytes": 113061,
+      "gzipBytes": 37067,
+      "sha256": "15cc72b428494e436f118d4dbc1e1b27990939015e1f729726d5769d96220bbe"
     },
     {
-      "path": "assets/format-CoO1zrd-.js",
-      "bytes": 849556,
-      "gzipBytes": 62734,
-      "sha256": "de63030744583eca8e111320c243661892af80f53879eefc912ad890eca61d0b"
+      "path": "assets/format-CFkABvWX.js",
+      "bytes": 857478,
+      "gzipBytes": 65248,
+      "sha256": "094e8e3f063f8947b06e9ac461a6bee7ec8dfd88ef2626041009ad7111811bae"
     },
     {
-      "path": "assets/index-CIhSYgCc.js",
-      "bytes": 199110,
-      "gzipBytes": 62614,
-      "sha256": "ff4783faebf0b6ff2be845bc2743e696ae2fbe4245ad63a557b80e2519be1669"
+      "path": "assets/index-8ecogPSU.css",
+      "bytes": 56120,
+      "gzipBytes": 11911,
+      "sha256": "eeb2d5be515997e210b5350d93af5173b3f43f34d7b4204cd8fd2df824cc4190"
     },
     {
-      "path": "assets/index-DbQtv4KF.css",
-      "bytes": 53852,
-      "gzipBytes": 11453,
-      "sha256": "995285af331ae79670d0f3a6233302f58042e1e96b76eaba102d74237e40fa2e"
+      "path": "assets/index-BeWXU1-c.js",
+      "bytes": 199149,
+      "gzipBytes": 62617,
+      "sha256": "e95413791637227620dc3928f0f58186ce7a1f8d3d52d0836698a89e282e12b2"
     },
     {
-      "path": "assets/x-DLuO8Akl.js",
+      "path": "assets/x-ZDTPo41B.js",
       "bytes": 183,
-      "gzipBytes": 170,
-      "sha256": "129f758a076a3e4596915a142298a25b0293e47d210df9973c0734f253e3f1da"
+      "gzipBytes": 168,
+      "sha256": "a47a4a08e48b980d22d86e898a518aa13c096d129dfb44e4544c2d4509d98767"
     },
     {
       "path": "guides/nvl72-user-guide.pdf",
-      "bytes": 6207201,
-      "gzipBytes": 4465989,
-      "sha256": "b4dbad71f611338723a7a04da8182b474f767855cb543b587d0197f082ca5fb2"
+      "bytes": 6469878,
+      "gzipBytes": 4631311,
+      "sha256": "f3771d8df308751f1006bb5c8ca23a0a639a07edb9ec733c2ef62331526617bb"
     },
     {
       "path": "assets/official/README.md",

@@ -67,3 +67,7 @@ npm ci && npm run build && tcb hosting deploy ./dist /vera-rubin-nvl72 -e aurora
 CloudBase公开网址：https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/
 
 2026-10-10发布版本`vera-rubin-nvl72-002`，构建任务`2608445606`。控制台状态成功；11个远端文件的HTTP状态、MIME及SHA-256与本地构建一致。核验记录：`research/cloudbase-deployment.json`。PDF位于同一应用路径下的`guides/nvl72-user-guide.pdf`。
+
+## Sentry深入研究版发布
+
+Cloudflare版本：`b54fd233-311e-4c79-b47f-4e709ec03918`。本次新增8个Sentry章节、固定OpenShell v0.1.3证据、策略教学交互，并更新49页/20张截图的PDF。Cloudflare的11个文件已进行HTTP、MIME与SHA-256核验。两处平台可分别执行`node scripts/verify-public.mjs <版本标识> cloudflare`或末参数`cloudbase`复验。
