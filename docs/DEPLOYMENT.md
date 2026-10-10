@@ -37,3 +37,29 @@ npx wrangler login --device
 ## 本次发布验收
 
 版本：`1e91b1fa-f7c4-449e-837f-3ee2a8823d32`。11个静态文件均HTTP200，Content-Type正确，SHA-256与本地dist一致；PDF为47页、19张真实UI截图、6,207,201字节。核验记录：`research/cloudflare-deployment.json`、`research/pdf-verification.json`。
+
+## CloudBase GitHub 部署
+
+环境：`aurora-d4g5u80cq1b5f11de`；应用：`vera-rubin-nvl72`；代码分支：`main`。
+
+| 控制台字段 | 设置 |
+|---|---|
+| 项目框架 | React（Vite构建）；无React选项时用其他并手填命令 |
+| Node.js | 24；项目`.nvmrc`也指定24 |
+| 目标目录 | `./` |
+| 安装命令 | `npm ci` |
+| 构建命令 | `npm run build` |
+| 构建产物 | `./dist` |
+| 部署路径 | `/vera-rubin-nvl72` |
+
+必须先安装依赖并构建，再上传dist。dist是构建产物，不提交到GitHub；直接执行`tcb hosting deploy ./dist`会因为未生成目录而失败。Node18不满足Vite8要求，须用20.19+或22.12+；本环境选Node24。
+
+Vite的`base`设为`./`，PDF链接也使用Vite公共路径，因此JS/CSS、动态加载的3D组件和PDF都能从应用子目录访问。分享链接应包含部署路径和末尾的`/`。
+
+如果使用自定义部署命令（运行环境须先切到Node24）：
+
+```bash
+npm ci && npm run build && tcb hosting deploy ./dist /vera-rubin-nvl72 -e aurora-d4g5u80cq1b5f11de
+```
+
+不要将部署目录改成仓库根目录；需要上传的是编译后的dist文件。官方说明：[CloudBase静态托管](https://docs.cloudbase.net/cli-v1/hosting)、[CloudBase React部署](https://docs.cloudbase.net/recipes/add-hosting-react)、[Vite Node.js要求](https://vite.dev/guide/)。
