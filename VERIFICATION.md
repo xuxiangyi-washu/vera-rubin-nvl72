@@ -95,3 +95,7 @@ macOS Safari实际显示和操作了以下内容，真实截图保存在docs/scr
 公开网站：https://vera-rubin-nvl72.xuxiangyi666.workers.dev/ 。使用用户已授权的Cloudflare Workers账户，只发布dist。原始本地文档、源码、研究记录与凭证不在网站静态根目录；浏览器来源记录去除本机绝对路径。
 
 官方图片外链与产品规格独立解读。PDF中的UI截图仅说明本网站使用，包含的NVIDIA缩略图保留版权与来源；项目不提供可独立使用的官方原图或官方CAD。
+
+## CloudBase子路径发布核验
+
+2026-10-10：修正Vite相对base和PDF链接，增加Node24配置；16项测试和生产构建通过。验证`/vera-rubin-nvl72/`中的入口JS/CSS与PDF相对路径正确。CloudBase版本002发布成功，11个远端文件全部HTTP200、MIME正确且SHA-256匹配本地；详见`research/cloudbase-deployment.json`。

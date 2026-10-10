@@ -63,3 +63,7 @@ npm ci && npm run build && tcb hosting deploy ./dist /vera-rubin-nvl72 -e aurora
 ```
 
 不要将部署目录改成仓库根目录；需要上传的是编译后的dist文件。官方说明：[CloudBase静态托管](https://docs.cloudbase.net/cli-v1/hosting)、[CloudBase React部署](https://docs.cloudbase.net/recipes/add-hosting-react)、[Vite Node.js要求](https://vite.dev/guide/)。
+
+CloudBase公开网址：https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/
+
+2026-10-10发布版本`vera-rubin-nvl72-002`，构建任务`2608445606`。控制台状态成功；11个远端文件的HTTP状态、MIME及SHA-256与本地构建一致。核验记录：`research/cloudbase-deployment.json`。PDF位于同一应用路径下的`guides/nvl72-user-guide.pdf`。

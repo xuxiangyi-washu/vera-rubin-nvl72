@@ -6,6 +6,10 @@
 
 ## 线上访问与更新
 
+CloudBase 访问：**https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/**
+
+GitHub源码：[xuxiangyi-washu/vera-rubin-nvl72](https://github.com/xuxiangyi-washu/vera-rubin-nvl72)。CloudBase控制台使用React框架、Node24、`npm ci`、`npm run build`、产物`./dist`，部署到`/vera-rubin-nvl72`；配置与排错见[部署说明](docs/DEPLOYMENT.md#cloudbase-github-部署)。
+
 公开网址：**https://vera-rubin-nvl72.xuxiangyi666.workers.dev/**
 
 托管于用户自己的 Cloudflare Workers 账户，使用静态资源部署。配置为 `wrangler.jsonc`，只上传 `dist/`。更新源码后运行：
