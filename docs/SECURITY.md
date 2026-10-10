@@ -41,22 +41,59 @@ DOCA 3.5.0 指南说明 Argus 在 BlueField 的独立信任域运行，通过 DO
 
 **机密计算边界：**公开指南的 DMA 能力不能证明 Argus 能读取 Realm 私有明文、GPU HBM 明文或所有加密会话。未授权设备访问 Realm 内存应受硬件隔离约束。两者组合需明确观察的是共享页、可披露遥测，还是被合法分配且通过证明的可信设备；本次资料未给出 Vera Rubin 上 Argus 与 Realm 的完整支持矩阵。前端对此标“待核实”。
 
-### 3.2 Sentry：agent 活动的独立治理
+### 3.2 Sentry：基于官方资料与固定源码的深入研究
 
-NVIDIA 在 **2026-09-28** 公布 Open Agent Safety Platform。Sentry 是其基于 DOCA、运行于 BlueField-4 的带外 watchdog 及参考系统设计，面向独立域中的持续观察与策略执行；“毫秒级隔离”是发布声明。参见 [SEC06：官方发布稿](https://nvidianews.nvidia.com/news/open-agent-safety-platform)。
+研究日期：2026-10-10。优先核对用户指定的[Agent Safety产品页](https://www.nvidia.com/en-us/solutions/ai/agent-safety/)与[OpenShell仓库](https://github.com/NVIDIA/OpenShell)。软件基线固定为**v0.1.3**、提交`e1f3c82caa3ed3b65de22889ae7ef32a774878ef`（2026-10-09）；另记录main快照`eeba0e7954c0fb4d8e9e2e29d1bfa68e290eb8b3`（2026-10-10），不把开发快照视为稳定版承诺。只读分析，没有运行OpenShell、Sentry或真实DPU。
 
-参考架构在指定 Vera Rubin POD 部署中把 BlueField-4 放在 agent 节点通往模型的必要路径。这个部署限定不能外推为所有 NVL72 服务器、备用网络、离线模型、本地文件或 NVLink 路径都由 Sentry 检查。参见 [SEC07：Continuous In-Silicon Agent Monitoring，部署讨论](https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/)。
+#### 定位与证据等级
 
-OpenShell 不要求 BlueField-4；它可在受支持的本地、私有部署、云和 Kubernetes 环境运行。参见 [SEC08：官方 FAQ，Does OpenShell require BlueField-4?](https://www.nvidia.com/en-us/solutions/ai/agent-safety/)。其 Gateway 处理身份、生命周期与策略，Supervisor 在工作负载外检查出站操作，Sandbox 提供内核层文件与进程等约束。参见 [SEC09：OpenShell Architecture](https://build.nvidia.com/openshell/integrations)。
+Sentry是Open Agent Safety Platform中的BlueField-4/DOCA带外watchdog参考系统设计；OpenShell是已有公开实现的运行时。官方发布稿描述持续监测、身份治理、细粒度策略与毫秒级隔离。**平台声明、公开软件实现、真实部署验收是三个证据层次。**“open platform”不能推导为所有Sentry硬件固件、检测器、SDK和证明报文均已开源。[SEC06](https://nvidianews.nvidia.com/news/open-agent-safety-platform)、[SEC08](https://www.nvidia.com/en-us/solutions/ai/agent-safety/)。
 
-NVSentinel 则是 Kubernetes GPU 故障检测与修复系统；它不等于 Sentry，也不等于 Argus。参见 [SEC21：NVSentinel Overview，What it is](https://docs.nvidia.com/nvsentinel/v1.25.0/getting-started/overview/)。
+在v0.1.3的README、docs、crates、rfc范围内检索Sentry/BlueField/DOCA，未定位NVIDIA Sentry的DPU实现和完整公开接口。唯一同名sentry命中为[gVisor注释](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/sandbox/linux/landlock.rs#L261)。这只是有范围的检索结论，不证明不存在其他交付物。它也不等于[NVSentinel](https://docs.nvidia.com/nvsentinel/v1.25.0/getting-started/overview/)。检索元数据保存在`research/sentry-investigation.json`。
 
-**工程解释与验收边界：**
+#### 双域架构与三类流动
 
-- Sentry 与 Astra 是可组合的不同职责：前者约束 agent 活动，后者隔离基础设施管理。已读资料不证明 Sentry 必须依赖 Astra，也不证明它替代 IMEX。
-- 线速处理只描述吞吐能力；看见连接元数据不意味着能理解 TLS 内全部业务语义。必须记录解密点、授权主体、可见字段和保留策略。
-- “毫秒级”应明确危险操作进入边界、证据产生、判定完成、执行生效、业务副作用停止的时间点，报告负载、样本数、P50/P95/P99、超时和误报；这是本项目建议的验收口径。
-- 模拟中不得把“策略启用”表现为已验证不可绕过；仍需针对备用出口、长连接、DPU 重启及管理面断连做真实测试。
+OpenShell的Gateway管理身份、策略、provider和生命周期。Sandbox与agent同处工作负载边界内，拥有进程、识别程序并转送请求；可信Supervisor在另一侧作决定、提供凭证并连接上游。运行时负责建立外层出口约束。Docker/Podman的Supervisor为独立容器，经认证Unix socket通信，工作负载直接网络关闭；Kubernetes使用独立Pod、mTLS与实际执行NetworkPolicy的CNI；VM使用宿主Supervisor与vsock、guest无直接网卡。[SEC24：Architecture](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/architecture.mdx)、[SEC30：Docker隔离源码](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-driver-docker/src/isolation.rs)。
+
+业务请求、策略/身份控制、证据/审计应分别绘图。“进程外”不等于“主机外”：单独的Supervisor容器仍需要可信的宿主和运行时；Sentry参考设计增加独立BlueField硬件域。DOCA与OpenShell策略如何映射、版本同步和原子更新，尚无完整接口证据，不能在图上编造固定RPC、端口或TLS握手。[SEC07](https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/)。
+
+当前Architecture及Docker源码明确network_mode=none，而同版安全最佳实践还含veth/“gateway level”代理概括。图示按固定版本和具体runtime绘制，不把这几种表述合成所有部署的通用物理路径。文档与源码仍应随版本继续核验。[SEC33](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/security/best-practices.mdx)。
+
+#### 请求检查与凭证的两道授权
+
+OpenShell先按host、port和实际调用binary检查连接。设置受检查协议后，还可限制REST方法/路径、MCP工具等。**L7的audit是记录违规并继续转发，enforce才阻断相应规则违规。**audit不关闭连接授权，也不会把凭证目标不匹配变成允许。未配置protocol不等于API只读；允许主机也不等于允许所有凭证进入该主机。[SEC26](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/network-rules.mdx)。
+
+被OpenShell托管的API秘密以占位符交给agent，可信代理在转发前替换；网络策略与凭证host/port/path绑定都必须满足。无效或不匹配时失败关闭。该保证不覆盖用户自行写入工作区或普通环境变量的秘密。TLS终止才能提供相应L7检查与占位符替换；tls:skip/不透明隧道无相同内容可见性。这些是OpenShell软件事实，不能擅自转写成Sentry解密实现。[SEC27](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/providers/overview.mdx)、[SEC33](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/security/best-practices.mdx)。
+
+网站新增教学请求实验：允许读取、越权写入、未授权目的地、凭证绑定不匹配。切换audit/enforce可看到结果区别。它只计算示例规则，没有调用策略引擎、SMT、DPU或真实上游服务。
+
+#### 形式化验证的实际边界
+
+OpenShell的SMT prover提供两个不同检查：boundary check检查候选允许集合是否超出给定边界；proposal risk check检查新增网络规则相对现有策略增加的风险。前者通过不能替代后者，反之亦然。边界自身由运营者定义，错误或过宽的边界不会自动变成正确的业务意图。[SEC25](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/prover.mdx)、[SEC29](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/advisor.mdx)。
+
+`within_boundary`仅表示在已建模语义内成立。`exceeds_boundary`给出反例；`unsupported`、`inconclusive`、`error`均不能当成通过。v0.1.3覆盖部分文件、进程、Landlock、L4 TCP与REST语义；运行时能够检查GraphQL/MCP不代表边界证明器已覆盖它们。通过证明不保证“策略已经最小”“任务安全”“真实运行时已执行此策略”。镜像、全局配置和provider可改变有效策略，必须读取实际policy及运行时附加权限。[SEC25](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/prover.mdx)、[SEC34](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/default-policy.mdx)。
+
+#### 身份与attested telemetry不能混为普通日志
+
+OpenShell的Gateway JWT和Sandbox JWT按sandbox与generation绑定，生命周期和使用通道分开；它们是软件会话身份，不是已经公开的Sentry设备证明格式。[SEC24](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/architecture.mdx)。
+
+官方对Sentry提出attested telemetry及身份/委派治理能力。本次材料仍未定位其签名主体、证书链、nonce/序号、策略绑定、设备测量与远程验证完整流程。[SEC06](https://nvidianews.nvidia.com/news/open-agent-safety-platform)。
+
+OpenShell OCSF导出是**best-effort**，不是完整历史保证；队列满可能丢弃新行，日志保留依赖外部采集。metadata.uid用于事件身份，container.uid关联sandbox。JSON结构、可检索日志、密码签名、设备远程证明和完整性保证，应分别验收。不能把OCSF日志存在当成Sentry的证明链已经成立。[SEC28](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/observability/ocsf-json-export.mdx)。
+
+#### 必要模型路径与机密计算的张力
+
+官方指定Vera Rubin POD拓扑把每个计算托盘的BlueField-4放在节点通往模型的必要路径。这里“带外”描述控制权隔离，“必要路径”描述数据路径覆盖，两者不冲突。[SEC07](https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/)。
+
+**工程洞察：**阻止下一次模型调用，不自动撤销已经提交的工具操作、后台任务和数据库写入；本地模型、备用出口、离线凭证和长连接需要单独验证。Sentry对推理API的治理，不能外推成对NVLink/NCCL全部张量的理解。Realm、GPU TEE和链路加密保护的租户秘密，也不能默认向监控域开放；需设计最小披露、授权解密或受证明的可信检测路径。这些是待落地的集成问题，不是厂商已公布的默认部署。
+
+Astra管理SuperNIC控制权，Argus观察可见运行状态，Sentry治理agent活动，Realm保护执行域，IMEX管理显存映射授权。公开证据没有建立Sentry必须依赖Astra、以Argus DMA为唯一传感器或替代IMEX的关系。
+
+#### 毫秒级隔离如何验收
+
+建议定义t0异常动作、t1产生证据、t2判定完成、t3执行点确认、t4副作用停止。分别报告t2−t0检测延迟、t3−t2执行延迟、t4−t0业务止损延迟，以及并发、消息尺寸、P50/P95/P99、超时、误报和恢复权限。这是工程验收建议；本次官方材料未给出可复现基准，因此不承诺固定SLA。
+
+[OpenShell freeze源码](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/boundary_io.rs)可见SIGSTOP等软件机制，但不能由此推断Sentry的硬件隔离命令。DPU失联、固件更新、策略漂移、设备复位和证据采集故障仍须有完整运行规程。
 
 ### 3.3 与 SPDM、TDISP、IDE、Caliptra 的关系
 

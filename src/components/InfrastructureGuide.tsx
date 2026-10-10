@@ -6,20 +6,13 @@ import { OfficialImage } from './HardwarePhoto';
 import { Evidence, DiagramBox, Arrow, Markers, StepFlow, Relationships } from './GuideVisuals';
 import type { GuideFact } from '../data/security-guides';
 
-type Topic='scalein'|'sentry'|'oasp';
+type Topic='scalein'|'oasp';
 const scaleSteps:GuideFact[]=[
  {title:'识别访问与租户上下文',text:'来自应用、agent、数据源或存储的访问进入基础设施路径，按部署识别身份、租户、网络与服务需求。Scale-In不是所有GPU之间的数据交换通路。',sources:['SEC03']},
  {title:'DPU运行基础设施服务',text:'BlueField-4的独立处理域运行网络、安全、存储和运维服务；主机计算资源可继续服务AI工作负载。',sources:['SEC03']},
  {title:'服务链执行与硬件加速',text:'DOCA服务和库把网络分类、访问策略、协议处理及数据搬运映射到软件控制与硬件执行。服务链及具体卸载能力按实际部署确认。',sources:['SEC03','SEC01']},
  {title:'Spectrum-X连接数据与存储',text:'Ethernet访问fabric连接外部存储、数据和服务；DPU处理基础设施职责，网络负责跨系统传输。',sources:['SEC03']},
  {title:'遥测与生命周期闭环',text:'运维系统使用独立于租户主机的遥测与设备管理能力进行配置、更新和故障定位；保护状态和性能均需实测。',sources:['SEC03']},
-];
-const sentrySteps:GuideFact[]=[
- {title:'策略与agent身份进入治理域',text:'OpenShell组织可验证策略与运行时约束；DOCA把硬件执行域与策略连接。身份、授权范围和委派关系是持续核验对象。',sources:['SEC07','SEC09']},
- {title:'关联上下文并持续观察',text:'参考体系关联agent交互、策略判定以及工具/数据访问，形成带上下文的活动记录；不是只看单个网络包或依赖agent自述。',sources:['SEC07']},
- {title:'检测偏离并触发判定',text:'治理系统将活动与允许的任务和行为边界对照，决定是否需要进一步分析或干预。这里描述工程闭环，不提供未公开的检测模型、阈值或API。',sources:['SEC07','SEC19']},
- {title:'在独立执行点限制活动',text:'指定参考拓扑把BlueField-4放在agent节点通往模型的必要路径上，Sentry可作为额外的独立控制层与OpenShell协同。',sources:['SEC06','SEC07'],note:'必须验证实际路由不可绕过；不能把参考拓扑外推到所有服务器和所有出口。'},
- {title:'保留证据并处理恢复',text:'工程验收应核对事件起止、执行确认、误报处理、超时和恢复授权。厂商“毫秒级”描述不能直接充当任意负载下的SLA。',sources:['SEC06','SEC19']},
 ];
 const platformSteps:GuideFact[]=[
  {title:'界定应用任务与允许资源',text:'明确模型、harness、工具、数据、脚本和凭证的允许范围。应用层负责定义任务目的与需要的能力。',sources:['SEC07']},
@@ -39,12 +32,6 @@ export default function InfrastructureGuide({topic,section}:{topic:Topic;section
  {section===1&&<><div className="guide-intro"><h3>一次基础设施访问的职责分工</h3><p>下面是教学流程；存储读取、检查点写入、管理配置会使用不同服务链，不能假定每个数据包经过全部服务。</p></div><StepFlow steps={scaleSteps}/><ScaleInDiagram/><p className="guide-note">Astra可统一Scale-In与Scale-Out策略，但管理关系不说明内部专用链路采用什么密码协议；外部存储传输与落盘加密必须另行验证。<Evidence ids={['SEC01','SEC03','HW90']}/></p></>}
  {section===2&&<><div className="guide-intro"><h3>DPU上的服务如何分工</h3></div><div className="table-scroll"><table><thead><tr><th>服务/组件</th><th>主要职责</th><th>验证重点</th></tr></thead><tbody>{[['HBN / 加速OVS','租户网络、路由与东西向策略','租户边界和策略是否一致'],['DOCA Flow','硬件分类、匹配与动作规则','实际命中路径与规则更新'],['SNAP / 存储服务','虚拟化存储I/O与数据路径','端点授权、传输及落盘保护'],['Argus / Vault','运行时可见性与文件访问策略','可见范围、支持配置与执行权限'],['DPF / DMS','编排、供应、设备生命周期','升级、撤销、故障恢复'],['DOCA Telemetry','设备与服务遥测','采样范围、审计留存与关联能力']].map(row=><tr key={row[0]}>{row.map(cell=><td key={cell}>{cell}</td>)}</tr>)}</tbody></table></div><Evidence ids={['SEC01','SEC03','SEC04']}/><Relationships/></>}
  {section===3&&<><div className="guide-intro"><h3>Scale-In是基础设施域，不是机柜内的另一种NVLink</h3><p>计算网络、共享KV上下文存储和持久数据访问各有职责。BlueField可以参与多个域，但不能因此将它们合并为一个协议、密钥域或默认部署。</p><Evidence ids={['SEC03']}/></div><div className="guide-unknowns">{['按SKU与软件BOM确认启用哪些DOCA服务及硬件卸载。','确认主机、DPU、NIC和外部存储的权限及加解密终止点。','验证策略失效、DPU重置、链路故障、更新和撤销路径。','吞吐、CPU卸载和故障恢复需在实际业务负载下验收，不以峰值接口速率代替。'].map(t=><p key={t}><span>验收项</span>{t}</p>)}</div><OfficialFigure type="scalein"/><button className="guide-next" onClick={()=>update({securityGuide:'astra'})}>继续阅读Astra控制权边界 <ChevronRight size={14}/></button></>}
- </>;
- if(topic==='sentry')return <>
- {section===0&&<><div className="guide-intro"><h3>在agent执行域之外持续观察与执行</h3><p>NVIDIA于2026-09-28将Sentry描述为基于DOCA、运行于BlueField-4的带外watchdog参考系统。它与OpenShell配合，为agent治理增加独立硬件执行域；不是GPU故障治理系统NVSentinel。<Evidence ids={['SEC06','SEC07','SEC21']}/></p></div><SentryDiagram/><div className="guide-two-column"><article><h3>控制模型访问路径</h3><p>官方指定Vera Rubin POD参考拓扑把DPU放在agent节点通往模型的必要路径。实际部署必须确认其他路由、凭证和出口无法绕开执行点。</p><Evidence ids={['SEC07','SEC19']}/></article><article><h3>保持上下文，而非只看包头</h3><p>DOCA连接策略与硬件域，关联agent交互、授权、工具和数据访问记录。可见信息取决于接入方式、解密位置与权限，不是对所有密文载荷的自动理解。</p><Evidence ids={['SEC07','SEC19']}/></article></div></>}
- {section===1&&<><div className="guide-intro"><h3>从观察到执行的闭环</h3><p>工程解释用于理解职责；不虚构内部检测模型、Sentry配置API或未发布的固件细节。</p></div><StepFlow steps={sentrySteps}/><SentryDiagram/></>}
- {section===2&&<><div className="guide-intro"><h3>“带外”和“毫秒级”需要可测的边界</h3><p>把控制放在独立DPU上有助于隔离，但仍需核实实际设备、身份和路径。性能主张只有在明确起止与负载后才可验收。</p><Evidence ids={['SEC06','SEC07','SEC19']}/></div><div className="guide-unknowns">{['不可绕过性：检查所有模型访问路由、直连出口、旁路凭证和重配置权限。','可见性：明确观察元数据、授权上下文还是解密后的内容；授权读取不等于可读Realm私有页。','响应起点：首次异常行为、传感器观察到异常，还是判定完成？','响应终点：发出隔离指令、硬件规则生效，还是目标请求实际被阻断？','负载与分位数：并发agent数、流量、消息尺寸、P50/P95/P99和最坏情况。','超时与恢复：失败策略、误报处置、回滚及人工恢复授权。'].map(t=><p key={t}><span>验收项</span>{t}</p>)}</div><Evidence ids={['SEC19','SEC04','SEC12']}/></>}
- {section===3&&<><div className="guide-intro"><h3>Sentry、Astra、Argus与Realm处于不同层</h3></div><Relationships/><p className="guide-note">没有公开证据证明Sentry必须依赖Astra、替代IMEX，或所有Sentry部署均以Argus扫描作为唯一检测机制。<Evidence ids={['SEC07','SEC19']}/></p><OfficialFigure type="sentry"/><button className="guide-next" onClick={()=>update({securityGuide:'oasp'})}>展开Open Agent Safety Platform <ChevronRight size={14}/></button></>}
  </>;
  return <>
  {section===0&&<><div className="guide-intro"><h3>一个分层的agent安全参考体系</h3><p>NVIDIA Open Agent Safety Platform组合开放运行时、可验证策略与可选的独立硬件治理。官方将架构分为应用、运行时和基础设施三层；评估与持续治理贯穿它们。<Evidence ids={['SEC06','SEC07','SEC08']}/></p></div><PlatformDiagram/><div className="guide-two-column"><article><h3>OpenShell组织软件边界</h3><p>为agent提供沙箱、策略和运行时约束；支持环境中可以独立部署，不要求BlueField-4。</p><Evidence ids={['SEC08','SEC09']}/></article><article><h3>Sentry增加独立执行域</h3><p>在适用硬件和参考拓扑下，将持续观察与策略执行扩展到BlueField-4；不是每次OpenShell安装的强制前提。</p><Evidence ids={['SEC07','SEC08']}/></article></div></>}

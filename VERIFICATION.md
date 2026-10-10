@@ -8,12 +8,12 @@
 |---|---|
 | 依赖与运行 | React18 / TypeScript / Vite8；锁文件；Node26.3.1、npm11.16.0 |
 | TypeScript与生产构建 | `npm run build`通过，产物为dist；大小明细见research/build-manifest.json |
-| 自动测试 | `npm test`，16项：10项拓扑/来源，3项Ring数值，3项AEAD正确性 |
-| 数据规模 | 428实体、783逻辑连接、861逻辑端口、27模型类别、76条模型级规格、46条来源 |
+| 自动测试 | `npm test`，20项：10项拓扑/来源，3项Ring数值，3项AEAD正确性、4项策略教学语义 |
+| 数据规模 | 428实体、783逻辑连接、861逻辑端口、27模型类别、81条模型级规格、59条来源 |
 | 官方图片 | 22个官方外链；public/assets/official仅清单与说明，无官方原图文件 |
 | 开发预览 | 本次使用127.0.0.1:5174；未中断用户已占用的5173 |
 | Cloudflare公开访问 | 地址见下文；逐文件HTTP和SHA-256检查见research/cloudflare-deployment.json |
-| PDF手册 | 47页、19张真实UI截图、自绘结构图、可点击目录/来源、QR；逐页渲染检查 |
+| PDF手册 | 49页、20张真实UI截图、自绘结构图、可点击目录/来源、QR；逐页渲染检查 |
 | 真实GPU/Realm/NCCL/安全协议 | 未执行；网站不连接设备，不采集遥测 |
 
 ## 自动测试覆盖
@@ -98,4 +98,10 @@ macOS Safari实际显示和操作了以下内容，真实截图保存在docs/scr
 
 ## CloudBase子路径发布核验
 
-2026-10-10：修正Vite相对base和PDF链接，增加Node24配置；16项测试和生产构建通过。验证`/vera-rubin-nvl72/`中的入口JS/CSS与PDF相对路径正确。CloudBase版本002发布成功，11个远端文件全部HTTP200、MIME正确且SHA-256匹配本地；详见`research/cloudbase-deployment.json`。
+2026-10-10：修正Vite相对base和PDF链接，增加Node24配置；20项测试和生产构建通过。验证`/vera-rubin-nvl72/`中的入口JS/CSS与PDF相对路径正确。CloudBase版本002发布成功，11个远端文件全部HTTP200、MIME正确且SHA-256匹配本地；详见`research/cloudbase-deployment.json`。
+
+## Sentry深入研究更新
+
+研究锁定OpenShell v0.1.3提交e1f3c82caa3ed3b65de22889ae7ef32a774878ef，并记录main快照。新增13条来源；8个章节区分厂商架构声明、源码事实与工程推论。新增4项有语义的回归测试：允许读取、audit/enforce差异、audit仍拒绝网络/凭证不匹配、未知输入不误放行。总计20项测试通过。
+
+PDF更新Sentry章节、双域架构实图，并新增请求实验实图，现为49页与20张真实UI截图。渲染核对新增/变化页面和来源索引，旧章节内容沿用已验收版本。未执行真实OpenShell、SMT或Sentry程序。

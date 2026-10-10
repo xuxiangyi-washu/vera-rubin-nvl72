@@ -1,6 +1,6 @@
 # Vera Rubin NVL72 来源与素材登记
 
-核验日期：2026-10-10。46 条事实来源记录（包含用户输入与本地材料）；22 条 NVIDIA 官方图片外链。来源注册表为 src/data/sources.json，事实与 ID 的关联为 src/data/catalog.json 及 data/nvl72-topology.json。
+核验日期：2026-10-10。59 条事实来源记录（包含用户输入与本地材料）；22 条 NVIDIA 官方图片外链。来源注册表为 src/data/sources.json，事实与 ID 的关联为 src/data/catalog.json 及 data/nvl72-topology.json。
 
 ## 使用规则
 
@@ -228,7 +228,7 @@
 
 原始资料：[NVIDIA Open Agent Safety Platform: Secure AI Agents](https://www.nvidia.com/en-us/solutions/ai/agent-safety/)
 
-定位：FAQ: Does OpenShell require BlueField-4?。状态：已确认。
+定位：Overview; Technology — NVIDIA Sentry; FAQ — component roles / Does OpenShell require BlueField-4?。状态：已确认。
 
 - OpenShell 可在受支持的本地、私有部署、云和 Kubernetes 环境运行，不要求 BlueField-4。
 - 配备 BlueField-4 时 Sentry 增加硬件隔离的观察和执行；仍需具体版本及部署支持矩阵。
@@ -354,6 +354,124 @@
 
 - Caliptra 是可集成的硬件信任根项目；其 Vera Rubin 各芯片采用版本与证明绑定在本次 NVIDIA 一手资料核验中尚未确认。
 
+### SEC23 · OpenShell v0.1.3 — README
+
+原始资料：[OpenShell v0.1.3 — README](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/README.md)
+
+定位：How It Works; Quickstart; release v0.1.3; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- Apache-2.0开放运行时；与Sentry参考系统的公开程度分别评估。
+
+### SEC24 · OpenShell v0.1.3 — Architecture
+
+原始资料：[OpenShell v0.1.3 — Architecture](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/architecture.mdx)
+
+定位：What Each Piece Does; Mediated Channel; How Components Authenticate; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- Supervisor与不可信工作负载分离；运行时建立外层网络隔离。
+- Sandbox Protocol使用认证HTTP/2通道；Docker/Podman用Unix socket，Kubernetes用TCP，VM用vsock。
+- Gateway JWT与Sandbox JWT按sandbox及generation绑定；这不是Sentry身份协议披露。
+
+### SEC25 · OpenShell v0.1.3 — Policy Prover
+
+原始资料：[OpenShell v0.1.3 — Policy Prover](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/prover.mdx)
+
+定位：Read the Result; What the Boundary Check Covers; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- SMT检查boundary containment及提案风险；两者不等价。
+- within_boundary仅覆盖模型语义；unsupported/inconclusive不是通过。
+- GraphQL/MCP等运行时支持不等于当前boundary prover也覆盖。
+
+### SEC26 · OpenShell v0.1.3 — Network Rules
+
+原始资料：[OpenShell v0.1.3 — Network Rules](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/network-rules.mdx)
+
+定位：Connection and Request Checks; Enforcement; Network Access and Credentials; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 先检查host/port/binary，再按协议检查请求。
+- L7默认audit记录违规但继续转发；enforce才阻断相应规则违规。
+- 连接授权不自动授权发送provider凭证。
+
+### SEC27 · OpenShell v0.1.3 — Providers
+
+原始资料：[OpenShell v0.1.3 — Providers](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/providers/overview.mdx)
+
+定位：How Credential Injection Works; Fail-closed behavior; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 托管凭证以占位符呈现给agent；代理按network policy和credential binding双重授权替换。
+- 目标host/port/path不匹配、占位符无效时拒绝；TLS skip和非HTTP隧道不能重写。
+
+### SEC28 · OpenShell v0.1.3 — OCSF JSON Export
+
+原始资料：[OpenShell v0.1.3 — OCSF JSON Export](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/observability/ocsf-json-export.mdx)
+
+定位：Gateway Output; Output Location; JSON Record Structure; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 结构化日志是best-effort，不能保证完整审计历史。
+- metadata.uid是事件标识，container.uid关联sandbox；队列、落盘与外部采集决定保留和丢失。
+- OCSF结构本身不是Sentry attested telemetry的签名或证明协议。
+
+### SEC29 · OpenShell v0.1.3 — Policy Advisor
+
+原始资料：[OpenShell v0.1.3 — Policy Advisor](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/advisor.mdx)
+
+定位：How the Policy Advisor Works; Proposal Risk Check; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- agent可提出网络规则；默认需人工审批，advisor默认关闭。
+- 提案不自行生效，自动审批是另行启用的选项；风险检查不等于任务意图完备证明。
+
+### SEC30 · OpenShell v0.1.3 — Docker outer fence source
+
+原始资料：[OpenShell v0.1.3 — Docker outer fence source](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-driver-docker/src/isolation.rs)
+
+定位：DockerOuterFenceEvidence::project; DockerBoundarySpec::provision; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- network_mode=none及无非托管网络附件用于生成和校验外层隔离条件。
+- 源码范围是OpenShell Docker运行时，不能当成BlueField硬件证明。
+
+### SEC31 · OpenShell v0.1.3 — Workload freeze source
+
+原始资料：[OpenShell v0.1.3 — Workload freeze source](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/boundary_io.rs)
+
+定位：BoundaryRuntime::freeze / resume; SIGSTOP/SIGCONT handling; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 冻结自有工作负载进程并阻止新操作是可见源码机制。
+- 它不能证明Sentry在DPU上使用相同信号机制，也不是实机毫秒级测量。
+
+### SEC32 · OpenShell v0.1.3 — Support Matrix
+
+原始资料：[OpenShell v0.1.3 — Support Matrix](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/support-matrix.mdx)
+
+定位：Releases; Runtimes; Kernel Requirements; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 稳定版、预发布版和main开发快照需区分；支持范围按runtime、OS和kernel核验。
+
+### SEC33 · OpenShell v0.1.3 — Security Best Practices
+
+原始资料：[OpenShell v0.1.3 — Security Best Practices](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/security/best-practices.mdx)
+
+定位：L4-Only vs L7 Inspection; TLS Handling; Gateway Security; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- TLS终止使代理能做L7检查；tls:skip保留不透明载荷，不等于内容检查。
+- 不将软件Supervisor独立进程等同于DPU主机外硬件信任域。
+
+### SEC34 · OpenShell v0.1.3 — Default Policy and Baseline Paths
+
+原始资料：[OpenShell v0.1.3 — Default Policy and Baseline Paths](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/default-policy.mdx)
+
+定位：When the Default Applies; Default Network Access; Inspect the Selected Policy; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef。状态：已确认。
+
+- 不传--policy不保证使用默认策略；镜像、全局策略和provider组合会改变有效策略。
+- 需要检查base/full与实际运行时附加权限。
+
+### SEC35 · OpenShell v0.1.3 — Landlock backend comment
+
+原始资料：[OpenShell v0.1.3 — Landlock backend comment](https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/sandbox/linux/landlock.rs#L261)
+
+定位：Landlock ABI probe; gVisor sentry comment。状态：已确认。
+
+- 此处sentry指gVisor组件，不是NVIDIA Sentry硬件治理实现。
+
 ### VIS01 · 用户指定视觉参考：StorageReview Vera Rubin NVL72 报道
 
 原始资料：[用户指定视觉参考：StorageReview Vera Rubin NVL72 报道](https://www.storagereview.com/news/nvidia-launches-vera-rubin-architecture-at-ces-2026-the-vr-nvl72-rack)
@@ -453,7 +571,7 @@
 
 ## 真实UI截图
 
-按用户要求，使用说明PDF包含本项目的19张真实Safari界面截图，原始截图位于docs/screenshots。截图为操作说明，部分含NVIDIA图片的缩略呈现，版权归NVIDIA；没有提供可独立使用的官方原图文件。截图说明与对应来源记录见PDF第23章。界面、参数化几何和解释图由本项目实现。
+按用户要求，使用说明PDF包含本项目的20张真实Safari界面截图，原始截图位于docs/screenshots。截图为操作说明，部分含NVIDIA图片的缩略呈现，版权归NVIDIA；没有提供可独立使用的官方原图文件。截图说明与对应来源记录见PDF第23章。界面、参数化几何和解释图由本项目实现。
 
 ## 软件与图标
 

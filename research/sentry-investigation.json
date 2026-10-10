@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10",
+  "scope": "NVIDIA Sentry官方资料与OpenShell实现边界",
+  "stable": {
+    "tag": "v0.1.3",
+    "commit": "e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "commitDate": "2026-10-09"
+  },
+  "mainSnapshot": {
+    "commit": "eeba0e7954c0fb4d8e9e2e29d1bfa68e290eb8b3",
+    "commitDate": "2026-10-10"
+  },
+  "codeReview": "只读审查，不安装或运行OpenShell/Sentry，不测试真实硬件",
+  "negativeFinding": {
+    "scope": "v0.1.3的README、docs、crates、rfc中检索Sentry/BlueField/DOCA",
+    "result": "未定位NVIDIA Sentry DPU实现、公开SDK接口或端到端证明格式；唯一sentry命中是gVisor同名组件注释",
+    "limit": "限定本次仓库与检索范围，不能据此宣称NVIDIA没有内部实现或其他交付物"
+  },
+  "documentationDifference": "Architecture与Docker驱动描述network_mode=none及独立Supervisor，security best-practices还含veth/gateway代理概括。部署图按具体runtime与固定源码版本绘制，不混用实现。",
+  "sources": [
+    "SEC23",
+    "SEC24",
+    "SEC25",
+    "SEC26",
+    "SEC27",
+    "SEC28",
+    "SEC29",
+    "SEC30",
+    "SEC31",
+    "SEC32",
+    "SEC33",
+    "SEC34",
+    "SEC35"
+  ]
+}

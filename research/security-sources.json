@@ -80,7 +80,7 @@
     "id": "SEC08",
     "title": "NVIDIA Open Agent Safety Platform: Secure AI Agents",
     "url": "https://www.nvidia.com/en-us/solutions/ai/agent-safety/",
-    "section": "FAQ: Does OpenShell require BlueField-4?",
+    "section": "Overview; Technology — NVIDIA Sentry; FAQ — component roles / Does OpenShell require BlueField-4?",
     "claims": [
       "OpenShell 可在受支持的本地、私有部署、云和 Kubernetes 环境运行，不要求 BlueField-4。",
       "配备 BlueField-4 时 Sentry 增加硬件隔离的观察和执行；仍需具体版本及部署支持矩阵。"
@@ -236,5 +236,149 @@
       "Caliptra 是可集成的硬件信任根项目；其 Vera Rubin 各芯片采用版本与证明绑定在本次 NVIDIA 一手资料核验中尚未确认。"
     ],
     "confidence": "待核实"
+  },
+  {
+    "id": "SEC23",
+    "title": "OpenShell v0.1.3 — README",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/README.md",
+    "section": "How It Works; Quickstart; release v0.1.3; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "Apache-2.0开放运行时；与Sentry参考系统的公开程度分别评估。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC24",
+    "title": "OpenShell v0.1.3 — Architecture",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/architecture.mdx",
+    "section": "What Each Piece Does; Mediated Channel; How Components Authenticate; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "Supervisor与不可信工作负载分离；运行时建立外层网络隔离。",
+      "Sandbox Protocol使用认证HTTP/2通道；Docker/Podman用Unix socket，Kubernetes用TCP，VM用vsock。",
+      "Gateway JWT与Sandbox JWT按sandbox及generation绑定；这不是Sentry身份协议披露。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC25",
+    "title": "OpenShell v0.1.3 — Policy Prover",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/prover.mdx",
+    "section": "Read the Result; What the Boundary Check Covers; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "SMT检查boundary containment及提案风险；两者不等价。",
+      "within_boundary仅覆盖模型语义；unsupported/inconclusive不是通过。",
+      "GraphQL/MCP等运行时支持不等于当前boundary prover也覆盖。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC26",
+    "title": "OpenShell v0.1.3 — Network Rules",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/network-rules.mdx",
+    "section": "Connection and Request Checks; Enforcement; Network Access and Credentials; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "先检查host/port/binary，再按协议检查请求。",
+      "L7默认audit记录违规但继续转发；enforce才阻断相应规则违规。",
+      "连接授权不自动授权发送provider凭证。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC27",
+    "title": "OpenShell v0.1.3 — Providers",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/providers/overview.mdx",
+    "section": "How Credential Injection Works; Fail-closed behavior; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "托管凭证以占位符呈现给agent；代理按network policy和credential binding双重授权替换。",
+      "目标host/port/path不匹配、占位符无效时拒绝；TLS skip和非HTTP隧道不能重写。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC28",
+    "title": "OpenShell v0.1.3 — OCSF JSON Export",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/observability/ocsf-json-export.mdx",
+    "section": "Gateway Output; Output Location; JSON Record Structure; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "结构化日志是best-effort，不能保证完整审计历史。",
+      "metadata.uid是事件标识，container.uid关联sandbox；队列、落盘与外部采集决定保留和丢失。",
+      "OCSF结构本身不是Sentry attested telemetry的签名或证明协议。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC29",
+    "title": "OpenShell v0.1.3 — Policy Advisor",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/advisor.mdx",
+    "section": "How the Policy Advisor Works; Proposal Risk Check; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "agent可提出网络规则；默认需人工审批，advisor默认关闭。",
+      "提案不自行生效，自动审批是另行启用的选项；风险检查不等于任务意图完备证明。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC30",
+    "title": "OpenShell v0.1.3 — Docker outer fence source",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-driver-docker/src/isolation.rs",
+    "section": "DockerOuterFenceEvidence::project; DockerBoundarySpec::provision; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "network_mode=none及无非托管网络附件用于生成和校验外层隔离条件。",
+      "源码范围是OpenShell Docker运行时，不能当成BlueField硬件证明。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC31",
+    "title": "OpenShell v0.1.3 — Workload freeze source",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/boundary_io.rs",
+    "section": "BoundaryRuntime::freeze / resume; SIGSTOP/SIGCONT handling; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "冻结自有工作负载进程并阻止新操作是可见源码机制。",
+      "它不能证明Sentry在DPU上使用相同信号机制，也不是实机毫秒级测量。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC32",
+    "title": "OpenShell v0.1.3 — Support Matrix",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/about/support-matrix.mdx",
+    "section": "Releases; Runtimes; Kernel Requirements; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "稳定版、预发布版和main开发快照需区分；支持范围按runtime、OS和kernel核验。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC33",
+    "title": "OpenShell v0.1.3 — Security Best Practices",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/security/best-practices.mdx",
+    "section": "L4-Only vs L7 Inspection; TLS Handling; Gateway Security; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "TLS终止使代理能做L7检查；tls:skip保留不透明载荷，不等于内容检查。",
+      "不将软件Supervisor独立进程等同于DPU主机外硬件信任域。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC34",
+    "title": "OpenShell v0.1.3 — Default Policy and Baseline Paths",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/docs/how-it-works/policies/default-policy.mdx",
+    "section": "When the Default Applies; Default Network Access; Inspect the Selected Policy; commit e1f3c82caa3ed3b65de22889ae7ef32a774878ef",
+    "claims": [
+      "不传--policy不保证使用默认策略；镜像、全局策略和provider组合会改变有效策略。",
+      "需要检查base/full与实际运行时附加权限。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC35",
+    "title": "OpenShell v0.1.3 — Landlock backend comment",
+    "url": "https://github.com/NVIDIA/OpenShell/blob/e1f3c82caa3ed3b65de22889ae7ef32a774878ef/crates/openshell-sandbox/src/sandbox/linux/landlock.rs#L261",
+    "section": "Landlock ABI probe; gVisor sentry comment",
+    "claims": [
+      "此处sentry指gVisor组件，不是NVIDIA Sentry硬件治理实现。"
+    ],
+    "confidence": "已确认"
   }
 ]

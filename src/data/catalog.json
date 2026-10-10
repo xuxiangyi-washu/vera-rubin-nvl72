@@ -988,6 +988,47 @@
           "SEC08"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "软件研究基线",
+        "value": "OpenShell v0.1.3 · 固定源码提交",
+        "source": [
+          "SEC23"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "策略证明",
+        "value": "仅覆盖已建模策略属性",
+        "source": [
+          "SEC25"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "审计与执行",
+        "value": "audit记录；enforce阻断L7违规",
+        "source": [
+          "SEC26"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "遥测实现边界",
+        "value": "Sentry签名/证明格式未核实",
+        "source": [
+          "SEC06",
+          "SEC28"
+        ],
+        "confidence": "待核实"
+      },
+      {
+        "label": "响应时间",
+        "value": "厂商毫秒级声明；非实测SLA",
+        "source": [
+          "SEC06"
+        ],
+        "confidence": "已确认"
       }
     ],
     "functions": [

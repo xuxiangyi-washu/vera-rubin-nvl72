@@ -80,7 +80,7 @@ NCCL视图使用3个OS域、6个rank/GPU和4个预设token。实际计算教学R
 
 NVLink加密专题把C2C authenticated encryption和GPU间NVLink encryption的公开证据分开。交互实验实际运行浏览器Web Crypto AES-GCM，展示篡改失败和序号去重；算法与参数仅属于通用示例，不能当成NVLink 6公开实现。
 
-- [PDF使用手册](https://vera-rubin-nvl72.xuxiangyi666.workers.dev/guides/nvl72-user-guide.pdf)：47页，19张真实UI截图与逐图操作说明、自绘架构图、可点击目录、46条来源、访问二维码。
+- [PDF使用手册](https://vera-rubin-nvl72.xuxiangyi666.workers.dev/guides/nvl72-user-guide.pdf)：49页，20张真实UI截图与逐图操作说明、自绘架构图、可点击目录、59条来源、访问二维码。
 - 本地交付：`output/pdf/NVL72-架构探索器-使用说明.pdf`；网站文件：`public/guides/nvl72-user-guide.pdf`。
 - 截图在`docs/screenshots/`，记录在`docs/screenshots/manifest.json`。PDF仅按版面裁切界面，没有修改数值；官方图片缩略呈现的版权归NVIDIA。
 - PDF重建：安装ReportLab、pypdf后运行`python scripts/build-user-guide.py`；当前脚本使用macOS系统中的Arial Unicode和STHeiti字体。更换系统需调整脚本中的字体路径，并重新渲染检查。
@@ -118,7 +118,7 @@ nvl72/
 │   └── example-gpu.json
 ├── research/                # 硬件/安全来源JSON、图片来源JSON
 ├── scripts/                 # 可重建数据、schema、SOURCES
-├── tests/                   # 16项：拓扑、Ring数值、AEAD篡改/重放
+├── tests/                   # 20项：拓扑、Ring数值、AEAD篡改/重放
 ├── docs/
 │   ├── HARDWARE.md
 │   ├── SECURITY.md
@@ -138,3 +138,7 @@ nvl72/
 重复芯片、连接器采用 InstancedMesh，共用几何体。整柜细节用 Drei Detailed 实现距离LOD。暂停时 `frameloop="demand"`；动画开启时连续渲染，页面隐藏时恢复按需。小屏DPR上限1；节能模式减少细节和粒子；PerformanceMonitor可在动画负载较高时降级。Three场景和资料库懒加载。系统字体避免额外字体下载；未使用位图纹理，因此没有虚构“纹理压缩”成果。
 
 没有WebGL时提供提示，模块目录与资料表仍可用。没有跨设备FPS基准，也不保证所有手机维持固定帧率。实现状态和实际验收范围见 VERIFICATION.md。
+
+## Sentry专题研究更新
+
+新增8个页签：定位与证据、双域架构、请求与策略、身份与遥测、形式化验证、模型路径、验收与边界、源码与关系。使用OpenShell稳定版v0.1.3的固定提交核验，新增13条原始资料记录，并提供audit/enforce及凭证目标绑定的教学实验。研究正文见[安全专题](docs/SECURITY.md#32-sentry基于官方资料与固定源码的深入研究)，范围与版本见`research/sentry-investigation.json`。所有演示均不连接真实Sentry或DPU。

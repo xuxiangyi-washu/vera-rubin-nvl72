@@ -113,11 +113,12 @@
   },
   {
     "file": "15-sentry.png",
-    "sha256": "22136ee8787e3e987ef69769685fa39651a90b270a200e6fbd98cda4f5f768ff",
+    "sha256": "92acad3f3810b03da2a3e3d9bf298c9f1dc5620991c1603f917103281691ccdd",
     "capture": "macOS Safari / cua_repl getScreenshot",
     "capturedOn": "2026-10-10",
     "role": "真实UI操作说明；PDF裁切版面，未修改数值",
-    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md",
+    "revision": "Sentry 8章节 / OpenShell v0.1.3研究更新"
   },
   {
     "file": "16-agent-safety.png",
@@ -150,5 +151,14 @@
     "capturedOn": "2026-10-10",
     "role": "真实UI操作说明；PDF裁切版面，未修改数值",
     "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "20-sentry-policy.png",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "界面中NVIDIA缩略图版权归NVIDIA；本截图主要为自绘图解",
+    "sha256": "437f4388a89f7ef9a4ed41de9af774ff341a0eb6778b144f98616f5be8a8b28f",
+    "revision": "Sentry 8章节 / OpenShell v0.1.3研究更新"
   }
 ]

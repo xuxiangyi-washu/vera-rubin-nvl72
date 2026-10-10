@@ -1,6 +1,6 @@
 {
-  "pages": 47,
-  "uiScreenshots": 19,
+  "pages": 49,
+  "uiScreenshots": 20,
   "imagePages": [
     [
       25,
@@ -77,10 +77,14 @@
     [
       43,
       1
+    ],
+    [
+      44,
+      1
     ]
   ],
-  "annotations": 210,
-  "sha256": "b4dbad71f611338723a7a04da8182b474f767855cb543b587d0197f082ca5fb2",
-  "visualReview": "47页渲染逐页核对；版面无文字溢出；最后修改的27/41页重新渲染检查",
-  "notes": "真实UI截图的浏览器视区裁切保留；无AI合成截图；截图数值未修改"
+  "annotations": 237,
+  "sha256": "f3771d8df308751f1006bb5c8ca23a0a639a07edb9ec733c2ef62331526617bb",
+  "visualReview": "已核对封面、目录、Sentry章节、测试说明、图册介绍、2张Sentry实图及全部5页来源；其余章节沿用已验收内容。",
+  "notes": "Sentry/SMT/OpenShell实验均为教学；未连接DPU。"
 }

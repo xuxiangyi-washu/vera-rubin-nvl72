@@ -8,6 +8,7 @@ import HardwareGuide from './HardwareGuide';
 import InfrastructureGuide from './InfrastructureGuide';
 import PlatformGuide from './PlatformGuide';
 import NvlinkSecurityGuide from './NvlinkSecurityGuide';
+import SentryGuide from './SentryGuide';
 import { astraSteps, confidentialPaths, confidentialSteps, securityRelations, type GuideFact } from '../data/security-guides';
 
 type Topic='rack'|'tray'|'fabric'|'network'|'astra'|'confidential'|'scalein'|'sentry'|'oasp'|'tor'|'c2c'|'platform'|'linkcrypto';
@@ -23,7 +24,7 @@ const topicInfo:Record<Topic,{title:string;label:string;sections:string[]}>= {
  astra:{title:'BlueField Astra图文详解',label:'Astra',sections:['理念与架构','策略如何执行','信任链中的位置','边界与原始图']},
  confidential:{title:'机密计算图文详解',label:'机密计算',sections:['保护域与威胁边界','数据路径与密钥','证明与安全使能','关系与待核实']},
  scalein:{title:'Scale-In基础设施图文详解',label:'Scale-In',sections:['基础设施架构','数据与控制','DOCA服务','部署与边界']},
- sentry:{title:'DPU中的Sentry图文详解',label:'Sentry',sections:['独立参考架构','观察与执行闭环','隔离与验收','相关机制']},
+ sentry:{title:'Sentry：架构、证据与执行边界',label:'Sentry',sections:['定位与证据','双域架构','请求与策略','身份与遥测','形式化验证','模型路径','验收与边界','源码与关系']},
  oasp:{title:'NVIDIA Open Agent Safety Platform',label:'Open Agent Safety',sections:['三层参考体系','OpenShell组件','Sentry硬件执行','部署与边界']},
 };
 function AstraDiagram(){
@@ -64,7 +65,7 @@ function ConfidentialDiagram({path}:{path:number}){return <svg className="confid
 export default function SecurityGuide(){
  const topic=useExplorer(s=>s.securityGuide) as Topic,update=useExplorer(s=>s.update);
  const [section,setSection]=useState(0),[path,setPath]=useState(0);const body=useRef<HTMLDivElement>(null);
- const astra=topic==='astra',hardware=['rack','tray','fabric','network'].includes(topic),infrastructure=['scalein','sentry','oasp'].includes(topic);
+ const astra=topic==='astra',hardware=['rack','tray','fabric','network'].includes(topic),infrastructure=['scalein','oasp'].includes(topic);
  const info=topicInfo[topic];
  const platformTopic=['tor','c2c','platform'].includes(topic);
  useEffect(()=>{setSection(0);setPath(0)},[topic]);
@@ -77,7 +78,7 @@ export default function SecurityGuide(){
  <div className="security-guide-topics">{Object.entries(topicInfo).map(([id,item])=><button key={id} className={topic===id?'active':''} onClick={()=>update({securityGuide:id as Topic})}>{item.label}</button>)}</div>
  <div className="security-guide-tabs">{sections.map((title,i)=><button key={title} className={section===i?'active':''} onClick={()=>setSection(i)}><span>0{i+1}</span>{title}</button>)}</div>
  <div ref={body} className="security-guide-body">
- {topic==='linkcrypto'?<NvlinkSecurityGuide section={section}/>:platformTopic?<PlatformGuide topic={topic as 'tor'|'c2c'|'platform'} section={section}/>:hardware?<HardwareGuide topic={topic as 'rack'|'tray'|'fabric'|'network'} section={section}/>:infrastructure?<InfrastructureGuide topic={topic as 'scalein'|'sentry'|'oasp'} section={section}/>:astra? <>
+ {topic==='sentry'?<SentryGuide section={section}/>:topic==='linkcrypto'?<NvlinkSecurityGuide section={section}/>:platformTopic?<PlatformGuide topic={topic as 'tor'|'c2c'|'platform'} section={section}/>:hardware?<HardwareGuide topic={topic as 'rack'|'tray'|'fabric'|'network'} section={section}/>:infrastructure?<InfrastructureGuide topic={topic as 'scalein'|'oasp'} section={section}/>:astra? <>
   {section===0&&<><div className="guide-intro"><span className="eyebrow">ADVANCED SECURE TRUSTED RESOURCE ARCHITECTURE</span><h3>基础设施控制权位于租户主机之外</h3><p>Astra 是 Vera Rubin NVL72 中以 BlueField-4 为中心的基础设施架构。它规定 DPU、SuperNIC、租户主机和管理入口之间的控制权边界，让服务提供方在独立的 DPU 域配置和监控网络策略。<Evidence ids={['SEC01','SEC02']}/></p></div><div className="guide-key-facts"><div><strong>1</strong><span>BlueField-4 / 托盘</span></div><div><strong>8</strong><span>ConnectX-9 端点 / 托盘</span></div><div><strong>2 × 4</strong><span>SuperNIC 板组组织</span></div><Evidence ids={['HW04','HW06','HW90']}/></div><AstraDiagram/><div className="guide-two-column"><article><h3>租户拥有计算数据面的使用权</h3><p>CPU/GPU 工作负载使用网络端点执行通信；NIC 管理接口和基础设施策略保持在 DPU 控制域。裸金属主机的管理权限不应扩展为 SuperNIC 管理权限。</p><Evidence ids={['SEC01','SEC02']}/></article><article><h3>一个管理点覆盖两类网络职责</h3><p>BlueField 的南北向接入、存储与基础设施服务，通过 Astra 延伸到东西向 AI 计算网络的管理。网络数据范围与管理权归属是两个不同维度。</p><Evidence ids={['SEC01','SEC03']}/></article></div></>}
   {section===1&&<><div className="guide-intro"><h3>一条租户网络策略如何到达硬件</h3><p>下面以策略配置为例讲解职责分工。步骤用于理解架构，不执行真实管理操作，也不声称 NVIDIA 已公布完整 Astra 消息协议。</p></div><StepFlow steps={astraSteps}/><AstraDiagram/><h3 className="guide-section-title">BlueField-4 上的 DOCA 服务</h3><div className="doca-services">{[['HBN','南北向网络','租户感知的网络配置、隔离与策略'],['加速 OVS','东西向网络','将软件定义网络策略延伸到计算 fabric'],['Argus','运行时观察','从 DPU 域采集可见运行状态并产生告警'],['SNAP','存储卸载','在 DPU 上组织虚拟化存储 I/O'],['DMS','设备生命周期','发现、配置、管理与供应设备']].map(([name,role,description])=><article key={name}><strong>{name}</strong><span>{role}</span><p>{description}</p></article>)}</div><Evidence ids={['SEC01','SEC04']}/></>}
   {section===2&&<><div className="guide-intro"><h3>Astra 是基础设施信任边界中的一层</h3><p>DPU 管理隔离、Realm 机密执行、GPU 设备保护与 I/O 安全要分别成立。图中箭头是工程验证依赖，不能用 Astra 的存在代替 CPU/GPU 证明或租户密钥释放。</p><Evidence ids={['SEC01','SEC10','SEC11','SEC18']}/></div><TrustLanes/><Relationships/></>}
