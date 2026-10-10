@@ -1,104 +1,91 @@
 {
-  "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/",
-  "environment": "aurora-d4g5u80cq1b5f11de",
-  "application": "vera-rubin-nvl72",
-  "version": "vera-rubin-nvl72-002",
-  "buildId": "2608445606",
-  "checkedAt": "2026-10-10T07:56:39.558Z",
+  "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72",
+  "version": null,
+  "checkedAt": "2026-10-10T10:20:15.887Z",
   "results": [
     {
-      "path": "index.html",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/",
+      "path": "/",
       "status": 200,
       "type": "text/html",
       "bytes": 677,
-      "sha256": "d4455f7b645670e86b5c0577ce4025653280eb3573e4f67f20369eaa763143a6",
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/ResearchModal-CFvlWVC6.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/ResearchModal-CFvlWVC6.js",
+      "path": "/assets/ResearchModal-DRZWDwwD.js",
       "status": 200,
       "type": "application/javascript",
       "bytes": 5081,
-      "sha256": "1b2801c26e55836a7c92e64d813f1ca643dab47894c74b122e209ea119611147",
+      "sha256": "fbec25edae48132a50890525c2d54dddadfa5315a9da2a895eab64edc71d66ad",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/SceneCanvas-BgsiXg1n.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/SceneCanvas-BgsiXg1n.js",
+      "path": "/assets/SceneCanvas-0XhSfoL3.js",
       "status": 200,
       "type": "application/javascript",
       "bytes": 889529,
-      "sha256": "66d7ad9ee4566eaa687e68ba3d03ef8b99bda43b36b58ea4795f94f1542230b3",
+      "sha256": "284b2b0d71381f9f29615dc8168c97d1e5bfb2c4ee5c9ecfcc4f2ed001671baa",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/SecurityGuide-B-lROA-U.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/SecurityGuide-B-lROA-U.js",
+      "path": "/assets/SecurityGuide-DjEWCP6R.js",
       "status": 200,
       "type": "application/javascript",
-      "bytes": 94712,
-      "sha256": "53da6e07aafe2ec36472c26f6893e519a6aed1bcc7751e7403542d6993e0a5c5",
+      "bytes": 113061,
+      "sha256": "15cc72b428494e436f118d4dbc1e1b27990939015e1f729726d5769d96220bbe",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/format-CoO1zrd-.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/format-CoO1zrd-.js",
+      "path": "/assets/format-CFkABvWX.js",
       "status": 200,
       "type": "application/javascript",
-      "bytes": 849556,
-      "sha256": "de63030744583eca8e111320c243661892af80f53879eefc912ad890eca61d0b",
+      "bytes": 857478,
+      "sha256": "094e8e3f063f8947b06e9ac461a6bee7ec8dfd88ef2626041009ad7111811bae",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/index-Cuq9gxdg.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/index-Cuq9gxdg.js",
+      "path": "/assets/index-8ecogPSU.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 56120,
+      "sha256": "eeb2d5be515997e210b5350d93af5173b3f43f34d7b4204cd8fd2df824cc4190",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/index-BeWXU1-c.js",
       "status": 200,
       "type": "application/javascript",
       "bytes": 199149,
-      "sha256": "34c68ded1c8fe716162b663775815bd834fe1342d995e7094839894d90850799",
+      "sha256": "e95413791637227620dc3928f0f58186ce7a1f8d3d52d0836698a89e282e12b2",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/index-DbQtv4KF.css",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/index-DbQtv4KF.css",
-      "status": 200,
-      "type": "text/css",
-      "bytes": 53852,
-      "sha256": "995285af331ae79670d0f3a6233302f58042e1e96b76eaba102d74237e40fa2e",
-      "matchesLocal": true,
-      "validType": true
-    },
-    {
-      "path": "assets/x-DYkO2jzM.js",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/x-DYkO2jzM.js",
+      "path": "/assets/x-ZDTPo41B.js",
       "status": 200,
       "type": "application/javascript",
       "bytes": 183,
-      "sha256": "9ad6834ecfba1b0ccceb3ee6c67cf47ee158c4c9a642e6bb07746b74c62c5c61",
+      "sha256": "a47a4a08e48b980d22d86e898a518aa13c096d129dfb44e4544c2d4509d98767",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "guides/nvl72-user-guide.pdf",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/guides/nvl72-user-guide.pdf",
+      "path": "/guides/nvl72-user-guide.pdf",
       "status": 200,
       "type": "application/pdf",
-      "bytes": 6207201,
-      "sha256": "b4dbad71f611338723a7a04da8182b474f767855cb543b587d0197f082ca5fb2",
+      "bytes": 6469878,
+      "sha256": "f3771d8df308751f1006bb5c8ca23a0a639a07edb9ec733c2ef62331526617bb",
       "matchesLocal": true,
       "validType": true
     },
     {
-      "path": "assets/official/README.md",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/official/README.md",
+      "path": "/assets/official/README.md",
       "status": 200,
       "type": "text/markdown",
       "bytes": 245,
@@ -107,8 +94,7 @@
       "validType": true
     },
     {
-      "path": "assets/official/manifest.json",
-      "url": "https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseapp.com/vera-rubin-nvl72/assets/official/manifest.json",
+      "path": "/assets/official/manifest.json",
       "status": 200,
       "type": "application/json",
       "bytes": 11847,
@@ -116,5 +102,7 @@
       "matchesLocal": true,
       "validType": true
     }
-  ]
+  ],
+  "deploymentTrigger": "用户通过CloudBase网页手动更新",
+  "verificationNote": "未读取控制台版本编号；以11个远端文件的SHA-256与本地构建一致作为发布验证。"
 }

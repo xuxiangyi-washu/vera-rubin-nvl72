@@ -71,3 +71,5 @@ CloudBase公开网址：https://aurora-d4g5u80cq1b5f11de-1464571490.tcloudbaseap
 ## Sentry深入研究版发布
 
 Cloudflare版本：`b54fd233-311e-4c79-b47f-4e709ec03918`。本次新增8个Sentry章节、固定OpenShell v0.1.3证据、策略教学交互，并更新49页/20张截图的PDF。Cloudflare的11个文件已进行HTTP、MIME与SHA-256核验。两处平台可分别执行`node scripts/verify-public.mjs <版本标识> cloudflare`或末参数`cloudbase`复验。
+
+CloudBase的Sentry深入研究版由用户在控制台手动更新，随后公网核验11个文件全部HTTP200、MIME正确、SHA-256匹配同一份新版产物，PDF为49页/20张截图。未读取控制台版本编号；核验详情见`research/cloudbase-deployment.json`。两处托管现已同步到相同内容。
