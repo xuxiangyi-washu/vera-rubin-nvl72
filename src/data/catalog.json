@@ -1,0 +1,1216 @@
+{
+  "rack": {
+    "name": "Vera Rubin NVL72",
+    "model": "NVIDIA Vera Rubin NVL72",
+    "color": "#a4e844",
+    "count": "1 个机架 / 72 GPU",
+    "summary": "把计算、Scale-Up 互联与基础设施整合到机架级 AI 系统。模型以 DGX VR 的公开配置为参考。",
+    "specs": [
+      {
+        "label": "GPU / CPU",
+        "value": "72 × Rubin / 36 × Vera",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "托盘分区",
+        "value": "上10计算 · 中9交换 · 下8计算",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "GPU 内存",
+        "value": "20.7 TB HBM4",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "CPU 内存",
+        "value": "最高 54 TB LPDDR5X",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "NVLink 聚合",
+        "value": "216 / 约 260 TB/s",
+        "source": [
+          "HW03",
+          "HW07"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "HBM 聚合",
+        "value": "约 1,400 TB/s（当前产品页）",
+        "source": [
+          "HW03",
+          "HW04"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "历史口径",
+        "value": "1,580 TB/s 来源快照待核实",
+        "source": [
+          "USER"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "大模型训练、MoE 推理与长上下文服务",
+      "72 GPU 的机架级 NVLink fabric；不自动合并独立 OS",
+      "计算、基础设施与租户安全域分别管理"
+    ],
+    "connections": [
+      "Compute Tray → NVLink spine → Switch Tray",
+      "ConnectX-9 → 外部计算网络",
+      "BlueField-4 → 存储与基础设施网络"
+    ],
+    "source": [
+      "HW01",
+      "HW03",
+      "HW06",
+      "HW91"
+    ],
+    "caveat": "研究型结构仿真；无真实遥测、真实密码协商或性能预测。所有动画均为示意。"
+  },
+  "compute": {
+    "name": "计算托盘",
+    "model": "Vera Rubin Compute Tray",
+    "color": "#8dbb6b",
+    "count": "18 个 / 机架",
+    "summary": "两个 Superchip、两个四端点 SuperNIC 板组与一个 BlueField-4，共同构成可维护计算单元。",
+    "specs": [
+      {
+        "label": "计算",
+        "value": "2 Vera CPU + 4 Rubin GPU",
+        "source": [
+          "HW01",
+          "HW06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "网络",
+        "value": "8 ConnectX-9 端点 + 1 BlueField-4",
+        "source": [
+          "HW02",
+          "HW04"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "接入",
+        "value": "后部电力 / 液冷 / NVLink 盲插",
+        "source": [
+          "HW08",
+          "HW90"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "计算、网络与基础设施模块协同",
+      "可维护托盘；内部 PCB midplane 连接"
+    ],
+    "connections": [
+      "后部 NVLink spine",
+      "DC busbar 与液冷 manifold",
+      "Scale-Out / 存储 / 管理网络"
+    ],
+    "source": [
+      "HW01",
+      "HW02",
+      "HW06",
+      "HW90"
+    ]
+  },
+  "superchip": {
+    "name": "Vera Rubin Superchip",
+    "model": "NVIDIA Vera Rubin Superchip",
+    "color": "#82aa56",
+    "count": "36 个 / 机架",
+    "summary": "每个 Superchip 由一颗 Vera CPU 与两颗 Rubin GPU 组成。",
+    "specs": [
+      {
+        "label": "组成",
+        "value": "1 Vera CPU + 2 Rubin GPU",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "C2C 聚合双向",
+        "value": "1.8 TB/s / Superchip",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "CPU / GPU 一致性计算"
+    ],
+    "connections": [
+      "NVLink-C2C",
+      "CPU PCIe I/O"
+    ],
+    "source": [
+      "HW03",
+      "HW06"
+    ],
+    "caveat": "1.8 TB/s 是聚合口径，不能在两条 CPU↔GPU 逻辑边上重复独占计数。"
+  },
+  "gpu": {
+    "name": "Rubin GPU",
+    "model": "NVIDIA Rubin GPU",
+    "color": "#b5ed62",
+    "count": "72 颗 / 4 颗每托盘",
+    "summary": "AI 计算、HBM4 显存与 NVLink 6 端点组成 GPU 执行域。",
+    "specs": [
+      {
+        "label": "晶体管",
+        "value": "3360 亿（336 billion）",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "计算单元",
+        "value": "224 SM · 896 Tensor Core",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "NVFP4 推理",
+        "value": "最高 50 PFLOPS · 第三代 Transformer Engine",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "HBM4",
+        "value": "最高 288 GB",
+        "source": [
+          "HW03",
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "HBM 带宽",
+        "value": "19.2 / 22 TB/s",
+        "source": [
+          "HW03",
+          "HW05"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "NVLink 双向",
+        "value": "3.0 / 3.6 TB/s",
+        "source": [
+          "HW03",
+          "HW07"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "GPU 间保护",
+        "value": "GPU—GPU NVLink encryption",
+        "source": [
+          "SEC11"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "训练、推理与 Tensor Core 计算",
+      "GPU TEE 与受保护的 GPU 间通信",
+      "NCCL collectives、MoE all-to-all、peer memory"
+    ],
+    "connections": [
+      "NVLink-C2C → 本地 Vera CPU",
+      "NVLink 6 → spine → NVLink Switch",
+      "GPUDirect → 网络 I/O（具体 PCIe 拓扑待核实）"
+    ],
+    "source": [
+      "HW03",
+      "HW05",
+      "SEC11"
+    ],
+    "caveat": "单链路带宽与逐端口映射未核实；所画 36 芯片是逻辑 fabric 集合。"
+  },
+  "cpu": {
+    "name": "Vera CPU",
+    "model": "NVIDIA Vera CPU",
+    "color": "#63c4be",
+    "count": "36 颗 / 2 颗每托盘",
+    "summary": "执行主机 OS、数据预处理、内存与设备编排，并提供基于 Arm CCA/RME 的机密计算能力。",
+    "specs": [
+      {
+        "label": "核心",
+        "value": "88 Olympus 核 · 空间多线程 / 176 线程",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "内存",
+        "value": "最高 1.5 TB LPDDR5X / CPU",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "C2C",
+        "value": "1.8 TB/s / Superchip 聚合",
+        "source": [
+          "HW03"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "机密计算",
+        "value": "Arm CCA/RME · 每 VM 密钥",
+        "source": [
+          "SEC10"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "C2C 保护",
+        "value": "authenticated C2C encryption",
+        "source": [
+          "SEC10"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "主机执行与数据预处理",
+      "内存一致性与设备编排",
+      "Realm / CVM 工作负载隔离"
+    ],
+    "connections": [
+      "两颗 Rubin GPU，经 NVLink-C2C",
+      "本地 SuperNIC 板组，经 PCIe",
+      "DPU / 通用 I/O（布线按平台核验）"
+    ],
+    "source": [
+      "HW03",
+      "HW06",
+      "SEC10"
+    ],
+    "caveat": "Realm 密钥的具体生成、销毁状态机未在引用公开章节披露。"
+  },
+  "nic": {
+    "name": "ConnectX-9",
+    "model": "NVIDIA ConnectX-9 VPI / SuperNIC",
+    "color": "#65aafb",
+    "count": "144 个端点 / 8 个每托盘",
+    "summary": "承担跨机架计算数据面；Astra 模式下管理权位于 BlueField-4 域。",
+    "specs": [
+      {
+        "label": "DGX VR 端点速率",
+        "value": "800 Gb/s / 单口 OSFP",
+        "source": [
+          "HW04"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "每 GPU 网络口径",
+        "value": "1.6 Tb/s（非每端点）",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "配置组织",
+        "value": "2 × 四端点 SuperNIC 板组 / 托盘",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "TLS 硬件卸载",
+        "value": "NVL72 所用 CX-9 不支持 · DOCA 3.5.0",
+        "source": [
+          "HW10"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "在途保护",
+        "value": "IPsec / PSP 能力；按配置启用",
+        "source": [
+          "HW11"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "RDMA / GPUDirect 与计算网络通信",
+      "Ethernet/RoCE 或 InfiniBand 数据面",
+      "执行由 DPU 下发的基础设施策略"
+    ],
+    "connections": [
+      "OSFP → Spectrum-X / Quantum-X800",
+      "PCIe → 主机计算域",
+      "专用 Astra 控制连接 → BlueField-4"
+    ],
+    "source": [
+      "HW02",
+      "HW04",
+      "HW06",
+      "HW10",
+      "SEC01",
+      "HW11"
+    ],
+    "caveat": "未接入真实设备；800 Gb/s 为当前 DGX VR 产品规格。IPsec/PSP 不表示默认业务流已加密。"
+  },
+  "dpu": {
+    "name": "BlueField-4",
+    "model": "NVIDIA BlueField-4 DPU",
+    "color": "#a1df60",
+    "count": "18 个 / 1 个每托盘",
+    "summary": "在租户主机之外承载基础设施控制与服务。Astra 管理 SuperNIC，DOCA 提供网络、存储、安全与管理软件。",
+    "specs": [
+      {
+        "label": "网络",
+        "value": "双端口 400 Gb/s（DGX VR）",
+        "source": [
+          "HW04"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "Astra 控制对象",
+        "value": "8 ConnectX-9 端点 / 托盘",
+        "source": [
+          "SEC01",
+          "HW90"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "策略状态",
+        "value": "示意：由 DPU 管理；非实时状态",
+        "source": [
+          "SEC02"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "Argus 状态",
+        "value": "能力说明；部署及告警未接入",
+        "source": [
+          "SEC04"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "基础设施卸载、加速与隔离",
+      "DOCA HBN / OVS / SNAP / DMS / Argus",
+      "带外策略入口与 SuperNIC 控制"
+    ],
+    "connections": [
+      "专用 Astra → 8 ConnectX-9",
+      "Ethernet → 存储与基础设施",
+      "带外管理网络 → DPU 管理入口"
+    ],
+    "source": [
+      "HW04",
+      "SEC01",
+      "SEC03",
+      "SEC04"
+    ],
+    "caveat": "Scale-In 覆盖南北向基础设施，不限于机柜内部；租户数据包无需全部经过 DPU 外部端口。"
+  },
+  "switchTray": {
+    "name": "NVLink Switch Tray",
+    "model": "NVLink 6 Switch Tray",
+    "color": "#e18c92",
+    "count": "9 个 / 机架",
+    "summary": "每托盘四颗交换 ASIC，提供机架内 scale-up 交换与 SHARP 在网计算。",
+    "specs": [
+      {
+        "label": "芯片",
+        "value": "4 × NVLink 6 Switch / 托盘",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "整柜",
+        "value": "36 颗 NVLink 6 Switch",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "管理与根信任",
+        "value": "BMC用于证明/恢复；CPU ERoT",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "维护",
+        "value": "热插拔 / 部分配置运行（条件相关）",
+        "source": [
+          "HW07"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "NVLink all-to-all 可达性",
+      "SHARP collective 运算",
+      "维护与降级运行"
+    ],
+    "connections": [
+      "spine → 72 GPU 的逻辑交换域",
+      "管理网络 / busbar / 液冷"
+    ],
+    "source": [
+      "HW01",
+      "HW07"
+    ],
+    "caveat": "不同维护操作有不同停机要求；不得把热插拔能力当作任意带电拆卸许可。"
+  },
+  "switch": {
+    "name": "NVLink 6 Switch",
+    "model": "NVIDIA NVLink 6 Switch ASIC",
+    "color": "#e78394",
+    "count": "36 颗 / 4 颗每交换托盘",
+    "summary": "用于 scale-up fabric 的交换芯片，区别于机柜外 Ethernet 或 InfiniBand 交换机。",
+    "specs": [
+      {
+        "label": "芯片端口",
+        "value": "72 × NVLink 6 ports / ASIC",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "机架聚合双向",
+        "value": "216 / 约 260 TB/s",
+        "source": [
+          "HW03",
+          "HW07"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "端口布线",
+        "value": "GPU 对应端口与单链路口径待核实",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "GPU fabric 交换",
+      "SHARP 在网计算",
+      "维护重路由"
+    ],
+    "connections": [
+      "NVLink spine 与 GPU 域"
+    ],
+    "source": [
+      "HW01",
+      "HW07"
+    ],
+    "caveat": "加密终止位置、交换机密钥角色及加密下 SHARP 实现未公开。"
+  },
+  "spine": {
+    "name": "NVLink 6 spine",
+    "model": "被动铜缆背板 / spine",
+    "color": "#e07b8c",
+    "count": "1 套 / 机架",
+    "summary": "机柜后部被动互连结构，连接计算与交换托盘。",
+    "specs": [
+      {
+        "label": "铜缆规模",
+        "value": "约 5,000 条",
+        "source": [
+          "HW07"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "Cartridge",
+        "value": "最多 4 个；本模型展示 4 个",
+        "source": [
+          "HW08"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "托盘之间的物理 NVLink 连接"
+    ],
+    "connections": [
+      "72 GPU 与 9 Switch Tray 的背部接口"
+    ],
+    "source": [
+      "HW02",
+      "HW07",
+      "HW08"
+    ],
+    "caveat": "视觉中少量线束代表汇聚路径，不是一根曲线等于一根实际铜缆。"
+  },
+  "cartridge": {
+    "name": "Cable Cartridge",
+    "model": "预集成铜缆 cartridge",
+    "color": "#bd786c",
+    "count": "4 个 / 本模型",
+    "summary": "可维护的预集成铜缆结构，构成后部 spine。",
+    "specs": [
+      {
+        "label": "MGX 架构",
+        "value": "最多 4 个预集成 cartridge",
+        "source": [
+          "HW08"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "预集成连接与维护"
+    ],
+    "connections": [
+      "Compute Tray / NVLink Switch Tray"
+    ],
+    "source": [
+      "HW08",
+      "HW90"
+    ]
+  },
+  "power": {
+    "name": "电源层",
+    "model": "DGX VR Power Shelf",
+    "color": "#edbb6b",
+    "count": "4 层 / 机架",
+    "summary": "将输入供电转换并经 busbar 为系统供电。",
+    "specs": [
+      {
+        "label": "额定容量",
+        "value": "110 kW / 层 · 共 440 kW",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "PSU",
+        "value": "每层 6 × 18.3 kW 风冷 PSU",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "配电",
+        "value": "54 V DC busbar",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "机架供电与冗余配置"
+    ],
+    "connections": [
+      "busbar → 计算 / 交换托盘"
+    ],
+    "source": [
+      "HW01"
+    ],
+    "caveat": "4 × 110 kW 是额定容量之和，不是机柜实测耗电。MaxLPS 40% 是厂商特定工厂规划上限。"
+  },
+  "cooling": {
+    "name": "液冷系统",
+    "model": "Liquid Cooling Manifold",
+    "color": "#58dbe5",
+    "count": "1 套示意系统",
+    "summary": "通过后部 manifold 和托盘盲插接口带走芯片热量。",
+    "specs": [
+      {
+        "label": "计算及交换",
+        "value": "全液冷计算 / 交换设计",
+        "source": [
+          "HW08"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "机柜风扇",
+        "value": "电源仍有风冷 PSU",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "供液与回液",
+      "托盘级液冷连接"
+    ],
+    "connections": [
+      "外部 CDU → manifold → 托盘"
+    ],
+    "source": [
+      "HW01",
+      "HW08"
+    ],
+    "caveat": "供回水温度、流量、压力及管径不作为未核实规格展示。"
+  },
+  "busbar": {
+    "name": "DC Busbar",
+    "model": "机架直流母排",
+    "color": "#edbb6b",
+    "count": "1 套",
+    "summary": "机架直流配电结构。",
+    "specs": [
+      {
+        "label": "母线",
+        "value": "54 V DC",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "从电源层到托盘的供电"
+    ],
+    "connections": [
+      "Power Shelf → Compute / Switch Tray"
+    ],
+    "source": [
+      "HW01"
+    ]
+  },
+  "bmc": {
+    "name": "BMC",
+    "model": "托盘 BMC（型号未披露）",
+    "color": "#8e9da6",
+    "count": "计算托盘管理控制器",
+    "summary": "独立带外管理入口，不把管理可达性当作租户远程证明。",
+    "specs": [
+      {
+        "label": "管理口",
+        "value": "1 GbE → ToR / ipminet",
+        "source": [
+          "HW02"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "监控、固件与电源管理"
+    ],
+    "connections": [
+      "管理 ToR",
+      "HMC 等内部管理控制器"
+    ],
+    "source": [
+      "HW01",
+      "HW02"
+    ]
+  },
+  "hmc": {
+    "name": "HMC 管理关联",
+    "model": "Host Management Controller",
+    "color": "#8e9da6",
+    "count": "逻辑管理节点；不表示器件数量",
+    "summary": "展示主机管理控制器与 BMC、DPU 的管理关系。",
+    "specs": [
+      {
+        "label": "信任含义",
+        "value": "管理拓扑不是密码证明链",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "主机侧管理协调"
+    ],
+    "connections": [
+      "BMC → HMC → DPU（关联示意）"
+    ],
+    "source": [
+      "HW01"
+    ],
+    "caveat": "实际信号方向、总线与管理授权按平台手册核验。"
+  },
+  "external": {
+    "name": "外部计算网络",
+    "model": "Spectrum-X / Quantum-X800",
+    "color": "#65aafb",
+    "count": "逻辑汇聚节点",
+    "summary": "多机架计算数据面可采用 Ethernet/RoCE 或 InfiniBand。",
+    "specs": [
+      {
+        "label": "Ethernet",
+        "value": "Spectrum-X / Spectrum-6",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "InfiniBand",
+        "value": "Quantum-X800 · SHARP v4",
+        "source": [
+          "HW13"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "跨机架分布式训练和推理"
+    ],
+    "connections": [
+      "ConnectX-9 → 外部交换网络 → 对端机架"
+    ],
+    "source": [
+      "HW02",
+      "HW06"
+    ],
+    "caveat": "外部交换机数量、端口规划和超售比未在本模型中设定。"
+  },
+  "storage": {
+    "name": "外部存储",
+    "model": "NVMe-oF / 文件 / 对象存储",
+    "color": "#36cfb7",
+    "count": "示意存储域",
+    "summary": "检查点从计算内存跨网络写入持久化系统，需要独立的数据在途和静态保护。",
+    "specs": [
+      {
+        "label": "保护",
+        "value": "传输加密 + 独立落盘密钥",
+        "source": [
+          "HW90"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "数据集与检查点持久化"
+    ],
+    "connections": [
+      "BlueField-4 存储网络；具体路径依部署"
+    ],
+    "source": [
+      "HW90",
+      "HW02"
+    ],
+    "caveat": "NVLink 加密不会自动延伸至外部存储。"
+  },
+  "management": {
+    "name": "带外管理 ToR",
+    "model": "管理交换网络（示意）",
+    "color": "#8e9da6",
+    "count": "逻辑管理节点",
+    "summary": "连接 BMC 和基础设施管理入口的独立网络。",
+    "specs": [
+      {
+        "label": "BMC 接入",
+        "value": "1 GbE",
+        "source": [
+          "HW02"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "带外配置与监控"
+    ],
+    "connections": [
+      "BMC / DPU 管理入口"
+    ],
+    "source": [
+      "HW02",
+      "SEC01"
+    ]
+  },
+  "astra": {
+    "name": "BlueField Astra",
+    "model": "NVIDIA BlueField Astra",
+    "color": "#a1df60",
+    "count": "架构 / 非独立芯片",
+    "summary": "将 SuperNIC 控制权移出主机租户域，在 DPU 域建立基础设施可信控制面。",
+    "specs": [
+      {
+        "label": "控制",
+        "value": "DPU 专用连接 → 8 端点",
+        "source": [
+          "SEC01",
+          "HW90"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "SuperNIC",
+        "value": "Astra 配置下按设计锁定",
+        "source": [
+          "SEC02"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "链路密码细节",
+        "value": "专用链路协议 / 密钥协商未披露",
+        "source": [
+          "SEC01",
+          "HW90"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "租户域与基础设施域分离",
+      "配置、监控与策略下发"
+    ],
+    "connections": [
+      "DPU 带外入口 → DOCA → CX-9 硬件"
+    ],
+    "source": [
+      "SEC01",
+      "SEC02"
+    ],
+    "caveat": "Astra 不等于 Sentry，也不代替 Realm 或 IMEX。"
+  },
+  "argus": {
+    "name": "DOCA Argus",
+    "model": "NVIDIA DOCA Argus",
+    "color": "#a1df60",
+    "count": "DPU 服务 / 部署状态未接入",
+    "summary": "在 BlueField 独立域使用 DMA 读取授权可见的主机内存结构，进行无代理运行时检测。",
+    "specs": [
+      {
+        "label": "观测",
+        "value": "进程 / 线程 / 执行上下文 / SHA-256",
+        "source": [
+          "SEC04"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "检测速度",
+        "value": "最高 1,000 倍（厂商声明）",
+        "source": [
+          "SEC05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "Realm 私有内存",
+        "value": "不能推断可穿透隔离读取",
+        "source": [
+          "SEC04",
+          "SEC12"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "运行时完整性及行为检测",
+      "告警交付 XDR / SIEM"
+    ],
+    "connections": [
+      "授权主机内存 → DPU 分析 → 安全运营"
+    ],
+    "source": [
+      "SEC04",
+      "SEC05"
+    ],
+    "caveat": "不是 NVSentinel，也不是 Sentry；不把厂商速度声明当作实测。"
+  },
+  "sentry": {
+    "name": "NVIDIA Sentry",
+    "model": "Open Agent Safety Platform / Sentry",
+    "color": "#d2a4ee",
+    "count": "参考系统 / 非出厂使能状态",
+    "summary": "基于 DOCA 与 BlueField-4 的带外 watchdog，针对 agent 活动进行独立观察和执行。",
+    "specs": [
+      {
+        "label": "发布日期",
+        "value": "2026-09-28",
+        "source": [
+          "SEC06"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "参考拓扑",
+        "value": "agent 节点通往模型的必要路径",
+        "source": [
+          "SEC07"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "OpenShell",
+        "value": "无需依赖 BlueField-4",
+        "source": [
+          "SEC08"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "隔离信任域中的 agent 治理",
+      "与 OpenShell 策略及沙箱协同"
+    ],
+    "connections": [
+      "Agent → BlueField-4 执行点 → 模型（参考路径）"
+    ],
+    "source": [
+      "SEC06",
+      "SEC07",
+      "SEC08",
+      "SEC09",
+      "SEC19"
+    ],
+    "caveat": "不能推断可观察全部 GPU/NVLink 内容；毫秒级响应必须定义起止、负载、分位数与超时。"
+  },
+  "realm": {
+    "name": "Realm VM",
+    "model": "Vera / Arm CCA Realm",
+    "color": "#c7a0ef",
+    "count": "工作负载隔离域 / 示意",
+    "summary": "硬件隔离的机密 VM 执行环境，宿主与管理程序不应直接访问受保护内存。",
+    "specs": [
+      {
+        "label": "基础",
+        "value": "Arm CCA / RME",
+        "source": [
+          "SEC10",
+          "SEC12"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "内存密钥",
+        "value": "每 VM 独立密钥",
+        "source": [
+          "SEC10"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "机架受保护通路",
+        "value": "C2C authenticated encryption / GPU—GPU NVLink encryption",
+        "source": [
+          "SEC10",
+          "SEC11"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "密钥状态机",
+        "value": "Vera 具体生成 / 销毁细节未披露",
+        "source": [
+          "SEC10"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "保护工作负载内存与状态",
+      "协同设备证明、授权与密钥释放"
+    ],
+    "connections": [
+      "CPU Realm → 受保护 C2C → GPU TEE",
+      "可信设备分配 → 受保护 DMA"
+    ],
+    "source": [
+      "SEC10",
+      "SEC11",
+      "SEC12"
+    ],
+    "caveat": "Realm、GPU、IDE 与 NVLink 是不同保护层和密钥域，不是一把全柜共用密钥。"
+  },
+  "imex": {
+    "name": "IMEX",
+    "model": "NVIDIA Internode Memory Exchange",
+    "color": "#c7a0ef",
+    "count": "跨 OS 映射控制服务",
+    "summary": "协调 GPU 显存的导出、导入与远程映射生命周期，payload 由 GPU/NVLink 传输。",
+    "specs": [
+      {
+        "label": "控制通路",
+        "value": "TCP/IP + gRPC",
+        "source": [
+          "SEC13"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "认证加密默认",
+        "value": "IMEX_ENABLE_AUTH_ENCRYPTION = 0",
+        "source": [
+          "SEC14"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "可选模式",
+        "value": "SSL/TLS 或 GSSAPI/Kerberos；AUTH_ONLY 无加密",
+        "source": [
+          "SEC14"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "Vera Rubin 绑定",
+        "value": "具体部署和支持矩阵待核实",
+        "source": [
+          "SEC13",
+          "HW90"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "domain / channel 显存共享授权",
+      "与 CUDA fabric memory / NCCL MNNVL 配合"
+    ],
+    "connections": [
+      "调度器 → daemon → GPU 驱动",
+      "daemon ↔ 管理网络 TCP/IP / gRPC"
+    ],
+    "source": [
+      "SEC13",
+      "SEC14",
+      "SEC15",
+      "SEC16"
+    ],
+    "caveat": "使用最低可访问 channel；开放 channel0 会破坏新增 channel 的预期隔离。GSS_AUTH_ONLY 不加密。"
+  },
+  "root": {
+    "name": "硬件根信任",
+    "model": "设备启动与身份根（概念）",
+    "color": "#c7a0ef",
+    "count": "多端点独立根 / 概念",
+    "summary": "设备身份、固件度量和启动验证构成后续验证依据。不能把概念图当成实际证书层次。",
+    "specs": [
+      {
+        "label": "Caliptra 绑定",
+        "value": "具体芯片 / 版本 / 证书路径待核实",
+        "source": [
+          "SEC11",
+          "SEC22"
+        ],
+        "confidence": "待核实"
+      }
+    ],
+    "functions": [
+      "可信启动与设备身份基础"
+    ],
+    "connections": [
+      "固件测量 → 验证者"
+    ],
+    "source": [
+      "SEC11",
+      "SEC17"
+    ]
+  },
+  "firmware": {
+    "name": "固件与设备证明",
+    "model": "测量 / 身份 / 证明策略",
+    "color": "#c7a0ef",
+    "count": "概念验证阶段",
+    "summary": "分别验证 CPU、GPU 与外设身份、版本、状态和测量，再评估是否允许加入工作负载域。",
+    "specs": [
+      {
+        "label": "SPDM",
+        "value": "认证 / 测量 / 安全会话",
+        "source": [
+          "SEC17"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "设备身份与受信版本检查"
+    ],
+    "connections": [
+      "硬件根 → 验证者 → 设备授权"
+    ],
+    "source": [
+      "SEC17",
+      "SEC11"
+    ]
+  },
+  "io": {
+    "name": "可信设备 I/O",
+    "model": "SPDM / TDISP / PCIe IDE",
+    "color": "#c7a0ef",
+    "count": "协议机制 / 示意",
+    "summary": "SPDM 建立设备信任，TDISP 绑定接口状态，IDE 保护 PCIe TLP；三者分工不同。",
+    "specs": [
+      {
+        "label": "安全前提",
+        "value": "接口授权与 IDE 均就绪后允许机密 DMA",
+        "source": [
+          "SEC17",
+          "SEC18"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "IDE",
+        "value": "机密性 / 完整性 / 重放保护",
+        "source": [
+          "SEC18"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "安全设备分配与 DMA 通路保护"
+    ],
+    "connections": [
+      "Realm ↔ Root Port ↔ 设备接口"
+    ],
+    "source": [
+      "SEC17",
+      "SEC18",
+      "SEC11"
+    ],
+    "caveat": "这是依赖关系图，不是将 TDISP RUN 放在 IDE 就绪之前的可执行配置顺序。"
+  }
+}

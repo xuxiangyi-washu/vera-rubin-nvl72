@@ -1,0 +1,23 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+research/document-*.txt
+research/*.png
+research/qa/
+
+.wrangler/
+.deploy/
+
+.venv-pdf/
+tmp/
+*.zip
+
+# 本地环境配置与凭证不提交到远程仓库。
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+*.key

@@ -1,0 +1,106 @@
+{
+  "url": "https://vera-rubin-nvl72.xuxiangyi666.workers.dev",
+  "version": "1e91b1fa-f7c4-449e-837f-3ee2a8823d32",
+  "checkedAt": "2026-10-10T03:35:28.973Z",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html",
+      "bytes": 674,
+      "sha256": "690f7d39edebb818a4526712622d504b44d235c09592a439a128f928e2bc29d5",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/ResearchModal-DDi0ZLha.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 5081,
+      "sha256": "e9ecf0ef6c6bd58b9af19013421820da8ca2ff069336b538251b0820787bcebb",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/SceneCanvas-CMoAqfMs.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 889529,
+      "sha256": "8d661d6528b004a3600b1a6589376d1e89614afd23735a349116fe464397f650",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/SecurityGuide-DSXNbq89.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 94712,
+      "sha256": "eb3071f1ff9dfa1f3e138b28979b4c569a0e9cc5eb79245698714bf1dccc64ed",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/format-CoO1zrd-.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 849556,
+      "sha256": "de63030744583eca8e111320c243661892af80f53879eefc912ad890eca61d0b",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/index-CIhSYgCc.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 199110,
+      "sha256": "ff4783faebf0b6ff2be845bc2743e696ae2fbe4245ad63a557b80e2519be1669",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/index-DbQtv4KF.css",
+      "status": 200,
+      "type": "text/css",
+      "bytes": 53852,
+      "sha256": "995285af331ae79670d0f3a6233302f58042e1e96b76eaba102d74237e40fa2e",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/x-DLuO8Akl.js",
+      "status": 200,
+      "type": "text/javascript",
+      "bytes": 183,
+      "sha256": "129f758a076a3e4596915a142298a25b0293e47d210df9973c0734f253e3f1da",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/guides/nvl72-user-guide.pdf",
+      "status": 200,
+      "type": "application/pdf",
+      "bytes": 6207201,
+      "sha256": "b4dbad71f611338723a7a04da8182b474f767855cb543b587d0197f082ca5fb2",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/official/README.md",
+      "status": 200,
+      "type": "text/markdown",
+      "bytes": 245,
+      "sha256": "ab927ba79741d5b5fb7320b65e1f58c90c9e55cf3f0098cef31b7921bd141804",
+      "matchesLocal": true,
+      "validType": true
+    },
+    {
+      "path": "/assets/official/manifest.json",
+      "status": 200,
+      "type": "application/json",
+      "bytes": 11847,
+      "sha256": "519aafdea9d847a572af5098e6e587f266dcad8330ec02848002088a452495da",
+      "matchesLocal": true,
+      "validType": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+import { useEffect } from 'react';
+import { Play, Pause, RotateCcw, ChevronRight, ShieldCheck } from 'lucide-react';
+import { useExplorer } from '../stores/useExplorer';
+import { inferencePhases, teachingTokens } from '../data/inference';
+import { createRingAllReduce, teachingInputs } from '../utils/ring.mjs';
+import { SourceLink } from './Inspector';
+const snapshots=createRingAllReduce(teachingInputs);
+export function advanceInference(){
+ const s=useExplorer.getState();
+ if([4,5].includes(s.inferenceStep)&&s.inferenceRound<4){s.update({inferenceRound:s.inferenceRound+1});return}
+ if(s.inferenceStep===7){if(s.inferenceToken<3)s.update({inferenceStep:2,inferenceRound:0,inferenceToken:s.inferenceToken+1});else s.update({inferenceStep:8,inferencePlaying:false});return}
+ if(s.inferenceStep>=8){s.update({inferenceStep:0,inferenceRound:0,inferenceToken:0,inferencePlaying:false});return}
+ s.update({inferenceStep:s.inferenceStep+1,inferenceRound:0});
+}
+export function InferenceControls(){
+ const s=useExplorer();
+ useEffect(()=>{if(!s.inferencePlaying)return;const timer=window.setInterval(advanceInference,1300/s.inferenceSpeed);return()=>window.clearInterval(timer)},[s.inferencePlaying,s.inferenceSpeed]);
+ return <section className="inference-controls"><div className="inference-mode"><button className={s.inferenceMode==='os'?'active':''} onClick={()=>s.update({inferenceMode:'os',inferenceStep:0,inferenceRound:0,inferenceToken:0,inferencePlaying:false})}>多个 OS 域</button><button className={s.inferenceMode==='realm'?'active':''} onClick={()=>s.update({inferenceMode:'realm',inferenceStep:0,inferenceRound:0,inferenceToken:0,inferencePlaying:false})}>多个 Realm VM · 概念示例</button></div><div className="inference-playback"><button onClick={()=>s.update({inferencePlaying:!s.inferencePlaying,...(s.inferenceStep===8?{inferenceStep:0,inferenceRound:0,inferenceToken:0}:{})})}>{s.inferencePlaying?<Pause size={15}/>:<Play size={15}/>} {s.inferencePlaying?'暂停':'播放推理流程'}</button><button onClick={advanceInference}>单步 <ChevronRight size={14}/></button><button aria-label="复位推理演示" onClick={()=>s.update({inferenceStep:0,inferenceRound:0,inferenceToken:0,inferencePlaying:false})}><RotateCcw size={14}/></button><select aria-label="演示速度" value={s.inferenceSpeed} onChange={e=>s.update({inferenceSpeed:Number(e.target.value)})}><option value="0.5">0.5×</option><option value="1">1×</option><option value="2">2×</option></select></div><p className="inference-boundary"><ShieldCheck size={15}/>{s.inferenceMode==='realm'?'跨Realm配置是目标架构概念演示；公开资料不足以确认该NCCL/IMEX/GPU分配组合已正式支持。':'3个OS域、6个GPU为教学子集；不宣称这是NVL72的固定主机部署方式。'}<SourceLink id="HW90"/><SourceLink id="SEC16"/></p></section>;
+}
+export function InferenceExplanation(){
+ const s=useExplorer(),phase=inferencePhases[s.inferenceStep];
+ const snapshot=s.inferenceStep===4?snapshots[s.inferenceRound+1]:s.inferenceStep===5?snapshots[s.inferenceRound+6]:s.inferenceStep>=6?snapshots.at(-1)!:snapshots[0];
+ return <section className="exchange-explanation inference-explanation"><div className="exchange-heading"><div><span className="eyebrow">DISTRIBUTED INFERENCE / TEACHING SIMULATION</span><h2>{phase.title}</h2></div><span className="round-label">{[4,5].includes(s.inferenceStep)?`ROUND ${s.inferenceRound+1} / 5`:`TOKEN ${s.inferenceToken+1} / 4`}</span></div><div className="inference-phases">{inferencePhases.slice(0,8).map((p,i)=><button key={p.title} className={s.inferenceStep===i?'active':''} onClick={()=>s.update({inferenceStep:i,inferenceRound:0,inferencePlaying:false})}><b>{i+1}</b>{p.title.split(' · ')[0]}</button>)}</div><p>{phase.detail} <span className="source-inline">{phase.sources.map(id=><SourceLink key={id} id={id}/>)}</span></p><div className="inference-matrix"><div className="table-scroll"><table><thead><tr><th>OS / 示例VM</th><th>rank / GPU</th><th>当前6个分块的教学值</th></tr></thead><tbody>{snapshot.buffers.map((values,i)=><tr key={i}><td>OS {String.fromCharCode(65+Math.floor(i/2))}{s.inferenceMode==='realm'?` / Realm ${String.fromCharCode(65+Math.floor(i/2))}`:''}</td><td>rank {i} / GPU {String(i+1).padStart(2,'0')}</td><td>{values.map((n,j)=><span key={j} className={s.inferenceStep===4&&s.inferenceRound===4&&j===(i+1)%6?'chunk complete':s.inferenceStep>=6?'chunk complete':'chunk'}><small>C{j}</small>{n}</span>)}</td></tr>)}</tbody></table></div></div><div className="teaching-output"><span>教学 token 序列</span>{teachingTokens.map((token,i)=><b key={token} className={i<s.inferenceToken||(i===s.inferenceToken&&s.inferenceStep>=7)?'visible-token':''}>{i<s.inferenceToken||(i===s.inferenceToken&&s.inferenceStep>=7)?token:'…'}</b>)}<small>预设文本 · 非真实模型输出</small></div><p className="exchange-boundary">控制面：进程启动、rank/设备映射、unique ID、IMEX授权及证明。数据面：GPU缓冲区经NVLink fabric交换。NCCL承担通信，不负责模型语义、Realm证明或密钥释放；IMEX不转发张量。<SourceLink id="NC02"/><SourceLink id="SEC13"/></p></section>;
+}

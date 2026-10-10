@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vera Rubin NVL72 logical architecture",
+  "type": "object",
+  "required": [
+    "metadata",
+    "rack",
+    "entities",
+    "ports",
+    "links",
+    "networks",
+    "security_domains"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "title",
+        "asOf",
+        "version",
+        "disclaimer",
+        "corrections"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "asOf": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "disclaimer": {
+          "type": "string"
+        },
+        "corrections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "rack": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    },
+    "ports": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/port"
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/link"
+      }
+    },
+    "networks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "color",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "security_domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "members",
+          "note",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": "string"
+          },
+          "source": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "confidence": {
+      "enum": [
+        "已确认",
+        "待核实",
+        "冲突"
+      ]
+    },
+    "fact": {
+      "type": "object",
+      "required": [
+        "label",
+        "value",
+        "confidence",
+        "source"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "model",
+        "vendor",
+        "specs",
+        "functions",
+        "image",
+        "source",
+        "position",
+        "rotation",
+        "size",
+        "ports",
+        "links",
+        "parent",
+        "children"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "rack",
+            "compute",
+            "superchip",
+            "gpu",
+            "cpu",
+            "nic",
+            "dpu",
+            "switchTray",
+            "switch",
+            "spine",
+            "cartridge",
+            "power",
+            "cooling",
+            "busbar",
+            "bmc",
+            "hmc",
+            "external",
+            "storage",
+            "management",
+            "astra",
+            "argus",
+            "sentry",
+            "realm",
+            "imex",
+            "root",
+            "firmware",
+            "io"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "specs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fact"
+          }
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "position": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "rotation": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "size": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trayIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 17
+        }
+      },
+      "additionalProperties": false
+    },
+    "port": {
+      "type": "object",
+      "required": [
+        "id",
+        "entity",
+        "type",
+        "physicalCount",
+        "semantics"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "physicalCount": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "semantics": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "id",
+        "source",
+        "target",
+        "sourcePort",
+        "targetPort",
+        "type",
+        "name",
+        "bandwidth",
+        "confidence",
+        "evidence",
+        "physicalLaneCount",
+        "semantics",
+        "flow"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "sourcePort": {
+          "type": "string"
+        },
+        "targetPort": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "nvlink",
+            "c2c",
+            "pcie",
+            "scaleout",
+            "astra",
+            "storage",
+            "management",
+            "power",
+            "cooling",
+            "trust"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "bandwidth": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "physicalLaneCount": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "semantics": {
+          "type": "string"
+        },
+        "flow": {
+          "enum": [
+            "data",
+            "control",
+            "storage",
+            "management",
+            "infrastructure",
+            "evidence"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

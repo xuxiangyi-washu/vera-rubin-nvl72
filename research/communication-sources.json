@@ -1,0 +1,64 @@
+[
+  {
+    "id": "NC01",
+    "title": "NCCL User Guide — Collective Operations",
+    "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html",
+    "section": "AllReduce; ReduceScatter; AllGather; AlltoAll",
+    "claims": [
+      "ReduceScatter后接AllGather等价于AllReduce；各rank必须匹配collective的count和datatype。",
+      "教学Ring数值模拟不证明任何Vera Rubin跨Realm配置已受支持。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "NC02",
+    "title": "NCCL User Guide — Creating a Communicator",
+    "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/communicators.html",
+    "section": "Creating a Communicator",
+    "claims": [
+      "communicator为参与CUDA设备分配唯一rank；unique ID经主机通信机制在进程间共享。",
+      "NCCL初始化不是Realm证明或密钥释放协议。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SW01",
+    "title": "NVIDIA Dynamo Documentation",
+    "url": "https://docs.nvidia.com/dynamo/",
+    "section": "Overview / distributed inference serving",
+    "claims": [
+      "Dynamo提供分布式推理服务相关能力；实际配置以版本文档为准。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SW02",
+    "title": "NVIDIA TensorRT-LLM Documentation",
+    "url": "https://nvidia.github.io/TensorRT-LLM/",
+    "section": "Overview / inference optimization",
+    "claims": [
+      "TensorRT-LLM为大模型推理提供优化执行能力；模型与硬件支持需核验具体版本。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "CR01",
+    "title": "NIST SP 800-38D — GCM and GMAC",
+    "url": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+    "section": "Authenticated encryption with associated data; IV requirements",
+    "claims": [
+      "用于解释通用AEAD与GCM，不作为NVLink6密码算法或参数的证据。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "CR02",
+    "title": "W3C Web Cryptography API",
+    "url": "https://www.w3.org/TR/webcrypto/",
+    "section": "AES-GCM; SubtleCrypto encrypt/decrypt; generateKey",
+    "claims": [
+      "浏览器AES-GCM教学演示使用Web Crypto；不是NVLink6实现。"
+    ],
+    "confidence": "已确认"
+  }
+]

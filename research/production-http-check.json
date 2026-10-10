@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "path": "/assets/ResearchModal-ewQV8GGX.js",
+      "status": 200,
+      "type": "text/javascript"
+    },
+    {
+      "path": "/assets/SceneCanvas-BQPYZDuv.js",
+      "status": 200,
+      "type": "text/javascript"
+    },
+    {
+      "path": "/assets/index-DMC8HXAW.css",
+      "status": 200,
+      "type": "text/css"
+    },
+    {
+      "path": "/assets/index-g9M3m7H4.js",
+      "status": 200,
+      "type": "text/javascript"
+    },
+    {
+      "path": "/assets/official/manifest.json",
+      "status": 200,
+      "type": "application/json"
+    }
+  ]
+}

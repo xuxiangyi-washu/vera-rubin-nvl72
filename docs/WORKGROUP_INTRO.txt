@@ -1,0 +1,3 @@
+我做了一个Vera Rubin NVL72三维架构探索网站，已公开上线。支持旋转机柜、展开计算托盘，查看GPU、CPU、DPU与网络端点连接，逐步理解NVLink交换、三级网络和机密计算。内含Astra、Sentry等图文专题，以及跨OS和Realm概念环境的NCCL推理动画。关键规格附来源，冲突与未披露内容明确标注。配套PDF提供真实界面截图和操作说明，无需安装，浏览器即可访问，欢迎用于团队学习、技术交流与方案讨论。
+
+https://vera-rubin-nvl72.xuxiangyi666.workers.dev/

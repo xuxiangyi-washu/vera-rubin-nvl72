@@ -1,0 +1,154 @@
+[
+  {
+    "file": "01-rack.png",
+    "sha256": "c95399f0463e3853a42dd97f57277d8a25927e7a5fab54447f1a574ae2702f54",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "02-compute-tray.png",
+    "sha256": "501d5903d161a8e4d438bc54241b841a504d4fa231c92200191a98a397db4ebd",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "03-fabric.png",
+    "sha256": "37fac12674a81ec6cb9b2317c7a42e072f2cbf2f10b815791a83c3a5144d3c09",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "04-fabric-step.png",
+    "sha256": "9a588cd14a7116820df08e7d8df4b4350fd38df46d2da40ac9a7233e679be2a8",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "05-switch-tray.png",
+    "sha256": "cc22b7d80ee093100b3699cc6eb80af4b2be8392417c49d020eef0c4042151c6",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "06-networks.png",
+    "sha256": "40e5dad0db40c9f2a7bd7017ce06f89d348c3958595fc8ea46ca80a97884bf1f",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "07-confidential.png",
+    "sha256": "b30c5b8ed497338120091c1e4da322a6713f3535a0c27da8e0935605b0e5b575",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "08-trust.png",
+    "sha256": "8b7d66e216dbe292698afb71926907f7131ef09482ee830b291ce5aa5c573442",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "09-astra.png",
+    "sha256": "06467ce47a8142edc8462ed29ca2eceaab27d5a77e3bc8af98ab7be6e0630257",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "10-aead-replay.png",
+    "sha256": "4dbadfb36e68cc7b9f8784ff56fe9ee90c35ccb45548d9088b2aac5af17ec146",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "11-platform.png",
+    "sha256": "beb597df827e6a0510e4b1e487ac4407a9304b49797fe03fb73864f846a91ff0",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "12-tor.png",
+    "sha256": "ec3223709781d40b6099ffbf9e21a9f385b5f5ac233fb48130ef31b5e7a789f2",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "13-c2c.png",
+    "sha256": "0630ea428e1cf1a55b61f81fa699432cc8d9b6700732814166a34cec8e8c69ee",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "14-scale-in.png",
+    "sha256": "209fd44d6d80e249cf043e1fcfc34644a639ee65f82e9088cbc29e77def8f241",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "15-sentry.png",
+    "sha256": "22136ee8787e3e987ef69769685fa39651a90b270a200e6fbd98cda4f5f768ff",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "16-agent-safety.png",
+    "sha256": "abdc9ab30f0644204b4bd495449e9c69ecf8db26e72639167c90cd13344a35f6",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "17-nccl-realms.png",
+    "sha256": "4342c0babb8f59f3d7f67ab727357d4d54621beccbfe819fd9f6ce582d9b0b22",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "18-nccl-matrix.png",
+    "sha256": "86a2eef1a53e987b2af09646b80c36b33fb1df7f221fd1e6c7a29526a9b2e086",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  },
+  {
+    "file": "19-evidence.png",
+    "sha256": "13659c613e0162756034f5f9991a935764382e6de8ba1a7aaafbd02adb8427bf",
+    "capture": "macOS Safari / cua_repl getScreenshot",
+    "capturedOn": "2026-10-10",
+    "role": "真实UI操作说明；PDF裁切版面，未修改数值",
+    "thirdPartyNotice": "截图中的NVIDIA图片缩略呈现 © NVIDIA Corporation；相应来源见PDF图下注记与SOURCES.md"
+  }
+]

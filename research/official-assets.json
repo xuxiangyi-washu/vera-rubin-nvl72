@@ -1,0 +1,201 @@
+[
+  {
+    "id": "IMG01",
+    "label": "机柜正面配置",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-rack-configuration-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-rack-configuration-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG02",
+    "label": "机柜后部spine/液冷/母排",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-rack-rear-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-rack-rear-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG03",
+    "label": "计算托盘",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-compute-tray-vrnvl72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-compute-tray-vrnvl72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG04",
+    "label": "计算托盘官方框图",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-compute-tray-block-diagram-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-compute-tray-block-diagram-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG05",
+    "label": "计算托盘俯视",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-compute-tray-top-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-compute-tray-top-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG06",
+    "label": "计算托盘前视",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-compute-tray-front-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-compute-tray-front-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG07",
+    "label": "NVLink Switch Tray俯视",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-nvlink-switch-tray-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-nvlink-switch-tray-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG08",
+    "label": "电源层",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-power-shelf-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-power-shelf-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG09",
+    "label": "带外管理TOR",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/_images/hardware-tor-ethernet-VRNVL72.png",
+    "sourcePage": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "originalFilename": "hardware-tor-ethernet-VRNVL72.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片来自 NVIDIA 官方，版权归 NVIDIA 所有。"
+  },
+  {
+    "id": "IMG10",
+    "label": "Vera CPU官方规格图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/Figure-5-new-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "Figure-5-new-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG11",
+    "label": "Rubin GPU官方规格图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image-33-1.png",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image-33-1.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG12",
+    "label": "NVLink 6 Switch官方图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image11.png",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image11.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG13",
+    "label": "ConnectX-9官方图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/Figure-12.png",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "Figure-12.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG14",
+    "label": "BlueField-4 DPU官方图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image28-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image28-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG15",
+    "label": "Vera Rubin Superchip官方图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image9.png",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image9.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG16",
+    "label": "机架级机密计算官方示意",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image-32-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image-32-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "未核实图片再分发授权；仅外链，不下载或打包。图片中的规格可能属于首发口径；以本项目证据面板的冲突标记为准。"
+  },
+  {
+    "id": "IMG17",
+    "label": "Vera Rubin 计算托盘官方产品图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/Figure-18.png",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "Figure-18.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方产品图，不打包原图。首发图片内规格与当前产品页存在不同口径，以证据面板为准。",
+    "previewUrl": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/Figure-18-625x299.png"
+  },
+  {
+    "id": "IMG18",
+    "label": "ConnectX-9 与 BlueField-4 官方模块图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image-28-1-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image-28-1-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方产品图，不打包原图。首发图片内规格与当前产品页存在不同口径，以证据面板为准。"
+  },
+  {
+    "id": "IMG19",
+    "label": "NVLink Switch Tray 官方产品图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image17-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "originalFilename": "image17-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方产品图，不打包原图。首发图片内规格与当前产品页存在不同口径，以证据面板为准。"
+  },
+  {
+    "id": "IMG20",
+    "label": "BlueField Astra 官方架构图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/nvidia-vera-rubin-nvl72-compute-tray-1-png.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/redefining-secure-ai-infrastructure-with-nvidia-bluefield-astra-for-nvidia-vera-rubin-nvl72/",
+    "originalFilename": "nvidia-vera-rubin-nvl72-compute-tray-1-png.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方架构图，不打包原图。图示管理与数据职责，不自行推导未公开的控制链路密码协议。"
+  },
+  {
+    "id": "IMG21",
+    "label": "Scale-In 官方基础设施架构图",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/08/image-30-1024x563.png",
+    "sourcePage": "https://developer.nvidia.com/blog/nvidia-bluefield-4-powers-new-scale-in-network-infrastructure-for-agentic-ai-factories/",
+    "originalFilename": "image-30-1024x563.png",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方架构图，不打包原图；具体产品和部署支持需按官方版本核验。"
+  },
+  {
+    "id": "IMG22",
+    "label": "Open Agent Safety Platform 官方参考设计",
+    "url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/09/NVIDIAAgentSafetyPlatform_1920x1080_Title_v05.webp",
+    "sourcePage": "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/",
+    "originalFilename": "NVIDIAAgentSafetyPlatform_1920x1080_Title_v05.webp",
+    "copyright": "© NVIDIA Corporation",
+    "licenseNote": "仅外链引用官方架构图，不打包原图；具体产品和部署支持需按官方版本核验。"
+  }
+]

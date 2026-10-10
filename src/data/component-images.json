@@ -1,0 +1,90 @@
+{
+  "rack": [
+    "IMG01",
+    "IMG02"
+  ],
+  "compute": [
+    "IMG17",
+    "IMG05",
+    "IMG03",
+    "IMG06"
+  ],
+  "superchip": [
+    "IMG15",
+    "IMG05"
+  ],
+  "gpu": [
+    "IMG11",
+    "IMG15"
+  ],
+  "cpu": [
+    "IMG10",
+    "IMG15"
+  ],
+  "nic": [
+    "IMG18",
+    "IMG13",
+    "IMG06"
+  ],
+  "dpu": [
+    "IMG18",
+    "IMG14",
+    "IMG05"
+  ],
+  "switchTray": [
+    "IMG19",
+    "IMG07"
+  ],
+  "switch": [
+    "IMG12",
+    "IMG19",
+    "IMG07"
+  ],
+  "spine": [
+    "IMG02"
+  ],
+  "cartridge": [
+    "IMG02"
+  ],
+  "power": [
+    "IMG08"
+  ],
+  "cooling": [
+    "IMG05",
+    "IMG02"
+  ],
+  "busbar": [
+    "IMG02"
+  ],
+  "management": [
+    "IMG09"
+  ],
+  "bmc": [
+    "IMG05",
+    "IMG06"
+  ],
+  "hmc": [
+    "IMG05"
+  ],
+  "astra": [
+    "IMG20",
+    "IMG18",
+    "IMG14"
+  ],
+  "realm": [
+    "IMG16"
+  ],
+  "io": [
+    "IMG16"
+  ],
+  "scalein": [
+    "IMG21"
+  ],
+  "sentry": [
+    "IMG22",
+    "IMG18"
+  ],
+  "oasp": [
+    "IMG22"
+  ]
+}

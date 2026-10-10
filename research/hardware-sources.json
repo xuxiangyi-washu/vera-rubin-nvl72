@@ -1,0 +1,203 @@
+[
+  {
+    "id": "HW01",
+    "title": "NVIDIA DGX VR NVL72 User Guide — Hardware",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "section": "Rack Configuration; Compute Trays; NVLink Switch Trays; Power Shelves",
+    "claims": [
+      "18计算托盘（上10、下8），每托盘2 CPU/4 GPU；中间9交换托盘，每托盘4 ASIC、每ASIC72 NVLink6端口",
+      "每托盘1 BlueField-4、2 ConnectX-9 I/O板；BMC/HMC带外管理",
+      "4×110kW电源层（上2、下2），54V DC busbar；每层6个风冷PSU"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW02",
+    "title": "NVIDIA DGX VR NVL72 User Guide — Networking",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/networking.html",
+    "section": "Network Overview; Compute Tray Network Ports; Network Interface Names",
+    "claims": [
+      "NVLink经后部铜缆cartridge连接计算及交换托盘；SHARP在网计算",
+      "ConnectX-9 OSFP接computenet；BlueField-4 QSFP接存储Ethernet；BMC 1GbE接ipminet",
+      "网络表明确八个ConnectX-9端点接口"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW03",
+    "title": "NVIDIA Vera Rubin NVL72 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/",
+    "section": "NVIDIA Vera Rubin NVL72 Specs; 注1–4",
+    "claims": [
+      "72 GPU/36 CPU；单GPU 288GB HBM4、19.2TB/s；整柜20.7TB/1400TB/s",
+      "单GPU NVLink 3TB/s；整柜216TB/s；与技术博客冲突",
+      "C2C 1.8TB/s在Superchip列，整柜65TB/s；不是两条CPU-GPU边各独享1.8",
+      "Vera 88核176线程，单CPU最高1.5TB LPDDR5X，整柜54TB"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW04",
+    "title": "NVIDIA DGX Vera Rubin NVL72 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/dgx-vera-rubin-nvl72/",
+    "section": "Specifications; Preliminary information footnote",
+    "claims": [
+      "144个单口OSFP ConnectX-9 VPI端点，每端点800Gb/s",
+      "18个双端口BlueField-4 VPI、400Gb/s；当前页面整柜HBM为1400TB/s",
+      "规格注明初步信息、可能变化"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW05",
+    "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+    "url": "https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/",
+    "section": "How does Rubin GPU architecture support agentic workloads?; Memory subsystem",
+    "claims": [
+      "336 billion晶体管=3360亿；224 SM；896 Tensor Core",
+      "第三代Transformer Engine，最高50PFLOPS NVFP4推理",
+      "HBM4最高288GB/22TB/s；NVLink6 3.6TB/s，带宽与产品页冲突"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW06",
+    "title": "Inside the NVIDIA Vera Rubin Platform: Six New Chips, One AI Supercomputer",
+    "url": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "section": "ConnectX-9; From chips to systems; Compute and NVLink switch trays",
+    "claims": [
+      "计算托盘包含两个Superchip；每Superchip为1 Vera CPU+2 Rubin GPU",
+      "两个quad ConnectX-9板组，对接Vera CPU；1.6Tb/s为每Rubin GPU的网络带宽",
+      "BlueField-4/Astra独立基础设施域；受保护CPU/GPU/NVLink机架级域"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW07",
+    "title": "NVIDIA NVLink: The Scale-Up Network for AI Factories",
+    "url": "https://developer.nvidia.com/blog/nvidia-nvlink-the-scale-up-network-for-ai-factories/",
+    "section": "World-leading performance; Built for speed and intelligent resiliency",
+    "claims": [
+      "GPU双向NVLink 3.6TB/s，整柜约260TB/s；与现行产品表冲突",
+      "约5000条铜缆spine；每交换托盘4芯片；SHARP在网collectives",
+      "热插拔交换托盘、动态重路由、部分配置运行；不是未公开容错SLA"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW08",
+    "title": "NVIDIA Vera Rubin POD: Seven Chips, Five Rack-Scale Systems, One AI Supercomputer",
+    "url": "https://developer.nvidia.com/blog/?p=113993",
+    "section": "Third-generation NVIDIA MGX rack-scale architecture; Compute and NVLink Switch trays",
+    "claims": [
+      "MGX spine最多4个预集成铜缆cartridge",
+      "计算与交换托盘无风扇的表述不能推导整柜无风扇"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW09",
+    "title": "Maximizing AI Factory Performance per Watt with NVIDIA DSX MaxLPS",
+    "url": "https://developer.nvidia.com/blog/maximizing-ai-factory-performance-per-watt-with-nvidia-dsx-maxlps/",
+    "section": "Factory power planning and MaxLPS",
+    "claims": [
+      "最高40%更多Rubin GPU容量为100MW工厂规划预测，依赖负载与电力规划",
+      "功率预算、散热、动态功率分配的综合能力，不是单机柜实测节电40%"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW10",
+    "title": "DOCA 3.5.0 — TLS Offload",
+    "url": "https://networking-docs.nvidia.com/doca/archive/3-5-0/doca-tls-offload",
+    "section": "Prerequisites / Checking Hardware Support for Crypto Acceleration",
+    "claims": [
+      "Vera Rubin NVL72使用的ConnectX-9不支持TLS硬件加速，即使crypto-enabled OPN亦然",
+      "不能把ConnectX产品系列泛称TLS能力当成该机架配置已支持"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW11",
+    "title": "NVIDIA ConnectX-9 SuperNIC User Manual — Introduction",
+    "url": "https://networking-docs.nvidia.com/connectx9hw/introduction",
+    "section": "Product Overview; Cryptography Accelerations; Advanced AI / HPC Networking",
+    "claims": [
+      "最高800Gb/s InfiniBand/Ethernet；IPsec/PSP密码卸载",
+      "RDMA、RoCEv2、GPUDirect RDMA/Storage；具体SKU/软件版本决定能力"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW12",
+    "title": "NVIDIA Vera CPU 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/vera-cpu/",
+    "section": "Features; LPDDR5X; NVIDIA NVLink-C2C",
+    "claims": [
+      "88 Olympus核、176线程；最高1.5TB LPDDR5X/1.2TB/s",
+      "C2C最高1.8TB/s CPU-GPU一致性带宽"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW13",
+    "title": "NVIDIA Quantum-X800 InfiniBand Platform",
+    "url": "https://www.nvidia.com/en-us/networking/products/infiniband/quantum-x800/",
+    "section": "Platform Components",
+    "claims": [
+      "InfiniBand平台；SHARP v4、adaptive routing、telemetry-based congestion control",
+      "800Gb/s端到端网络；ConnectX SuperNIC最高1.6Tb/s每GPU"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW14",
+    "title": "NVIDIA Spectrum-X Ethernet Platform",
+    "url": "https://www.nvidia.com/en-us/networking/spectrumx/",
+    "section": "Platform Components",
+    "claims": [
+      "Spectrum交换机与ConnectX SuperNIC协同；RoCE以太网RDMA网络"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW90",
+    "title": "文档A：NVIDIA-Vera-Rubin-NVL72-机密计算技术报告-修订版0908.docx",
+    "url": null,
+    "section": "第1章1.1–1.3及第2章开头；第2章2.2/2.6；第4章4.1",
+    "claims": [
+      "OOXML段落P22/P54/P58硬件构成；P79/P201 Astra控制权",
+      "按章节引用；未渲染分页，不宣称某DOCX物理页码"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10",
+    "path": "/Users/xiangyixu/Downloads/集群/NVIDIA-Vera-Rubin-NVL72-机密计算技术报告-修订版0908.docx"
+  },
+  {
+    "id": "HW91",
+    "title": "文档B：NVIDIA_NVL72_公开资料技术综述.pdf",
+    "url": null,
+    "section": "第4页 第3章；第21页来源索引R1–R6",
+    "claims": [
+      "第4页记录22/19.2 TB/s、3.6/3 TB/s、260/216 TB/s公开冲突",
+      "第4页整柜HBM已写约1400TB/s；1580TB/s并非该页当前记录"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10",
+    "path": "/Users/xiangyixu/Downloads/集群/NVIDIA_NVL72_公开资料技术综述.pdf"
+  }
+]

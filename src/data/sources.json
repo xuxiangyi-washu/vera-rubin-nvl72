@@ -1,0 +1,519 @@
+[
+  {
+    "id": "HW01",
+    "title": "NVIDIA DGX VR NVL72 User Guide — Hardware",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/hardware.html",
+    "section": "Rack Configuration; Compute Trays; NVLink Switch Trays; Power Shelves",
+    "claims": [
+      "18计算托盘（上10、下8），每托盘2 CPU/4 GPU；中间9交换托盘，每托盘4 ASIC、每ASIC72 NVLink6端口",
+      "每托盘1 BlueField-4、2 ConnectX-9 I/O板；BMC/HMC带外管理",
+      "4×110kW电源层（上2、下2），54V DC busbar；每层6个风冷PSU"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW02",
+    "title": "NVIDIA DGX VR NVL72 User Guide — Networking",
+    "url": "https://docs.nvidia.com/dgx/dgxvr-user-guide/networking.html",
+    "section": "Network Overview; Compute Tray Network Ports; Network Interface Names",
+    "claims": [
+      "NVLink经后部铜缆cartridge连接计算及交换托盘；SHARP在网计算",
+      "ConnectX-9 OSFP接computenet；BlueField-4 QSFP接存储Ethernet；BMC 1GbE接ipminet",
+      "网络表明确八个ConnectX-9端点接口"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW03",
+    "title": "NVIDIA Vera Rubin NVL72 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/",
+    "section": "NVIDIA Vera Rubin NVL72 Specs; 注1–4",
+    "claims": [
+      "72 GPU/36 CPU；单GPU 288GB HBM4、19.2TB/s；整柜20.7TB/1400TB/s",
+      "单GPU NVLink 3TB/s；整柜216TB/s；与技术博客冲突",
+      "C2C 1.8TB/s在Superchip列，整柜65TB/s；不是两条CPU-GPU边各独享1.8",
+      "Vera 88核176线程，单CPU最高1.5TB LPDDR5X，整柜54TB"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW04",
+    "title": "NVIDIA DGX Vera Rubin NVL72 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/dgx-vera-rubin-nvl72/",
+    "section": "Specifications; Preliminary information footnote",
+    "claims": [
+      "144个单口OSFP ConnectX-9 VPI端点，每端点800Gb/s",
+      "18个双端口BlueField-4 VPI、400Gb/s；当前页面整柜HBM为1400TB/s",
+      "规格注明初步信息、可能变化"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW05",
+    "title": "Inside NVIDIA Rubin GPU Architecture: Powering the Era of Agentic AI",
+    "url": "https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/",
+    "section": "How does Rubin GPU architecture support agentic workloads?; Memory subsystem",
+    "claims": [
+      "336 billion晶体管=3360亿；224 SM；896 Tensor Core",
+      "第三代Transformer Engine，最高50PFLOPS NVFP4推理",
+      "HBM4最高288GB/22TB/s；NVLink6 3.6TB/s，带宽与产品页冲突"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW06",
+    "title": "Inside the NVIDIA Vera Rubin Platform: Six New Chips, One AI Supercomputer",
+    "url": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "section": "ConnectX-9; From chips to systems; Compute and NVLink switch trays",
+    "claims": [
+      "计算托盘包含两个Superchip；每Superchip为1 Vera CPU+2 Rubin GPU",
+      "两个quad ConnectX-9板组，对接Vera CPU；1.6Tb/s为每Rubin GPU的网络带宽",
+      "BlueField-4/Astra独立基础设施域；受保护CPU/GPU/NVLink机架级域"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW07",
+    "title": "NVIDIA NVLink: The Scale-Up Network for AI Factories",
+    "url": "https://developer.nvidia.com/blog/nvidia-nvlink-the-scale-up-network-for-ai-factories/",
+    "section": "World-leading performance; Built for speed and intelligent resiliency",
+    "claims": [
+      "GPU双向NVLink 3.6TB/s，整柜约260TB/s；与现行产品表冲突",
+      "约5000条铜缆spine；每交换托盘4芯片；SHARP在网collectives",
+      "热插拔交换托盘、动态重路由、部分配置运行；不是未公开容错SLA"
+    ],
+    "confidence": "冲突",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW08",
+    "title": "NVIDIA Vera Rubin POD: Seven Chips, Five Rack-Scale Systems, One AI Supercomputer",
+    "url": "https://developer.nvidia.com/blog/?p=113993",
+    "section": "Third-generation NVIDIA MGX rack-scale architecture; Compute and NVLink Switch trays",
+    "claims": [
+      "MGX spine最多4个预集成铜缆cartridge",
+      "计算与交换托盘无风扇的表述不能推导整柜无风扇"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW09",
+    "title": "Maximizing AI Factory Performance per Watt with NVIDIA DSX MaxLPS",
+    "url": "https://developer.nvidia.com/blog/maximizing-ai-factory-performance-per-watt-with-nvidia-dsx-maxlps/",
+    "section": "Factory power planning and MaxLPS",
+    "claims": [
+      "最高40%更多Rubin GPU容量为100MW工厂规划预测，依赖负载与电力规划",
+      "功率预算、散热、动态功率分配的综合能力，不是单机柜实测节电40%"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW10",
+    "title": "DOCA 3.5.0 — TLS Offload",
+    "url": "https://networking-docs.nvidia.com/doca/archive/3-5-0/doca-tls-offload",
+    "section": "Prerequisites / Checking Hardware Support for Crypto Acceleration",
+    "claims": [
+      "Vera Rubin NVL72使用的ConnectX-9不支持TLS硬件加速，即使crypto-enabled OPN亦然",
+      "不能把ConnectX产品系列泛称TLS能力当成该机架配置已支持"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW11",
+    "title": "NVIDIA ConnectX-9 SuperNIC User Manual — Introduction",
+    "url": "https://networking-docs.nvidia.com/connectx9hw/introduction",
+    "section": "Product Overview; Cryptography Accelerations; Advanced AI / HPC Networking",
+    "claims": [
+      "最高800Gb/s InfiniBand/Ethernet；IPsec/PSP密码卸载",
+      "RDMA、RoCEv2、GPUDirect RDMA/Storage；具体SKU/软件版本决定能力"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW12",
+    "title": "NVIDIA Vera CPU 产品页",
+    "url": "https://www.nvidia.com/en-us/data-center/vera-cpu/",
+    "section": "Features; LPDDR5X; NVIDIA NVLink-C2C",
+    "claims": [
+      "88 Olympus核、176线程；最高1.5TB LPDDR5X/1.2TB/s",
+      "C2C最高1.8TB/s CPU-GPU一致性带宽"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW13",
+    "title": "NVIDIA Quantum-X800 InfiniBand Platform",
+    "url": "https://www.nvidia.com/en-us/networking/products/infiniband/quantum-x800/",
+    "section": "Platform Components",
+    "claims": [
+      "InfiniBand平台；SHARP v4、adaptive routing、telemetry-based congestion control",
+      "800Gb/s端到端网络；ConnectX SuperNIC最高1.6Tb/s每GPU"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW14",
+    "title": "NVIDIA Spectrum-X Ethernet Platform",
+    "url": "https://www.nvidia.com/en-us/networking/spectrumx/",
+    "section": "Platform Components",
+    "claims": [
+      "Spectrum交换机与ConnectX SuperNIC协同；RoCE以太网RDMA网络"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW90",
+    "title": "文档A：NVIDIA-Vera-Rubin-NVL72-机密计算技术报告-修订版0908.docx",
+    "url": null,
+    "section": "第1章1.1–1.3及第2章开头；第2章2.2/2.6；第4章4.1",
+    "claims": [
+      "OOXML段落P22/P54/P58硬件构成；P79/P201 Astra控制权",
+      "按章节引用；未渲染分页，不宣称某DOCX物理页码"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "HW91",
+    "title": "文档B：NVIDIA_NVL72_公开资料技术综述.pdf",
+    "url": null,
+    "section": "第4页 第3章；第21页来源索引R1–R6",
+    "claims": [
+      "第4页记录22/19.2 TB/s、3.6/3 TB/s、260/216 TB/s公开冲突",
+      "第4页整柜HBM已写约1400TB/s；1580TB/s并非该页当前记录"
+    ],
+    "confidence": "已确认",
+    "accessedAt": "2026-10-10"
+  },
+  {
+    "id": "SEC01",
+    "title": "Redefining Secure AI Infrastructure with NVIDIA BlueField Astra for NVIDIA Vera Rubin NVL72",
+    "url": "https://developer.nvidia.com/blog/redefining-secure-ai-infrastructure-with-nvidia-bluefield-astra-for-nvidia-vera-rubin-nvl72/",
+    "section": "What is NVIDIA BlueField Astra?; Figure 1; Extending operational workflows",
+    "claims": [
+      "Astra 在 BlueField-4 上建立独立于租户主机的 SuperNIC 控制面；专用连接用于编程、配置、监控 ConnectX-9。",
+      "策略经 DPU 带外端口进入，在 SuperNIC 硬件执行；DOCA HBN、加速 OVS、Argus、SNAP、DMS 分担网络、安全、存储和管理。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC02",
+    "title": "SuperNIC Lockdown Key Management — NVIDIA Infra Controller",
+    "url": "https://docs.nvidia.com/infra-controller/documentation/architecture/super-nic-lockdown-key-management",
+    "section": "Background",
+    "claims": [
+      "Astra 配置下 ConnectX-9 与 BlueField-4 配对，SuperNIC 按设计锁定，仅由 DPU 管理。",
+      "此页其余非 Astra 锁定密钥管理细节不可移植为 Astra 专用链路的加密协议。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC03",
+    "title": "NVIDIA BlueField-4 Powers New Scale-In Network Infrastructure for Agentic AI Factories",
+    "url": "https://developer.nvidia.com/blog/nvidia-bluefield-4-powers-new-scale-in-network-infrastructure-for-agentic-ai-factories/",
+    "section": "Scale-In accelerates north-south AI factory infrastructure; BlueField-4 architecture",
+    "claims": [
+      "Scale-In 覆盖 AI 工厂南北向接入、安全、数据与存储流动及基础设施操作，范围不只机柜内部。",
+      "BlueField-4 提供独立于主机的基础设施处理，DOCA 提供服务，Spectrum-X 提供接入网络。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC04",
+    "title": "DOCA Argus Service Guide — DOCA 3.5.0 archive",
+    "url": "https://networking-docs.nvidia.com/doca/archive/3-5-0/doca-argus-service-guide",
+    "section": "Introduction; Operation; Monitored Activity and Relationships; Requirements; Limitations",
+    "claims": [
+      "Argus 在独立 BlueField 域通过 DOCA DMA 读取选定的易失主机内存结构，无需主机常驻代理。",
+      "指南支持 Linux x86 与 Arm64，解析进程、线程、执行上下文和 SHA-256 摘要；需匹配内核内存映射。",
+      "指南未证明 Argus 可越过 Realm 私有内存隔离，也未保证所有 Sentry 检测均使用 Argus。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC05",
+    "title": "NVIDIA Brings Cybersecurity to Every AI Factory",
+    "url": "https://blogs.nvidia.com/blog/cybersecurity-ai-factory-doca-argus/",
+    "section": "April 28, 2025; runtime threat detection",
+    "claims": [
+      "官方称 DOCA Argus 检测速度最高为现有无代理方案的 1,000 倍；属厂商上限声明，不能当作本项目实测或 Sentry 的 SLA。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC06",
+    "title": "NVIDIA Launches Open Agent Safety Platform to Secure Agents From Testing to Deployment",
+    "url": "https://nvidianews.nvidia.com/news/open-agent-safety-platform",
+    "section": "September 28, 2026; News Summary; Sentry description",
+    "claims": [
+      "2026-09-28 公布的 Open Agent Safety Platform 组合 OpenShell 与 Sentry 参考系统设计。",
+      "Sentry 是基于 DOCA、运行于 BlueField-4 的带外 watchdog，在独立信任域持续观察和执行；毫秒级隔离为厂商声明。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC07",
+    "title": "NVIDIA Open Agent Safety Platform: A Reference for Continuous In-Silicon Agent Monitoring",
+    "url": "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/",
+    "section": "Three open agent safety platform layers; Vera Rubin POD deployment discussion",
+    "claims": [
+      "参考设计把 BlueField-4 放在指定 Vera Rubin POD 中 agent 节点通往模型的必要路径。",
+      "该拓扑限定不能外推为所有 NVLink 流量经过 DPU、所有服务器出口均不可绕过，或 Sentry 替代 IMEX。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC08",
+    "title": "NVIDIA Open Agent Safety Platform: Secure AI Agents",
+    "url": "https://www.nvidia.com/en-us/solutions/ai/agent-safety/",
+    "section": "FAQ: Does OpenShell require BlueField-4?",
+    "claims": [
+      "OpenShell 可在受支持的本地、私有部署、云和 Kubernetes 环境运行，不要求 BlueField-4。",
+      "配备 BlueField-4 时 Sentry 增加硬件隔离的观察和执行；仍需具体版本及部署支持矩阵。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC09",
+    "title": "OpenShell — The OpenShell Architecture",
+    "url": "https://build.nvidia.com/openshell/integrations",
+    "section": "Agent Sandboxes; Supervisor; Gateway",
+    "claims": [
+      "Gateway 管理身份、生命周期和策略；Supervisor 在工作负载外检查出站访问；Sandbox 承载内核层文件、进程及网络约束。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC10",
+    "title": "NVIDIA Vera CPU: Olympus Cores Built for Maximum Single-Thread Performance in Agentic AI",
+    "url": "https://developer.nvidia.com/blog/?p=120182",
+    "section": "Confidential Compute",
+    "claims": [
+      "Vera 的机密计算建立在 Arm CCA/RME 上，具有每 VM 加密密钥、TDISP 设备安全分配及 authenticated C2C encryption。",
+      "该公开章节没有给出密钥生成状态机、轮换、销毁和迁移的 Vera 具体实现。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC11",
+    "title": "Inside the NVIDIA Vera Rubin Platform: Six New Chips, One AI Supercomputer",
+    "url": "https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/",
+    "section": "Third-generation confidential computing: rack-level security; Figure 29",
+    "claims": [
+      "官方描述横跨 CPU、GPU、互联的机架级 TEE，以及 NVLink-C2C 加密、GPU 间 NVLink 加密、PCIe IDE 和 TDISP。",
+      "未公开 NVLink 数据密钥生成者、端到端或逐跳实现及交换机密钥角色。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC12",
+    "title": "Learn the architecture — Introducing Arm Confidential Compute Architecture",
+    "url": "https://support.arm.com/documentation/den0125/latest/Arm-CCA-Hardware-Architecture?lang=en",
+    "section": "Realm world requirements; Memory management for Arm CCA",
+    "claims": [
+      "Realm 属于隔离的 Realm 安全状态；RMM 与 Root 固件参与管理，GPC/GPT 实施内存访问控制。",
+      "Realm 隔离不等于任何外设都被授权读取私有内存；可信设备分配需独立建立。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC13",
+    "title": "Overview — NVIDIA IMEX Service",
+    "url": "https://docs.nvidia.com/deploy/imex-service/overview.html",
+    "section": "What is the NVIDIA Internode Memory Exchange Service?; Multi-Node Memory Sharing Model",
+    "claims": [
+      "IMEX 协调跨 OS 域 GPU 显存导入、导出与映射生命周期，服务与 GPU 驱动交互，节点间走 TCP/IP 与 gRPC。",
+      "内存映射控制通路与 NVLink 上的显存读写数据通路不同；Vera Rubin 的具体部署绑定仍待核实。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC14",
+    "title": "IMEX Service Config Options",
+    "url": "https://docs.nvidia.com/multi-node-nvlink-systems/imex-guide/config.html",
+    "section": "IMEX Service Secure Connections Configuration",
+    "claims": [
+      "IMEX_ENABLE_AUTH_ENCRYPTION 默认 0，表示关闭认证及加密。",
+      "启用后可选 SSL_TLS、GSS_AUTH_ENCRYPT 或 GSS_AUTH_ONLY；最后一种不加密。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC15",
+    "title": "IMEX Channels",
+    "url": "https://docs.nvidia.com/multi-node-nvlink-systems/imex-guide/imexchannels.html",
+    "section": "Default Channel Creation; Multi-user channel usage; Multi-node channels",
+    "claims": [
+      "驱动使用用户可访问的最低编号 channel；应使用户仅访问其授权 channel。",
+      "全员可访问 channel0 时，新增 channel1/channel2 不能隔离两用户；跨节点 channel 分配须一致。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC16",
+    "title": "NCCL 2.30.3 User Guide — Environment Variables",
+    "url": "https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2303/user-guide/docs/env.html",
+    "section": "NCCL_MNNVL_ENABLE",
+    "claims": [
+      "NCCL MNNVL 从 2.21 提供，要求受支持系统/驱动、cuMem 支持以及完整可用的 IMEX domain。",
+      "这些通用要求不证明 Vera Rubin 当前出厂软件绑定。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC17",
+    "title": "SPDM — DMTF Security Protocols and Data Models",
+    "url": "https://www.dmtf.org/standards/spdm",
+    "section": "Working Group Description; DSP0274/DSP0277",
+    "claims": [
+      "SPDM 提供设备认证、证明相关测量与密钥交换，承载绑定与设备数据保护应分别核验。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC18",
+    "title": "IDE and TDISP: An Overview of PCIe Technology Security Features",
+    "url": "https://pcisig.com/blog/ide-and-tdisp-overview-pcie%C2%AE-technology-security-features",
+    "section": "IDE; TDISP",
+    "claims": [
+      "PCIe IDE 与 TDISP 分别解决链路数据保护与 TEE 设备接口分配安全。",
+      "教学流程应要求设备接口与 IDE 均已就绪才允许机密 DMA；不能把先开放 DMA、后启用加密当作安全配置。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC19",
+    "title": "NVIDIA_Sentry_架构与安全洞察报告.pdf（文档 C）",
+    "url": "",
+    "section": "本地 PDF，19 页，资料截至 2026-10-09；p.1-3、5、9-12、16-19",
+    "claims": [
+      "已解析用户本地文档，发布身份与边界参见 p.1-3；数据/控制/证据流参见 p.5；可见性与机密计算边界参见 p.9-10。",
+      "毫秒级指标条件参见 p.11；NVLink、IMEX、Astra 分层参见 p.12、16；原始资料列表参见 p.18-19。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC20",
+    "title": "Arm RME System Architecture Compliance Suite Scenario Document",
+    "url": "https://github.com/ARM-software/rme-sysarch-acs/blob/main/Docs/Arm_RME_System_Architecture_Compliance_Suite_Scenario_Document.rst",
+    "section": "Trusted device / IDE / TDISP RUN scenarios",
+    "claims": [
+      "Arm 官方通用测试先建立 RootPort 与 Endpoint 的 IDE Stream，再转入 TDISP RUN；不能把此测试当作 Vera 的完整部署说明。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC21",
+    "title": "NVSentinel Overview — v1.25.0",
+    "url": "https://docs.nvidia.com/nvsentinel/v1.25.0/getting-started/overview/",
+    "section": "What it is",
+    "claims": [
+      "NVSentinel 面向 Kubernetes GPU 故障检测与修复，与 agent 安全参考设计 Sentry 不同。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SEC22",
+    "title": "Caliptra RTL — CHIPS Alliance",
+    "url": "https://github.com/chipsalliance/caliptra-rtl",
+    "section": "Caliptra overview",
+    "claims": [
+      "Caliptra 是可集成的硬件信任根项目；其 Vera Rubin 各芯片采用版本与证明绑定在本次 NVIDIA 一手资料核验中尚未确认。"
+    ],
+    "confidence": "待核实"
+  },
+  {
+    "id": "VIS01",
+    "title": "用户指定视觉参考：StorageReview Vera Rubin NVL72 报道",
+    "url": "https://www.storagereview.com/news/nvidia-launches-vera-rubin-architecture-at-ces-2026-the-vr-nvl72-rack",
+    "section": "A Cable-Free Rack Designed for Massive Scale；只作外观方向参考",
+    "claims": [
+      "据用户提供的文章改进计算托盘、冷板、金属外壳和组件图片展示。图片实际引用NVIDIA原始来源，不复制报道的未核实规格。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "NC01",
+    "title": "NCCL User Guide — Collective Operations",
+    "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/collectives.html",
+    "section": "AllReduce; ReduceScatter; AllGather; AlltoAll",
+    "claims": [
+      "ReduceScatter后接AllGather等价于AllReduce；各rank必须匹配collective的count和datatype。",
+      "教学Ring数值模拟不证明任何Vera Rubin跨Realm配置已受支持。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "NC02",
+    "title": "NCCL User Guide — Creating a Communicator",
+    "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/communicators.html",
+    "section": "Creating a Communicator",
+    "claims": [
+      "communicator为参与CUDA设备分配唯一rank；unique ID经主机通信机制在进程间共享。",
+      "NCCL初始化不是Realm证明或密钥释放协议。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SW01",
+    "title": "NVIDIA Dynamo Documentation",
+    "url": "https://docs.nvidia.com/dynamo/",
+    "section": "Overview / distributed inference serving",
+    "claims": [
+      "Dynamo提供分布式推理服务相关能力；实际配置以版本文档为准。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "SW02",
+    "title": "NVIDIA TensorRT-LLM Documentation",
+    "url": "https://nvidia.github.io/TensorRT-LLM/",
+    "section": "Overview / inference optimization",
+    "claims": [
+      "TensorRT-LLM为大模型推理提供优化执行能力；模型与硬件支持需核验具体版本。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "CR01",
+    "title": "NIST SP 800-38D — GCM and GMAC",
+    "url": "https://csrc.nist.gov/pubs/sp/800/38/d/final",
+    "section": "Authenticated encryption with associated data; IV requirements",
+    "claims": [
+      "用于解释通用AEAD与GCM，不作为NVLink6密码算法或参数的证据。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "CR02",
+    "title": "W3C Web Cryptography API",
+    "url": "https://www.w3.org/TR/webcrypto/",
+    "section": "AES-GCM; SubtleCrypto encrypt/decrypt; generateKey",
+    "claims": [
+      "浏览器AES-GCM教学演示使用Web Crypto；不是NVLink6实现。"
+    ],
+    "confidence": "已确认"
+  },
+  {
+    "id": "USER",
+    "title": "用户任务说明（2026-10-10）",
+    "section": "用户提供的规格与历史口径；非官方独立证据",
+    "claims": [
+      "1580 TB/s 原始历史页面快照未复现"
+    ],
+    "confidence": "待核实"
+  }
+]

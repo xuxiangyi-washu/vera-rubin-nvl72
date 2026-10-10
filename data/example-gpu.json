@@ -1,0 +1,146 @@
+{
+  "entity": {
+    "id": "gpu-01",
+    "name": "Rubin GPU 01",
+    "type": "gpu",
+    "model": "NVIDIA Rubin GPU",
+    "vendor": "NVIDIA",
+    "specs": [
+      {
+        "label": "晶体管",
+        "value": "3360 亿（336 billion）",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "计算单元",
+        "value": "224 SM · 896 Tensor Core",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "NVFP4 推理",
+        "value": "最高 50 PFLOPS · 第三代 Transformer Engine",
+        "source": [
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "HBM4",
+        "value": "最高 288 GB",
+        "source": [
+          "HW03",
+          "HW05"
+        ],
+        "confidence": "已确认"
+      },
+      {
+        "label": "HBM 带宽",
+        "value": "19.2 / 22 TB/s",
+        "source": [
+          "HW03",
+          "HW05"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "NVLink 双向",
+        "value": "3.0 / 3.6 TB/s",
+        "source": [
+          "HW03",
+          "HW07"
+        ],
+        "confidence": "冲突"
+      },
+      {
+        "label": "GPU 间保护",
+        "value": "GPU—GPU NVLink encryption",
+        "source": [
+          "SEC11"
+        ],
+        "confidence": "已确认"
+      }
+    ],
+    "functions": [
+      "训练、推理与 Tensor Core 计算",
+      "GPU TEE 与受保护的 GPU 间通信",
+      "NCCL collectives、MoE all-to-all、peer memory"
+    ],
+    "image": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/01/image-33-1.png",
+    "source": [
+      "HW03",
+      "HW05",
+      "SEC11"
+    ],
+    "position": [
+      -1.02,
+      3.065,
+      0.5
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "size": [
+      1,
+      1,
+      1
+    ],
+    "ports": [
+      "gpu-01:c2c",
+      "gpu-01:nvlink"
+    ],
+    "links": [
+      "link-5",
+      "link-6"
+    ],
+    "parent": "superchip-01",
+    "children": [],
+    "trayIndex": 0,
+    "index": 0
+  },
+  "links": [
+    {
+      "id": "link-5",
+      "source": "cpu-01",
+      "target": "gpu-01",
+      "sourcePort": "cpu-01:c2c",
+      "targetPort": "gpu-01:c2c",
+      "type": "c2c",
+      "name": "CPU ↔ GPU 一致性通路",
+      "bandwidth": "1.8 TB/s / Superchip 聚合，共享",
+      "confidence": "已确认",
+      "evidence": [
+        "HW03",
+        "SEC10"
+      ],
+      "physicalLaneCount": null,
+      "semantics": "逻辑功能连接；不编码逐端口物理布线",
+      "flow": "data"
+    },
+    {
+      "id": "link-6",
+      "source": "gpu-01",
+      "target": "spine",
+      "sourcePort": "gpu-01:nvlink",
+      "targetPort": "spine:nvlink",
+      "type": "nvlink",
+      "name": "GPU → NVLink fabric",
+      "bandwidth": "3.0 / 3.6 TB/s，每GPU聚合",
+      "confidence": "已确认",
+      "evidence": [
+        "HW01",
+        "HW07"
+      ],
+      "physicalLaneCount": null,
+      "semantics": "逻辑功能连接；不编码逐端口物理布线",
+      "flow": "data"
+    }
+  ]
+}
