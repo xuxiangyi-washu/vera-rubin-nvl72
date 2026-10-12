@@ -1,22 +1,25 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, X, Search } from 'lucide-react';
-import { catalog, sources } from '../data';
-import { SourceLink, Status } from './Inspector';
+import {useEffect,useRef,useState} from 'react';
+import {X,Search} from 'lucide-react';
+import {catalog,sources} from '../data';
+import {Status} from './Inspector';
+import {SourceCard,FactEvidence} from './EvidenceDetails';
+import {filterSources,sourceKinds} from '../utils/evidence.mjs';
+import {useExplorer} from '../stores/useExplorer';
+import Tabs from './Tabs';
 import images from '../../research/official-assets.json';
-
-export default function ResearchModal({close}:{close:()=>void}){
- const [tab,setTab]=useState('facts'),[query,setQuery]=useState(''),[status,setStatus]=useState('all');
- useEffect(()=>{const handler=(e:KeyboardEvent)=>{if(e.key==='Escape')close()};document.addEventListener('keydown',handler);const active=document.activeElement as HTMLElement;document.getElementById('close-research')?.focus();return()=>{document.removeEventListener('keydown',handler);active?.focus()}},[close]);
- const facts=Object.entries(catalog).flatMap(([key,m])=>m.specs.map(f=>({key,model:m,...f}))).filter(f=>(status==='all'||f.confidence===status)&&`${f.model.name} ${f.label} ${f.value}`.toLowerCase().includes(query.toLowerCase()));
- return <div className="modal-backdrop" onClick={close}><section className="research-modal" role="dialog" aria-modal="true" aria-labelledby="research-title" onClick={e=>e.stopPropagation()} onKeyDown={e=>{if(e.key==='Tab'){const elements=Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button,a,input,select')).filter(el=>!el.hasAttribute('disabled'));const first=elements[0],last=elements.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}}}>
-   <header><div><span className="eyebrow">EVIDENCE LIBRARY / 2026.10.10</span><h2 id="research-title">资料、来源与公开边界</h2></div><button id="close-research" className="icon-button" onClick={close} aria-label="关闭资料库"><X size={22}/></button></header>
-   <div className="research-tabs">{[['facts','资料调研摘要'],['sources','来源清单'],['images','官方原图']].map(([id,label])=><button key={id} onClick={()=>setTab(id)} className={id===tab?'active':''}>{label}</button>)}</div>
-   <div className="research-body">
-    {tab==='facts'?<><div className="research-filter"><label className="search-box"><Search size={16}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="搜索模块、规格或协议" aria-label="搜索调研资料"/></label><select value={status} onChange={e=>setStatus(e.target.value)} aria-label="可信度筛选"><option value="all">全部证据状态</option>{['已确认','冲突','待核实'].map(s=><option key={s}>{s}</option>)}</select></div>
-      <p className="research-intro">已读取文档 A、B、C。当前官方资料与用户给定口径不一致时保留差异。实体位置、线束和数据流是教学示意；所有事实按来源条件成立。</p>
-      <div className="table-scroll"><table><thead><tr><th>模块 / 官方型号</th><th>关键规格</th><th>连接与功能</th><th>证据 / 定位</th><th>可信度</th></tr></thead><tbody>{facts.map((f,i)=><tr key={i}><td><strong>{f.model.name}</strong><small>{f.model.model}</small></td><td>{f.label}<strong>{f.value}</strong></td><td>{f.model.connections[0]}<small>{f.model.functions[0]}</small></td><td className="source-inline">{f.source.map(id=><SourceLink key={id} id={id}/>)}</td><td><Status value={f.confidence}/></td></tr>)}</tbody></table>{!facts.length&&<p className="empty-state">没有匹配的事实记录。</p>}</div></>:
-    tab==='sources'?<div className="source-grid">{sources.map(s=><article className="source-card" key={s.id}><span className="mono">{s.id}</span><h3>{s.title}</h3><p>{s.section}</p>{s.url&&<a href={s.url} target="_blank" rel="noreferrer">打开官方资料 <ArrowUpRight size={13}/></a>}</article>)}</div>:
-    <><p className="research-intro">图片来自 NVIDIA 官方，版权归 NVIDIA 所有。这里只外链引用，项目包不含原图副本；3D 场景采用自行构建的参数化几何体。</p><div className="official-grid">{images.map(img=><article key={img.id}><a href={img.url} target="_blank" rel="noreferrer" className="official-image-link"><img src={img.url} alt={img.label} loading="lazy" onError={e=>{e.currentTarget.style.display='none';e.currentTarget.parentElement!.classList.add('image-unavailable')}}/><span className="image-fallback">图片未能加载 · 点击打开原图</span></a><h3>{img.label}</h3><small>{img.copyright}</small><a href={img.sourcePage} target="_blank" rel="noreferrer">官方来源 <ArrowUpRight size={12}/></a></article>)}</div></>}
-   </div>
- </section></div>;
+export default function ResearchModal({close,restoreFocus}:{close:()=>void;restoreFocus:HTMLElement|null}){
+ const sourceId=useExplorer(s=>s.researchSource);const [tab,setTab]=useState(sourceId?'sources':'facts'),[query,setQuery]=useState(sourceId??''),[status,setStatus]=useState('all'),[kind,setKind]=useState('all');const body=useRef<HTMLDivElement>(null);
+ useEffect(()=>{const active=restoreFocus??document.activeElement as HTMLElement;document.getElementById('close-research')?.focus();return()=>{queueMicrotask(()=>{if(active?.isConnected)active.focus()})}},[]);
+ useEffect(()=>{if(sourceId){setTab('sources');setQuery(sourceId);setKind('all')}},[sourceId]);
+ useEffect(()=>body.current?.scrollTo({top:0}),[tab]);
+ const filtered=filterSources(sources,query,kind);
+ const facts=Object.entries(catalog).flatMap(([key,m])=>m.specs.map(f=>({key,model:m,...f}))).filter(f=>(status==='all'||f.confidence===status)&&`${f.model.name} ${f.label} ${f.value} ${f.source.join(' ')}`.toLowerCase().includes(query.toLowerCase()));
+ const clear=()=>{setQuery('');setKind('all');setStatus('all')};
+ return <div className="modal-backdrop research-backdrop" onClick={close}><section className="research-modal" role="dialog" aria-modal="true" aria-labelledby="research-title" onClick={e=>e.stopPropagation()} onKeyDown={e=>{if(e.key==='Escape'){e.stopPropagation();close()}if(e.key==='Tab'){const nodes=Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button,a,input,select,[tabindex="0"]')).filter(el=>!el.hasAttribute('disabled')&&el.tabIndex>=0&&el.getClientRects().length);const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}}}>
+ <header><div><span className="eyebrow">EVIDENCE LIBRARY · 2026.10.12</span><h2 id="research-title">资料、来源与公开边界</h2></div><button id="close-research" className="icon-button" onClick={close} aria-label="关闭资料库"><X size={22}/></button></header>
+ <Tabs prefix="research" label="资料分类" className="research-tabs" items={[{id:'facts',label:'资料调研摘要'},{id:'sources',label:'来源清单'},{id:'images',label:'官方原图'}]} current={tab} onChange={id=>{setTab(id);clear()}}/>
+ <div ref={body} className="research-body" role="tabpanel" id={`research-panel-${tab}`} aria-labelledby={`research-tab-${tab}`} tabIndex={0}>
+ {tab!=='images'&&<><div className="research-filter"><label className="search-box"><Search size={16}/><input aria-label="搜索来源或事实" placeholder={tab==='sources'?'搜索ID、标题、机构和关键词':'搜索模块、规格、来源ID'} value={query} onChange={e=>setQuery(e.target.value)}/></label>{tab==='sources'?<select aria-label="来源类型" value={kind} onChange={e=>setKind(e.target.value)}><option value="all">全部来源类型</option>{Object.entries(sourceKinds).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select>:<select aria-label="可信度筛选" value={status} onChange={e=>setStatus(e.target.value)}><option value="all">全部证据状态</option>{['已确认','冲突','待核实'].map(x=><option key={x}>{x}</option>)}</select>}<button onClick={clear}>清空筛选</button></div><p role="status">找到 {tab==='sources'?filtered.length:facts.length} 条{tab==='sources'?'来源':'事实'}记录</p></>}
+ {tab==='facts'?<><p className="research-intro">数值差异先核对平台、版本及统计范围，再判断是否真正矛盾。未知项明确列出；视觉参考不证明精确拓扑或规格。</p><div className="table-scroll" tabIndex={0} aria-label="事实与逐值证据表，可横向滚动"><table><thead><tr><th>模块</th><th>关键规格 / 逐值证据</th><th>连接与功能</th><th>状态</th></tr></thead><tbody>{facts.map((f,i)=><tr key={i}><td><strong>{f.model.name}</strong><small>{f.model.model}</small></td><td>{f.label}<strong>{f.value}</strong><FactEvidence fact={f}/></td><td>{f.model.connections[0]}<small>{f.model.functions[0]}</small></td><td><Status value={f.confidence}/></td></tr>)}</tbody></table></div>{!facts.length&&<p className="empty-state">没有匹配的事实记录，请清空或调整筛选。</p>}</>:tab==='sources'?<><div className="source-grid">{filtered.map(source=><SourceCard key={source.id} source={source}/>)}</div>{!filtered.length&&<p className="empty-state">没有匹配的来源，请清空筛选或尝试机构名称。</p>}</>:<><p>官方图片为外链，© NVIDIA Corporation。图片用于外观说明，不能单独证明精确物理映射。</p><div className="official-grid">{images.map(img=><article key={img.id}><a href={img.url} target="_blank" rel="noreferrer" className="official-image-link"><img src={img.url} alt={img.label} loading="lazy" onError={e=>{e.currentTarget.hidden=true;e.currentTarget.parentElement?.classList.add("image-unavailable")}}/><span className="image-fallback">点击打开原图</span></a><h3>{img.label}</h3><small>{img.copyright}</small><a href={img.sourcePage} target="_blank" rel="noreferrer">打开图片来源页 ↗</a></article>)}</div></>}
+ </div></section></div>;
 }

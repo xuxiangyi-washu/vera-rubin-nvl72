@@ -1,4 +1,7 @@
 import fs from 'node:fs';
+import { classifySource } from './source-metadata.mjs';
+const counts=JSON.parse(fs.readFileSync('research/hardware-counts.json'));
+const measurements=JSON.parse(fs.readFileSync('research/measurements.json'));
 
 // 所有参数化位置均为讲解布局，不是工程尺寸或实际端口布线。
 const fact = (label, value, source, confidence = '已确认', note) => ({ label, value, source, confidence, ...(note ? { note } : {}) });
@@ -33,6 +36,30 @@ const catalog = {
 };
 const imageManifest=JSON.parse(fs.readFileSync('research/official-assets.json'));
 const imageGroups=JSON.parse(fs.readFileSync('src/data/component-images.json'));
+// 数量、统计对象和逐值证据集中生成，界面与JSON共用同一份定义。
+const countObjects={compute:'计算托盘',superchip:'Superchip',gpu:'GPU器件',cpu:'CPU器件',nic:'逻辑端点',dpu:'DPU',switchTray:'交换托盘',switch:'交换ASIC',cartridge:'线缆cartridge',power:'电源层'};
+for(const [type,value] of Object.entries(counts.rack)){
+ const source=type==='nic'||type==='superchip'?'HW06':'HW01';
+ catalog[type].count=`${value}个${countObjects[type]} / 机架`+(counts.tray[type]?`；每计算托盘${counts.tray[type]}个`:'');
+ catalog[type].specs.push({...fact('组件计数',`${value}个${countObjects[type]} / 机架`,[source]),observations:[{value:String(value),unit:'个',source,scope:'每机架',direction:'不适用',countObject:countObjects[type],platform:counts.platform,date:source==='HW01'?counts.date:'2026-01-05（页面注明2026-03-16更新）',version:source==='HW01'?'DGX VR Hardware':'平台技术博客；逻辑端点映射不外推'}],comparison:'计数对象独立记录，不自动推算其他层级。'});
+}
+catalog.rack.specs.find(f=>f.label==='GPU / CPU').value=`${counts.rack.gpu} × Rubin / ${counts.rack.cpu} × Vera`;
+catalog.compute.specs.find(f=>f.label==='计算').value=`${counts.tray.cpu} Vera CPU + ${counts.tray.gpu} Rubin GPU`;
+catalog.compute.specs.find(f=>f.label==='网络').value=`${counts.tray.nic} ConnectX-9逻辑端点 + ${counts.tray.dpu} BlueField-4`;
+catalog.compute.specs.push(fact('CX9 I/O 卡',`${counts.tray.cx9Cards}张 / 每托盘`,['HW01']),fact('CX9 软件接口',`${counts.tray.cx9Interfaces}个mlx5接口 / 每托盘`,['HW02']),fact('CX9 逻辑端点',`${counts.tray.nic}个 / 每托盘（教学展示）`,['HW06']));
+catalog.compute.summary=`每托盘${counts.tray.superchip}个Superchip、${counts.tray.cx9Cards}张CX9 I/O卡（DGX硬件文档）、${counts.tray.cx9Interfaces}个CX9软件接口（网络文档）与${counts.tray.dpu}个BlueField-4。不同计数层级不自动互推。`;
+catalog.compute.caveat=counts.cx9Note;
+catalog.nic.count=`${counts.rack.nic}个逻辑端点 / 每托盘${counts.tray.nic}个`;
+catalog.nic.specs.find(f=>f.label==='配置组织').value=`DGX：${counts.tray.cx9Cards}张I/O卡；${counts.tray.cx9Interfaces}个软件接口另计`;
+catalog.nic.specs.find(f=>f.label==='配置组织').source=['HW01','HW02'];
+catalog.nic.connections=['CX9逻辑端点 → 外部计算网络','主机I/O关联（卡/芯片/物理连接器映射待核实）','Astra管理链路 → BlueField-4'];
+catalog.nic.caveat=counts.cx9Note;
+catalog.dpu.caveat=counts.astraNote;
+for(const [key,model] of Object.entries(catalog))for(const item of model.specs){
+ const entries=measurements[`${key}:${item.label}`];
+ if(entries){item.observations=entries;item.comparison=entries.length>1?'先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾':'仅按该来源与统计对象解释';}
+}
+fs.writeFileSync('src/data/hardware-counts.json',JSON.stringify(counts,null,2));
 const entities = [], links = [], ports = [];
 const pad = (i,w=2) => String(i+1).padStart(w,'0');
 const add = (id,type,position=[0,0,0],parent=null,extra={}) => {
@@ -49,7 +76,7 @@ const connect=(a,b,type,name,source,bandwidth=null,flow='data',confidence='已�
 add('rack-01','rack');add('spine','spine',[0,0,-1.0],'rack-01');add('busbar','busbar',[-1.8,0,-.75],'rack-01');add('cooling','cooling',[1.8,0,-.75],'rack-01');
 for(let i=0;i<4;i++){add(`cartridge-${pad(i)}`,'cartridge',[-1.05+i*.7,0,-1.15],'spine',{index:i});add(`power-${pad(i)}`,'power',[0,[4.0,3.52,-4.4,-4.9][i],0],'rack-01',{index:i});connect(`power-${pad(i)}`,'busbar','power','额定供电',['HW01'],null,'infrastructure')}
 add('external','external',[0,2,-5]);add('storage','storage',[5,0,-3]);add('management','management',[-5,0,-3]);
-for(let t=0;t<18;t++){
+for(let t=0;t<counts.rack.compute;t++){
  const y=t<10 ? 3.0-t*.26 : -2.1-(t-10)*.26;const tid=`tray-${pad(t)}`;
  add(tid,'compute',[0,y,0],'rack-01',{index:t,trayIndex:t,name:`计算托盘 ${pad(t)}`});
  for(let s=0;s<2;s++){
@@ -57,24 +84,24 @@ for(let t=0;t<18;t++){
   for(let g=0;g<2;g++){const gi=t*4+s*2+g,gid=`gpu-${pad(gi)}`;add(gid,'gpu',[-1.02+(s*2+g)*.68,y+.065,.5],sid,{trayIndex:t,index:gi,name:`Rubin GPU ${pad(gi)}`});connect(cpu,gid,'c2c','CPU ↔ GPU 一致性通路',['HW03','SEC10'],'1.8 TB/s / Superchip 聚合，共享');connect(gid,'spine','nvlink','GPU → NVLink fabric',['HW01','HW07'],'3.0 / 3.6 TB/s，每GPU聚合')}
  }
  const dpu=`dpu-${pad(t)}`;add(dpu,'dpu',[0,y+.05,.95],tid,{trayIndex:t,index:t,name:`BlueField-4 DPU ${pad(t)}`});
- for(let n=0;n<8;n++){const ni=t*8+n,nid=`cx9-${pad(ni,3)}`;add(nid,'nic',[[-1.28,-.98,-.68,-.38,.38,.68,.98,1.28][n],y+.08,1.05],tid,{trayIndex:t,index:ni,name:`ConnectX-9 ${pad(ni,3)}`});connect(`cpu-${pad(t*2+Math.floor(n/4))}`,nid,'pcie','CPU / 四端点板组 I/O 逻辑关联',['HW06','HW90'],null,'data','待核实');connect(dpu,nid,'astra','DPU 专用管理连接',['SEC01','SEC02'],null,'control');connect(nid,'external','scaleout','OSFP → 外部计算网络',['HW02','HW04'],'800 Gb/s / 端点')}
+ for(let n=0;n<counts.tray.nic;n++){const ni=t*8+n,nid=`cx9-${pad(ni,3)}`;add(nid,'nic',[[-1.28,-.98,-.68,-.38,.38,.68,.98,1.28][n],y+.08,1.05],tid,{trayIndex:t,index:ni,name:`ConnectX-9 ${pad(ni,3)}`});connect(`cpu-${pad(t*2+Math.floor(n/4))}`,nid,'pcie','CPU / 四端点板组 I/O 逻辑关联',['HW06','HW90'],null,'data','待核实');connect(dpu,nid,'astra','DPU 专用管理连接',['SEC01','SEC02'],null,'control');connect(nid,'external','scaleout','OSFP → 外部计算网络',['HW02','HW04'],'800 Gb/s / 端点')}
  connect(`cpu-${pad(t*2)}`,dpu,'pcie','主机与 DPU 的 I/O 关联（具体布线待核实）',['HW90'],null,'control','待核实');
  add(`bmc-${pad(t)}`,'bmc',[-1.45,y,.8],tid,{trayIndex:t,index:t});add(`hmc-${pad(t)}`,'hmc',[-1.4,y,-.2],tid,{trayIndex:t,index:t});
  connect(`bmc-${pad(t)}`,'management','management','BMC → 管理 ToR',['HW02'],'1 GbE','management');connect(`bmc-${pad(t)}`,`hmc-${pad(t)}`,'management','管理关联示意',['HW01'],null,'management','待核实');connect(`hmc-${pad(t)}`,dpu,'management','管理关联示意',['HW01'],null,'management','待核实');
  connect(dpu,'management','management','DPU 带外管理入口',['SEC01'],null,'management');connect(dpu,'storage','storage','存储 / 基础设施网络',['HW02','HW04'],'双端口 400 Gb/s','storage');connect('busbar',tid,'power','后部供电盲插',['HW01','HW90'],null,'infrastructure');connect('cooling',tid,'cooling','后部冷却盲插',['HW90','HW08'],null,'infrastructure');
 }
-for(let t=0;t<9;t++){
+for(let t=0;t<counts.rack.switchTray;t++){
  const tid=`switch-tray-${pad(t)}`,y=.23-t*.25;add(tid,'switchTray',[0,y,0],'rack-01',{index:t,name:`交换托盘 ${pad(t)}`});
  for(let c=0;c<4;c++){const i=t*4+c,id=`switch-${pad(i)}`;add(id,'switch',[-1.02+c*.68,y+.05,.4],tid,{index:i,name:`NVLink Switch ${pad(i)}`});connect('spine',id,'nvlink','交换 ASIC → 汇聚 fabric（非逐端口映射）',['HW01','HW07'])}
  connect('busbar',tid,'power','交换托盘供电',['HW01'],null,'infrastructure');connect('cooling',tid,'cooling','交换托盘液冷',['HW08'],null,'infrastructure');
 }
 for(const type of ['root','firmware','astra','argus','sentry','realm','io','imex'])add(type,type);
 connect('root','firmware','trust','身份 / 固件验证依赖',['SEC17'],null,'evidence');connect('firmware','realm','trust','CPU / guest 证明依赖',['SEC10','SEC12'],null,'evidence');connect('firmware','io','trust','设备身份与安全接口授权',['SEC17','SEC18'],null,'evidence');connect('realm','io','trust','安全 DMA 就绪条件',['SEC18'],null,'evidence');connect('astra','dpu-01','astra','可信管理能力示意',['SEC01'],null,'control');
-const topology={metadata:{title:'NVIDIA Vera Rubin NVL72 架构模型',asOf:'2026-10-10',version:'1.0.0',disclaimer:'逻辑架构教学仿真；非物理布线图、数字孪生或真实监控。未核实参数保留 null。',corrections:['336 billion = 3360亿晶体管','DGX VR 每CX9端点800Gb/s；1.6Tb/s为每GPU口径','C2C 1.8TB/s为每Superchip聚合','NVL72 CX9 TLS硬件卸载在DOCA3.5.0不支持','1580TB/s历史引用未复现；当前页约1400TB/s','Scale-In含机柜外南北向基础设施']},rack:'rack-01',entities,ports,links,networks:[{id:'scale-up',name:'Scale-Up',color:'#ff6679',scope:'CPU/GPU一致性与GPU机架内fabric'},{id:'scale-out',name:'Scale-Out',color:'#60aaff',scope:'跨机架计算网络'},{id:'scale-in',name:'Scale-In',color:'#9ee446',scope:'南北向存储、安全、接入与基础设施服务；不限机柜内部'},{id:'oob',name:'带外管理',color:'#a5b1b8',scope:'BMC / 基础设施配置管理'}],security_domains:[{id:'tenant',name:'租户执行域',members:entities.filter(e=>['gpu','cpu','realm'].includes(e.type)).map(e=>e.id),note:'机架级TEE概念；CPU/GPU各自证明与密钥域',source:['SEC10','SEC11']},{id:'infrastructure',name:'基础设施控制域',members:entities.filter(e=>['dpu','astra','argus'].includes(e.type)).map(e=>e.id),note:'与租户主机隔离；不意味着可读Realm私有页',source:['SEC01','SEC04']},{id:'agent-governance',name:'Agent治理参考域',members:['sentry'],note:'参考设计能力，不宣称NVL72已启用',source:['SEC06','SEC07']}]};
+const topology={metadata:{title:'NVIDIA Vera Rubin NVL72 架构模型',asOf:'2026-10-12',version:'1.1.0-review',disclaimer:'逻辑架构教学仿真；非物理布线图、数字孪生或真实监控。未核实参数保留 null。',corrections:['336 billion = 3360亿晶体管','DGX VR 每CX9端点800Gb/s；1.6Tb/s为每GPU口径','C2C 1.8TB/s为每Superchip聚合','NVL72 CX9 TLS硬件卸载在DOCA3.5.0不支持','1580TB/s历史引用未复现；当前页约1400TB/s','Scale-In含机柜外南北向基础设施']},rack:'rack-01',entities,ports,links,networks:[{id:'scale-up',name:'Scale-Up',color:'#ff6679',scope:'CPU/GPU一致性与GPU机架内fabric'},{id:'scale-out',name:'Scale-Out',color:'#60aaff',scope:'跨机架计算网络'},{id:'scale-in',name:'Scale-In',color:'#9ee446',scope:'南北向存储、安全、接入与基础设施服务；不限机柜内部'},{id:'oob',name:'带外管理',color:'#a5b1b8',scope:'BMC / 基础设施配置管理'}],security_domains:[{id:'tenant',name:'租户执行域',members:entities.filter(e=>['gpu','cpu','realm'].includes(e.type)).map(e=>e.id),note:'机架级TEE概念；CPU/GPU各自证明与密钥域',source:['SEC10','SEC11']},{id:'infrastructure',name:'基础设施控制域',members:entities.filter(e=>['dpu','astra','argus'].includes(e.type)).map(e=>e.id),note:'与租户主机隔离；不意味着可读Realm私有页',source:['SEC01','SEC04']},{id:'agent-governance',name:'Agent治理参考域',members:['sentry'],note:'参考设计能力，不宣称NVL72已启用',source:['SEC06','SEC07']}]};
 fs.writeFileSync('data/nvl72-topology.json',JSON.stringify(topology,null,2));
 fs.writeFileSync('src/data/catalog.json',JSON.stringify(catalog,null,2));
 const sources=[...JSON.parse(fs.readFileSync('research/hardware-sources.json')),...JSON.parse(fs.readFileSync('research/security-sources.json')),...JSON.parse(fs.readFileSync('research/visual-sources.json')),...JSON.parse(fs.readFileSync('research/communication-sources.json')),{id:'USER',title:'用户任务说明（2026-10-10）',section:'用户提供的规格与历史口径；非官方独立证据',claims:['1580 TB/s 原始历史页面快照未复现'],confidence:'待核实'}];
 // 浏览器只使用书目与章节，完整本地路径保留在研究记录中。
-const publicSources=sources.map(({path,...source})=>source);
+const publicSources=sources.map(({path,...source})=>({...source,...classifySource(source)}));
 fs.writeFileSync('src/data/sources.json',JSON.stringify(publicSources,null,2));
 console.log(JSON.stringify({entities:entities.length,links:links.length,ports:ports.length}));

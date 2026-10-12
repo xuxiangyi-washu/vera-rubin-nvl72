@@ -1,0 +1,2 @@
+// 只由本地开发入口按显式验收参数调用；不改变生产浏览器设置。
+export function installQaFault(){if(new URLSearchParams(location.search).get('qa_init')!=='fail')return;const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,type:string,...args:unknown[]){return /webgl/.test(type)?null:Reflect.apply(original,this,[type,...args])} as typeof original;window.addEventListener('qa-reset-context',()=>{HTMLCanvasElement.prototype.getContext=original},{once:true})}

@@ -1,0 +1,35 @@
+{
+  "scope": "Wrangler本地模拟；未部署云端",
+  "rows": [
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/build-info.json",
+      "status": 200,
+      "type": "application/json"
+    },
+    {
+      "path": "/assets/__review_missing__.js",
+      "status": 404,
+      "type": null
+    },
+    {
+      "path": "/assets/__review_missing__.css",
+      "status": 404,
+      "type": null
+    },
+    {
+      "path": "/guides/__review_missing__.pdf",
+      "status": 404,
+      "type": null
+    },
+    {
+      "path": "/assets/__review_missing__.glb",
+      "status": 404,
+      "type": null
+    }
+  ]
+}

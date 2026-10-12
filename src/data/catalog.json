@@ -45,7 +45,32 @@
           "HW03",
           "HW07"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "216",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每机架",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "动态产品页；修订号未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "约260",
+            "unit": "TB/s",
+            "source": "HW07",
+            "scope": "每机架",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-20",
+            "version": "NVLink技术博客；配置关系待核实",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "HBM 聚合",
@@ -54,7 +79,32 @@
           "HW03",
           "HW04"
         ],
-        "confidence": "已确认"
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "约1400",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每机架HBM聚合",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "约1400",
+            "unit": "TB/s",
+            "source": "HW04",
+            "scope": "每机架HBM聚合",
+            "direction": "未知",
+            "platform": "DGX Vera Rubin NVL72",
+            "date": "未知",
+            "version": "未知",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "历史口径",
@@ -62,7 +112,21 @@
         "source": [
           "USER"
         ],
-        "confidence": "待核实"
+        "confidence": "待核实",
+        "observations": [
+          {
+            "value": "1580",
+            "unit": "TB/s",
+            "source": "USER",
+            "scope": "用户称每机架HBM聚合",
+            "direction": "未知",
+            "platform": "平台和历史版本待核实",
+            "date": "未知",
+            "version": "未知",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
       }
     ],
     "functions": [
@@ -87,8 +151,8 @@
     "name": "计算托盘",
     "model": "Vera Rubin Compute Tray",
     "color": "#8dbb6b",
-    "count": "18 个 / 机架",
-    "summary": "两个 Superchip、两个四端点 SuperNIC 板组与一个 BlueField-4，共同构成可维护计算单元。",
+    "count": "18个计算托盘 / 机架",
+    "summary": "每托盘2个Superchip、2张CX9 I/O卡（DGX硬件文档）、8个CX9软件接口（网络文档）与1个BlueField-4。不同计数层级不自动互推。",
     "specs": [
       {
         "label": "计算",
@@ -101,7 +165,7 @@
       },
       {
         "label": "网络",
-        "value": "8 ConnectX-9 端点 + 1 BlueField-4",
+        "value": "8 ConnectX-9逻辑端点 + 1 BlueField-4",
         "source": [
           "HW02",
           "HW04"
@@ -116,6 +180,94 @@
           "HW90"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "18个计算托盘 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "18",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "计算托盘",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
+      },
+      {
+        "label": "CX9 I/O 卡",
+        "value": "2张 / 每托盘",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "2",
+            "unit": "张",
+            "source": "HW01",
+            "scope": "每Compute Tray",
+            "direction": "未知",
+            "platform": "DGX Vera Rubin NVL72",
+            "date": "2026-10-07",
+            "version": "Hardware / Compute Trays",
+            "countObject": "I/O卡"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
+      },
+      {
+        "label": "CX9 软件接口",
+        "value": "8个mlx5接口 / 每托盘",
+        "source": [
+          "HW02"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "8",
+            "unit": "个",
+            "source": "HW02",
+            "scope": "每Compute Tray",
+            "direction": "未知",
+            "platform": "DGX Vera Rubin NVL72",
+            "date": "2026-10-07",
+            "version": "Networking / Network Interface Names",
+            "countObject": "文档表中CX9 mlx5接口；不含BF4接口"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
+      },
+      {
+        "label": "CX9 逻辑端点",
+        "value": "8个 / 每托盘（教学展示）",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "8",
+            "unit": "个",
+            "source": "HW06",
+            "scope": "每Compute Tray",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-01-05（页面注明2026-03-16更新）",
+            "version": "未知",
+            "countObject": "教学逻辑端点；逐卡/芯片/连接器映射待核实"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
       }
     ],
     "functions": [
@@ -132,13 +284,14 @@
       "HW02",
       "HW06",
       "HW90"
-    ]
+    ],
+    "caveat": "本图按CX9逻辑端点展示。端点、软件接口、I/O卡、芯片与外部连接器属于不同计数层级，不能直接互换；具体配置以参考平台和版本资料为准。"
   },
   "superchip": {
     "name": "Vera Rubin Superchip",
     "model": "NVIDIA Vera Rubin Superchip",
     "color": "#82aa56",
-    "count": "36 个 / 机架",
+    "count": "36个Superchip / 机架；每计算托盘2个",
     "summary": "每个 Superchip 由一颗 Vera CPU 与两颗 Rubin GPU 组成。",
     "specs": [
       {
@@ -156,6 +309,28 @@
           "HW03"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "36个Superchip / 机架",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "36",
+            "unit": "个",
+            "source": "HW06",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "Superchip",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-01-05（页面注明2026-03-16更新）",
+            "version": "平台技术博客；逻辑端点映射不外推"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -175,7 +350,7 @@
     "name": "Rubin GPU",
     "model": "NVIDIA Rubin GPU",
     "color": "#b5ed62",
-    "count": "72 颗 / 4 颗每托盘",
+    "count": "72个GPU器件 / 机架；每计算托盘4个",
     "summary": "AI 计算、HBM4 显存与 NVLink 6 端点组成 GPU 执行域。",
     "specs": [
       {
@@ -218,7 +393,32 @@
           "HW03",
           "HW05"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "19.2",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每GPU HBM4",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "动态产品页；修订号未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "22",
+            "unit": "TB/s",
+            "source": "HW05",
+            "scope": "每GPU HBM4",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-21",
+            "version": "Rubin架构博客；与产品页配置关系待核实",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "NVLink 双向",
@@ -227,7 +427,32 @@
           "HW03",
           "HW07"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "3.0",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每GPU",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "动态产品页；修订号未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "3.6",
+            "unit": "TB/s",
+            "source": "HW07",
+            "scope": "每GPU",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-20",
+            "version": "NVLink技术博客；与产品页配置关系待核实",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "GPU 间保护",
@@ -236,6 +461,28 @@
           "SEC11"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "72个GPU器件 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "72",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "GPU器件",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -259,7 +506,7 @@
     "name": "Vera CPU",
     "model": "NVIDIA Vera CPU",
     "color": "#63c4be",
-    "count": "36 颗 / 2 颗每托盘",
+    "count": "36个CPU器件 / 机架；每计算托盘2个",
     "summary": "执行主机 OS、数据预处理、内存与设备编排，并提供基于 Arm CCA/RME 的机密计算能力。",
     "specs": [
       {
@@ -301,6 +548,28 @@
           "SEC10"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "36个CPU器件 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "36",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "CPU器件",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -324,7 +593,7 @@
     "name": "ConnectX-9",
     "model": "NVIDIA ConnectX-9 VPI / SuperNIC",
     "color": "#65aafb",
-    "count": "144 个端点 / 8 个每托盘",
+    "count": "144个逻辑端点 / 每托盘8个",
     "summary": "承担跨机架计算数据面；Astra 模式下管理权位于 BlueField-4 域。",
     "specs": [
       {
@@ -333,7 +602,21 @@
         "source": [
           "HW04"
         ],
-        "confidence": "已确认"
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "800",
+            "unit": "Gb/s",
+            "source": "HW04",
+            "scope": "产品页每CX9端点",
+            "direction": "未知",
+            "platform": "DGX Vera Rubin NVL72",
+            "date": "未知",
+            "version": "未知",
+            "countObject": "产品页端点；不推算连接器/卡/芯片数量"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
       },
       {
         "label": "每 GPU 网络口径",
@@ -341,13 +624,28 @@
         "source": [
           "HW06"
         ],
-        "confidence": "已确认"
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "1.6",
+            "unit": "Tb/s",
+            "source": "HW06",
+            "scope": "每GPU网络口径",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-01-05（页面注明2026-03-16更新）",
+            "version": "未知",
+            "countObject": "每GPU聚合口径；非I/O卡数量"
+          }
+        ],
+        "comparison": "仅按该来源与统计对象解释"
       },
       {
         "label": "配置组织",
-        "value": "2 × 四端点 SuperNIC 板组 / 托盘",
+        "value": "DGX：2张I/O卡；8个软件接口另计",
         "source": [
-          "HW06"
+          "HW01",
+          "HW02"
         ],
         "confidence": "已确认"
       },
@@ -366,6 +664,28 @@
           "HW11"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "144个逻辑端点 / 机架",
+        "source": [
+          "HW06"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "144",
+            "unit": "个",
+            "source": "HW06",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "逻辑端点",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-01-05（页面注明2026-03-16更新）",
+            "version": "平台技术博客；逻辑端点映射不外推"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -374,9 +694,9 @@
       "执行由 DPU 下发的基础设施策略"
     ],
     "connections": [
-      "OSFP → Spectrum-X / Quantum-X800",
-      "PCIe → 主机计算域",
-      "专用 Astra 控制连接 → BlueField-4"
+      "CX9逻辑端点 → 外部计算网络",
+      "主机I/O关联（卡/芯片/物理连接器映射待核实）",
+      "Astra管理链路 → BlueField-4"
     ],
     "source": [
       "HW02",
@@ -386,13 +706,13 @@
       "SEC01",
       "HW11"
     ],
-    "caveat": "未接入真实设备；800 Gb/s 为当前 DGX VR 产品规格。IPsec/PSP 不表示默认业务流已加密。"
+    "caveat": "本图按CX9逻辑端点展示。端点、软件接口、I/O卡、芯片与外部连接器属于不同计数层级，不能直接互换；具体配置以参考平台和版本资料为准。"
   },
   "dpu": {
     "name": "BlueField-4",
     "model": "NVIDIA BlueField-4 DPU",
     "color": "#a1df60",
-    "count": "18 个 / 1 个每托盘",
+    "count": "18个DPU / 机架；每计算托盘1个",
     "summary": "在租户主机之外承载基础设施控制与服务。Astra 管理 SuperNIC，DOCA 提供网络、存储、安全与管理软件。",
     "specs": [
       {
@@ -427,6 +747,28 @@
           "SEC04"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "18个DPU / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "18",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "DPU",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -445,13 +787,13 @@
       "SEC03",
       "SEC04"
     ],
-    "caveat": "Scale-In 覆盖南北向基础设施，不限于机柜内部；租户数据包无需全部经过 DPU 外部端口。"
+    "caveat": "BlueField Astra控制链路用于CX9的配置、策略下发与监控；本线不表示全部GPU数据载荷必须经过DPU处理器。"
   },
   "switchTray": {
     "name": "NVLink Switch Tray",
     "model": "NVLink 6 Switch Tray",
     "color": "#e18c92",
-    "count": "9 个 / 机架",
+    "count": "9个交换托盘 / 机架",
     "summary": "每托盘四颗交换 ASIC，提供机架内 scale-up 交换与 SHARP 在网计算。",
     "specs": [
       {
@@ -485,6 +827,28 @@
           "HW07"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "9个交换托盘 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "9",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "交换托盘",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -506,7 +870,7 @@
     "name": "NVLink 6 Switch",
     "model": "NVIDIA NVLink 6 Switch ASIC",
     "color": "#e78394",
-    "count": "36 颗 / 4 颗每交换托盘",
+    "count": "36个交换ASIC / 机架",
     "summary": "用于 scale-up fabric 的交换芯片，区别于机柜外 Ethernet 或 InfiniBand 交换机。",
     "specs": [
       {
@@ -524,7 +888,32 @@
           "HW03",
           "HW07"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "216",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每机架，非单ASIC",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "约260",
+            "unit": "TB/s",
+            "source": "HW07",
+            "scope": "每机架，非单ASIC",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-20",
+            "version": "未知",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "端口布线",
@@ -533,6 +922,28 @@
           "HW01"
         ],
         "confidence": "待核实"
+      },
+      {
+        "label": "组件计数",
+        "value": "36个交换ASIC / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "36",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "交换ASIC",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -590,7 +1001,7 @@
     "name": "Cable Cartridge",
     "model": "预集成铜缆 cartridge",
     "color": "#bd786c",
-    "count": "4 个 / 本模型",
+    "count": "4个线缆cartridge / 机架",
     "summary": "可维护的预集成铜缆结构，构成后部 spine。",
     "specs": [
       {
@@ -600,6 +1011,28 @@
           "HW08"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "4个线缆cartridge / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "4",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "线缆cartridge",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [
@@ -617,7 +1050,7 @@
     "name": "电源层",
     "model": "DGX VR Power Shelf",
     "color": "#edbb6b",
-    "count": "4 层 / 机架",
+    "count": "4个电源层 / 机架",
     "summary": "将输入供电转换并经 busbar 为系统供电。",
     "specs": [
       {
@@ -643,6 +1076,28 @@
           "HW01"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "4个电源层 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "4",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "电源层",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [

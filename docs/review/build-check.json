@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "prefix": "/",
+      "files": 13,
+      "missingFiles404": 5
+    },
+    {
+      "prefix": "/vera-rubin-nvl72/",
+      "files": 13,
+      "missingFiles404": 5
+    }
+  ],
+  "canonicalEntry": true,
+  "hashPreserved": true,
+  "otherAppsUnchanged": true,
+  "productionQaExcluded": true,
+  "version": {
+    "schemaVersion": 1,
+    "commit": "f7a04ec5a1582a20dc0b8f400d6fe0ddb6a6d9e3",
+    "dirty": true,
+    "sourceSha256": "1bd881a89bf48d19ccc50d7a509ee1d2041b67892ade71c40ec6b068ff80f4f8",
+    "builtAt": "2026-10-12T02:37:03.486Z",
+    "nodeVersion": "v24.21.0",
+    "base": "./"
+  }
+}

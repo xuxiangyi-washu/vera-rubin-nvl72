@@ -1,0 +1,6 @@
+import {useEffect,useRef} from 'react';
+export default function Tabs({items,current,onChange,prefix,label,className}:{items:{id:string;label:string}[];current:string;onChange:(id:string)=>void;prefix:string;label:string;className:string}){
+ const root=useRef<HTMLDivElement>(null);
+ useEffect(()=>{root.current?.querySelector<HTMLElement>('[aria-selected="true"]')?.scrollIntoView({block:'nearest',inline:'nearest'})},[current]);
+ return <><div ref={root} role="tablist" aria-label={label} className={className}>{items.map((item,i)=><button key={item.id} id={`${prefix}-tab-${item.id}`} role="tab" aria-selected={current===item.id} aria-controls={`${prefix}-panel-${item.id}`} tabIndex={current===item.id?0:-1} className={current===item.id?'active':''} onClick={e=>{e.currentTarget.focus();onChange(item.id)}} onKeyDown={e=>{let n=i;if(e.key==='ArrowRight')n=(i+1)%items.length;else if(e.key==='ArrowLeft')n=(i+items.length-1)%items.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=items.length-1;else return;e.preventDefault();onChange(items[n].id);root.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[n]?.focus()}}>{item.label}</button>)}</div>{items.filter(item=>item.id!==current).map(item=><div key={item.id} hidden role="tabpanel" id={`${prefix}-panel-${item.id}`} aria-labelledby={`${prefix}-tab-${item.id}`}/>)}</>;
+}

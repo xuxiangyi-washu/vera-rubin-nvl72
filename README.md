@@ -2,7 +2,17 @@
 
 基于 React 18、TypeScript、Vite、Three.js、React Three Fiber、Drei、Zustand 的中文 3D 前端。包含整柜、计算托盘、NVLink 交换网络、三级网络、机密计算、信任链、NCCL推理动画七个视图。代码、事实数据和来源均在本目录，可独立本地运行。
 
-这是**结构与数据流教学仿真**，不是实机数字孪生、设备管理后台或性能/密码协议模拟器。粒子、路径、颜色和几何位置是示意；未连接真实遥测、告警或证明服务。事实核验日期为 **2026-10-10**。
+这是**结构与数据流教学仿真**，不是实机数字孪生、设备管理后台或性能/密码协议模拟器。粒子、路径、颜色和几何位置是示意；未连接真实遥测、告警或证明服务。原始专题核验日期为 **2026-10-10**；2026-10-12整改新增逐条来源核对日期，未复核材料保留原日期。
+
+## 2026-10-12 可靠性与手机适配整改
+
+本轮整改已完成本地验收，用户已明确授权提交、推送并分别发布到Cloudflare和CloudBase。完整结果、修改前后截图、部署关系和未验证项见 [VERIFICATION.md](VERIFICATION.md)；线上结果另按平台记录，不能仅凭构建成功认定发布成功。
+
+手机界面使用顶部“导航与搜索”和“组件详情”折叠入口；表格在自身容器内左右滚动，图示可按“放大图示”阅读标注。三维无法初始化或上下文丢失时自动进入紧凑二维目录；查询、证据及NCCL数值教学仍可用，用户可显式重试三维。
+
+“复制视图链接”保存当前场景、托盘、组件、专题和NCCL离散轮次，新窗口静态恢复。来源编号打开证据说明，旁边箭头打开原文。CX9端点、I/O卡、软件接口、芯片与外部连接器不能互相直接换算。
+
+本地检查：`npm run typecheck`、`npm test`、`npm run build`、`node scripts/check-build.mjs`。项目未配置lint。生产构建附`build-info.json`；`node scripts/check-build.mjs --serve`可在5175端口同时验证根入口及CloudBase子路径。
 
 ## 线上访问与更新
 
@@ -12,7 +22,7 @@ GitHub源码：[xuxiangyi-washu/vera-rubin-nvl72](https://github.com/xuxiangyi-w
 
 公开网址：**https://vera-rubin-nvl72.xuxiangyi666.workers.dev/**
 
-托管于用户自己的 Cloudflare Workers 账户，使用静态资源部署。配置为 `wrangler.jsonc`，只上传 `dist/`。更新源码后运行：
+托管于用户自己的 Cloudflare Workers 账户，使用静态资源部署。配置为 `wrangler.jsonc`，只上传 `dist/`。以下为获准发布后使用的命令：
 
 ```bash
 npm run deploy
@@ -28,7 +38,7 @@ npm run deploy
 
 ## 安装与运行
 
-Node.js `^20.19.0 || >=22.12.0`。本次使用 Node 26.3.1、npm 11.16.0。Vite 8 的运行时要求见 [官方入门](https://vite.dev/guide/)。
+Node.js `^20.19.0 || >=22.12.0`。原始开发环境为 Node 26.3.1；本轮另用 Node 24 复跑测试与构建。Vite 8 的运行时要求见 [官方入门](https://vite.dev/guide/)。
 
 ```bash
 cd /Users/xiangyixu/Documents/nvl72

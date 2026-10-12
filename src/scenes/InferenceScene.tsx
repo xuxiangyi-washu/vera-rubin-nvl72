@@ -1,3 +1,4 @@
+import { inferenceSnapshot } from '../utils/inference-state.mjs';
 import { useMemo } from 'react';
 import { Block, Chip, Paths, Annotation, type PathSpec } from './Primitives';
 import { useExplorer } from '../stores/useExplorer';
@@ -6,13 +7,14 @@ import type { Vec3 } from '../models/types';
 const gpuPosition=(rank:number):Vec3=>[-4.6+Math.floor(rank/2)*4.6+(rank%2===0?-.85:.85),.42,1.1];
 export default function InferenceScene(){
  const {inferenceMode:mode,inferenceStep:step,inferenceRound:round,inferenceToken:token}=useExplorer();
+ const snapshot=inferenceSnapshot({inferenceStep:step,inferenceRound:round,inferenceToken:token});
  const paths=useMemo(()=>{
   const p:PathSpec[]=[];
   if(step<2)for(let h=0;h<3;h++)p.push({points:[[-4.6+h*4.6,.4,-1.25],[-4.6+h*4.6,.4,-5.1],[0,.4,-5.1]],type:mode==='realm'?'trust':'management',dashed:true});
   if(step===2)for(let r=1;r<6;r++)p.push({points:[gpuPosition(0),[-5.45,.5,3.2],[gpuPosition(r)[0],.5,3.2],gpuPosition(r)],type:'nvlink'});
-  if(step===4||step===5)for(let r=0;r<6;r++){const a=gpuPosition(r),b=gpuPosition((r+1)%6);p.push({points:[a,[a[0],.7,3.5+(r%2)*.25],[b[0],.7,3.5+(r%2)*.25],b],type:'nvlink'})}
+  if(step===4||step===5)for(const packet of snapshot.packets){const r=packet.source,a=gpuPosition(packet.source),b=gpuPosition(packet.target);p.push({points:[a,[a[0],.7,3.5+(r%2)*.25],[b[0],.7,3.5+(r%2)*.25],b],type:'nvlink'})}
   return p;
- },[mode,step,round]);
+ },[mode,step,snapshot]);
  return <group>
  {Array.from({length:3},(_,h)=><group key={h}>
   <Block position={[-4.6+h*4.6,-.1,0]} size={[4.05,.18,5.2]} color="#425040"/>

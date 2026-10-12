@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Detailed } from '@react-three/drei';
-import { catalog, topology } from '../data';
+import { catalog, topology, hardwareCounts } from '../data';
 import { useExplorer } from '../stores/useExplorer';
 import { Block, InstanceBank, Paths, Annotation, type InstanceItem, type PathSpec } from './Primitives';
 import type { Vec3 } from '../models/types';
@@ -57,8 +57,8 @@ export default function RackScene() {
     <Block id="cooling" position={[1.84,-.1,-.9]} size={[.11,9.8,.15]} color="#438e92"/>
     <Block id="cooling" position={[2.04,-.1,-.9]} size={[.1,9.8,.15]} color="#2c697a"/>
     <Paths paths={paths} opacity={.38}/>
-    <Annotation position={[-4.0,2.05,.9]} title="18 × Compute Tray" detail="上10 / 下8 · 4 GPU + 2 CPU 每托盘" color="#b5da94"/>
-    <Annotation position={[4.0,-.62,.8]} title="9 × Switch Tray" detail="36 × NVLink 6 ASIC" color="#e4a0ac"/>
+    <Annotation position={[-4.0,2.05,.9]} title={`${hardwareCounts.rack.compute} × Compute Tray`} detail={`上10 / 下8 · ${hardwareCounts.tray.gpu} GPU + ${hardwareCounts.tray.cpu} CPU 每托盘`} color="#b5da94"/>
+    <Annotation position={[4.0,-.62,.8]} title={`${hardwareCounts.rack.switchTray} × Switch Tray`} detail={`${hardwareCounts.rack.switch} × NVLink 6 ASIC`} color="#e4a0ac"/>
     {rear&&<Annotation position={[0,2,-1.6]} title="4 × Cable Cartridge" detail="约 5,000 条铜缆 · 汇聚示意" color="#efa88a"/>}
   </group>;
 }

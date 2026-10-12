@@ -1,5 +1,121 @@
 # Vera Rubin NVL72 核验与交付自检
 
+> 发布授权更新：用户已明确确认“提交并推送 GitHub，再分别发布到 Cloudflare 和 CloudBase”。下列待审记录是发布前验收快照，线上发布结果完成后单独记录。域名、DNS与权限变更仍不在本次范围。
+
+## 2026-10-12 整改验收：本地待审，尚未发布
+
+本轮对应用户的可靠性、证据、NCCL、部署一致性及**整个页面手机适配**要求。保留 React 18 / TypeScript / Vite / Three.js / R3F / Drei / Zustand 和现有绿色视觉样式。无新增依赖、账号系统、后台或部署工作流。
+
+本地分支：`fix/explorer-reliability-review`；起点及读取到的远端 `main`：`f7a04ec5a1582a20dc0b8f400d6fe0ddb6a6d9e3`。以下修改尚在工作区，未提交、未推送、未发布。没有修改云端权限、域名或 DNS。用户本轮第“一、5”条要求发布前确认，优先于此前会话中的发布授权。
+
+### 问题分类与结果
+
+| 分类 | 事项 | 本轮处理 / 验证范围 |
+|---|---|---|
+| 复现的问题 P1 | 初始化失败后留空场景、三维按钮和照片遮挡 | 对旧代码在本地禁用 WebGL 复现；新实现以 loading / ready / failed / lost / 2d 状态管理。失败或丢失后 Canvas 卸载，自动显示共享拓扑的组件目录；照片浮层及三维专用按钮隐藏。不是认定所有正常浏览器的旧版三维均损坏。 |
+| 复现的问题 P1 | VIS01 按钮写成“打开官方资料” | 本地旧版及 CloudBase 实际页面分别复现。改为第三方报道 / 视觉参考，按钮为“打开视觉参考报道”。 |
+| 复现的问题 P1 | 来源无法检索、本地材料无法公开核对 | 增加 ID、标题、机构、关键词与类型搜索、结果数、清空和空结果。无链接材料明确不可公开核对，无伪造下载地址；证据范围逐条显示。 |
+| 复现的问题 P1 | Cloudflare 缺失 JS 返回首页 200 | 公网 HTTP 探针复现。本地 Wrangler 配置改为 `not_found_handling: none`，本地模拟验证 JS/CSS/PDF/模型缺失均 404；尚未发布修复。 |
+| 复现的问题 P1 | CloudBase 无尾斜杠入口返回相对路径 HTML | HTTP 检查确认无重定向；增加仅针对 `/vera-rubin-nvl72` 的客户端规范化，保留 query/hash。生产构建在本地子路径实测成功。 |
+| 复现的问题 P1/P2 | 活动控件状态缺失、关闭按钮名称不匹配 | 导航使用 aria-current，模式/图层使用 aria-pressed；章节使用完整 tabs 语义、方向键和 roving tabindex。关闭按钮跟随专题标题。 |
+| 本轮额外发现 | Safari 鼠标打开后焦点回到旧搜索框 | 显式记录打开按钮；背景和下层弹窗 inert；Esc 分层关闭，焦点回到对应打开按钮。 |
+| 建议增强 P2 | 分享位置 | hash 保存场景、托盘、组件、专题和离散教学状态；复制链接，新窗口、刷新、前进/后退恢复。默认静态，不写相机或动画每帧。 |
+| 建议增强 P1/P2 | 全页手机布局 | 390/768 下导航、详情可收起并定位；详情内可关闭。数量两列、控件换行、专题自动滚到选中项，表格独立横滚，架构图可单独放大。手机三维控件触控区域扩大。 |
+| 已有功能回归 | GPU-72 查询 / 托盘18 | 正常、失败、重试后保留正确选择。整柜和当前托盘数量分开显示，避免在托盘页误读72/36为单托盘数量。 |
+| 已有功能回归 | 默认六 rank 环归约 | 原算法与默认输入未发现计算错误，保留默认结果。新增来源 rank 跟踪、独立输入及前后轮次测试。 |
+| 已有功能回归 | 安全边界 | 保留硬件能力与软件部署组合的区分；Vera CCA/RME/C2C 能力不因跨 Realm 软件组合未证实而降为纯概念。保留 NCCL、IMEX、Sentry 各自职责和解密/旁路/延迟边界。 |
+
+### 主要修改与数据约定
+
+- `ScenePanel`、`SceneCanvas`、`useRenderer`、`renderer-state`：有界显式重试、代次隔离、上下文事件清理、按可见性暂停、二维目录共享拓扑。加载态也可立即选择二维；连续重试不并行建立多个渲染器。
+- `research/hardware-counts.json` 为计数来源；生成目录、拓扑、总览、三维和托盘说明复用。新增计数对象、平台、范围、日期、来源；CX9 的每托盘8逻辑端点、2张I/O卡、8个软件接口独立记录。芯片/外部连接器映射仍待核实，未将144逻辑端点改成卡数。
+- `research/measurements.json` 为逐值观察记录：3/3.6 TB/s、216/260 TB/s、19.2/22 TB/s分别关联来源；1580 TB/s保留为用户提供的历史引用，不能冒称已复现的官方当前规格。发布日已取得的博客记录具体日期；动态页无修订号时写未知。版本和平台对应关系未确定前，不宣称已经证实同配置矛盾，也不选最大值覆盖其他值。
+- `source-metadata`、`EvidenceDetails`、`ResearchModal`：厂商、标准、源码、第三方、用户材料及视觉用途分别标识；编号打开证据卡，独立箭头保留原文链接。`SOURCES.md`同步登记类别及逐条核对日期，未将未复核来源批量标成本日复核。
+- `link-semantics`：Astra/带外/信任边为控制虚线；管理边不进入载荷粒子；PCIe控制用途也不混入计算数据筛选。保留SW01–SW36逻辑集合说明，不增加假想物理端口。
+- `ring`、`inference-state`、`useInferencePlayback`：动画包、数值矩阵和说明共用快照。每分片记录累计来源，只有集齐6个来源才显示完成。单个可取消时钟驱动播放；人工操作才播报阶段，不持续播报自动播放。
+- `exploration-url`、`useExplorationUrl`：安全解析 hash、离散历史和静态恢复；无效参数回退。两个部署使用相同相对路径产物，无需跨应用 SPA 回退。
+- `Tabs`、`useDialogOpener`、`styles.css`：键盘状态、焦点及响应式布局；图内横滚不等于整页横向溢出。
+- `build-info`：产物附 Git 起点、dirty 标志、源码 SHA-256、构建时间和 Node 版本。工作区尚未提交时明确标记dirty，不伪装成已发布的精确commit。
+
+完整文件列表见 [changed-files.txt](docs/review/changed-files.txt)。数据生成文件由脚本更新，勿仅修改生成 JSON 后跳过数据源。
+
+### 实际执行的检查
+
+| 检查 | 结果 / 实际证据 |
+|---|---|
+| `npm run data:generate` | 428实体、783逻辑连接、861逻辑端口；生成规格和来源分类。 |
+| `npm run typecheck` | 通过。 |
+| `npm test` | **30/30通过**，原20项加本次直接相关10项；日志见 [local-tests.log](docs/review/local-tests.log)。 |
+| 默认 NCCL 数值 | 第5轮AllGather后每个rank为 `[21,42,63,84,105,126]`；原始输入不被修改。 |
+| 独立输入 `100r+k` | 规范输出rank k的RS分片为`1500+6k`；AG所有rank为`[1500,1506,1512,1518,1524,1530]`。 |
+| RS所有权说明 | 内部演示rank r持有C(r+1)%6；映射规范输出rank k时读取演示rank(k+5)%6的Ck。没有为迎合断言误改算法。 |
+| 来源rank跟踪 | 两组输入的每一轮每个分片等于其来源之和；无重复来源、无提前标记完成。 |
+| 播放单时钟 | 独立调度器测试重复启动、暂停、旧回调、取消；UI实测播放/暂停、复位、上一步再单步及OS/Realm切换保留轮次。 |
+| 页面后台 | Safari真实切换标签页，后台71,027ms时游标仍`4/1/0`，返回后可恢复；离开NCCL场景由状态和effect停止时钟。 |
+| `npm run build` | Node24.21.0复跑通过，TypeScript及Vite完成；有一个数据chunk超过1100kB的大小提示，非构建错误。未通过改阈值隐藏提示。 |
+| lint | **未运行：原项目没有lint脚本/配置**，未引入大型工具链制造虚假通过项。 |
+| 生产静态资源 | `node scripts/check-build.mjs`：根目录及子路径各13个文件的HTTP、MIME、字节一致性；每入口5类缺失资源404；canonical guard保持query/hash且不影响其他路径；QA故障工具从生产JS移除。[build-check.json](docs/review/build-check.json) |
+| Wrangler本地模拟 | 首页及build-info为200；缺失JS/CSS/PDF/GLB为404；见 [wrangler-local-check.json](docs/review/wrangler-local-check.json)。只启动`wrangler dev --local`，未执行发布。 |
+| 正常WebGL | Safari实际渲染，拖动后方向变化，托盘展开、视角重置及NVLink图层开关可操作。 |
+| 初始化失败 | 本地开发验收注入getContext返回null；状态failed、Canvas数量0，二维可搜索；解除注入并重试恢复ready、Canvas数量1。 |
+| 上下文丢失 | 实际调用浏览器`WEBGL_lose_context`扩展；状态lost、Canvas数量0；GPU72/托盘18选择在重试后保留。未将合成事件冒称驱动事件。 |
+| 搜索与证据 | GPU-72定位成功、无组件结果有提示；VIS01搜索1条且第三方视觉类型；HW90明确未公开；不存在来源为0条；冲突筛选4条，216/260的逐值来源、双向范围及日期可展开。 |
+| 键盘及弹窗 | Shift+Tab从关闭按钮到最后可聚焦元素、Tab回环；方向键切换专题章节；Esc及鼠标触发后的焦点恢复；嵌套证据关闭后先回到专题来源按钮，再关闭专题回到打开按钮。 |
+| 四档宽度 | Safari内嵌真实390/768/1280/1440 CSS像素视口；文档scrollWidth分别373/751/1263/1423（差17为滚动条），均未出现整页横溢出。390下专题、证据表、NCCL表及单独图示放大均检查。 |
+| 分享链接 | 实际复制按钮成功，新标签打开GPU72/托盘18且动画关闭；生产子路径不带斜杠自动规范化；前进、后退、刷新恢复对应选择。 |
+| 安全边界回归 | 原AES-GCM教学、OpenShell策略及拓扑边界单元测试保留；不将教学测试作为真实设备支持证据。 |
+
+响应式验收为Safari桌面引擎中的指定视口，并非实体iPhone/Android的触屏、软键盘、浏览器工具栏、安全区或性能认证。屏幕阅读器朗读未实听；已检查语义、焦点和手动播报触发。没有进行长时间GPU显存/堆快照压力测量，**不据此声称已经证明有或没有内存泄漏**。挂载清理通过代码检查、时钟单测及丢失/重试Canvas数量实测覆盖，驱动级资源回收仍有验证边界。
+
+### 修改前后真实截图
+
+截图是Safari实际UI；包含外链官方图的缩略呈现，不提供可独立使用的官方原图。带浅色外框的画面来自本地视口验收宿主页；底部诊断条仅开发环境存在，不进入线上构建。
+
+| 事项 | 修改前 | 修改后 |
+|---|---|---|
+| WebGL失败降级 | [旧版失败](docs/review/screenshots/before-webgl-failure.png) | [新版初始化失败](docs/review/screenshots/after-init-failure.png)、[真实上下文丢失](docs/review/screenshots/after-context-loss.png) |
+| 视觉参考分类 | [旧版来源](docs/review/screenshots/before-source-classification.png)、[CloudBase独立复现](docs/review/screenshots/cloudbase-before-source.png) | [VIS01修正](docs/review/screenshots/after-source-classification.png) |
+| 手机布局 | 本轮未补造修改前手机截图 | [390整柜](docs/review/screenshots/after-390-overview.png)、[390降级](docs/review/screenshots/after-390.png)、[可收起详情](docs/review/screenshots/after-390-details.png)、[手机NCCL](docs/review/screenshots/after-390-nccl.png)、[图示放大](docs/review/screenshots/after-390-diagram-zoom.png)、[规格表](docs/review/screenshots/after-390-evidence-table.png)、[冲突证据](docs/review/screenshots/after-390-conflict.png) |
+| 其他宽度及三维 | — | [768](docs/review/screenshots/after-768.png)、[1280](docs/review/screenshots/after-1280.png)、[1440](docs/review/screenshots/after-1440-ready.png)、[生产子路径托盘](docs/review/screenshots/after-production-tray.png) |
+| NCCL | 原默认数值已正确 | [AllGather第5轮](docs/review/screenshots/after-nccl-round5.png) |
+
+截图是不同验收步骤的现场记录，部分早于最后的焦点、触控尺寸和计数文字微调；不把每张截图伪装为完全相同构建时刻。
+
+### 两处部署、源码和版本关系
+
+| 项目 | Cloudflare | CloudBase |
+|---|---|---|
+| 来源 | 本地同一项目，手动Wrangler静态资源发布 | GitHub `xuxiangyi-washu/vera-rubin-nvl72`，`main`，用户控制台更新 |
+| 构建 | `npm run build`，输出`dist/` | 已有设置React、Node24、`npm ci`、`npm run build`、`./dist` |
+| 应用前缀 | `/` | `/vera-rubin-nvl72/` |
+| 当前已知云版本 | `b54fd233-311e-4c79-b47f-4e709ec03918`，只读CLI复核 | 本次Sentry版本的提供方版本号未读取 |
+| 本轮HTTP观察 | 入口200；缺失JS错误返回首页200 | 入口HTTP可取；缺失JS404；浏览器初次有中间页 |
+| 本轮线上整改 | **未发布** | **未发布 / 未触发更新** |
+
+两个入口当前返回HTML的SHA-256同为`7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33`，引用相同的入口JS/CSS文件名；记录见 [deployment-before.json](docs/review/deployment-before.json)。这证明观察到的入口产物一致，**不证明两平台精确Git commit相同**。旧产物无build-info，当前在线版本到精确commit的绑定未知；不能用本地HEAD代替云端版本证据。历史发布记录保存于下文及research，不被本轮本地产物覆盖。
+
+CloudBase首次浏览器访问复现[平台中间页](docs/review/screenshots/cloudbase-platform-interstitial.png)。本轮没有点击“确定访问”、改Cookie或用前端绕过。后续同一浏览器已经显示应用，因此进一步独立检查并复现了VIS01分类问题；未推断中间页为何消失，也未将其他本地故障注入测试自动算作CloudBase线上通过。风险页不属于本应用。
+
+### 仍待验证或处理
+
+1. 这次整改尚未在两平台上线；云端CI构建、部署状态、最终版本及新功能线上独立验收均待确认后执行。
+2. CloudBase域名中间页仍是平台机制。本地代码不能移除；条件与待确认步骤见 [部署说明](docs/DEPLOYMENT.md#自定义域名的前置条件待用户确认)。
+3. CX9卡/芯片/连接器的真实映射、NVLink ASIC端口及lane配置、具体跨Realm NCCL/IMEX/驱动组合保持待核实。
+4. 真实手机、屏幕阅读器朗读、长时内存压力与多浏览器兼容性未验收；外链官方图片仍依赖外部网络。
+5. 49页PDF沿用2026-10-10手册，附件下载资源校验正常；本轮没有重新排版PDF，新增分享/降级/手机操作以本报告及README为准。
+6. 数据chunk仍有构建体积提示；本轮未引入额外依赖或进行整个项目重构。
+
+### 获准发布后的步骤
+
+1. 先复核远端main和现有CloudBase触发策略，再将这次待审分支提交并合并到main；此时的GitHub推送也属于需确认的发布动作，避免意外触发CI。
+2. 用Node24在该确定commit执行安装、测试、构建；保留build-info与文件清单。Cloudflare上传该dist；CloudBase在同一commit、同一锁文件与构建命令生成并部署到现有子路径。绝不以一边成功推断另一边成功。
+3. 分别读取Cloudflare部署ID和CloudBase任务/版本号；分别验证build-info.commit与源码指纹，逐文件HTTP/MIME/SHA-256、缺失资源404、带/不带尾斜杠、动态分块、PDF、深链接及真实浏览器交互。build-info.builtAt可不同，源码commit/hash应对应同一源码。
+4. 新版本线上验证未通过时分别停止该平台验收并报告原因；保留各平台既有版本标识以供用户决定回滚。域名/DNS/权限不包含在这次代码发布中，需另行确认。
+
+---
+
+## 2026-10-10 历史交付记录（不是本轮整改的线上验收）
+
 核验日期：2026-10-10。本项目区分公开事实、教学模型、实际浏览器操作和真实硬件测试。
 
 ## 可复现检查

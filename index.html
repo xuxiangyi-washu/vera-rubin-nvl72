@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
+    <script>
+      // 仅规范本应用已确认的部署前缀，保留查询和hash，不处理其他应用路径。
+      if (location.pathname === '/vera-rubin-nvl72') location.replace(location.pathname + '/' + location.search + location.hash);
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b100d" />

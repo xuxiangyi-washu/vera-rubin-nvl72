@@ -2,8 +2,9 @@ export type Confidence = '已确认' | '待核实' | '冲突';
 export type ViewMode = 'rack' | 'tray' | 'fabric' | 'network' | 'security' | 'trust' | 'inference';
 export type LinkType = 'nvlink' | 'c2c' | 'pcie' | 'scaleout' | 'astra' | 'storage' | 'management' | 'power' | 'cooling' | 'trust';
 export type Vec3 = [number, number, number];
-export interface Fact { label: string; value: string; confidence: Confidence; source: string[]; note?: string }
-export interface Source { id: string; title: string; url?: string; section?: string; claims?: string[]; confidence?: string; file?: string }
+export interface Observation {value:string;unit:string;source:string;scope:string;direction:string;platform:string;date:string;version:string;countObject:string}
+export interface Fact { observations?:Observation[]; comparison?:string; label: string; value: string; confidence: Confidence; source: string[]; note?: string }
+export interface Source { kind:'vendor'|'standard'|'code'|'third-party'|'user';issuer:string;purpose:'visual'|'technical';access:'public'|'unpublished';publishedAt:string;checkedAt:string;scopeNote:string; id: string; title: string; url?: string; section?: string; claims?: string[]; confidence?: string; file?: string }
 export interface ComponentModel {
   name: string; model: string; color: string; count: string; summary: string;
   specs: Fact[]; functions: string[]; connections: string[]; source: string[]; caveat?: string;

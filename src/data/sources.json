@@ -10,7 +10,14 @@
       "4×110kW电源层（上2、下2），54V DC busbar；每层6个风冷PSU"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-07（页面更新）",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW02",
@@ -23,7 +30,14 @@
       "网络表明确八个ConnectX-9端点接口"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-07（页面更新）",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW03",
@@ -37,7 +51,14 @@
       "Vera 88核176线程，单CPU最高1.5TB LPDDR5X，整柜54TB"
     ],
     "confidence": "冲突",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW04",
@@ -50,7 +71,14 @@
       "规格注明初步信息、可能变化"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW05",
@@ -63,7 +91,14 @@
       "HBM4最高288GB/22TB/s；NVLink6 3.6TB/s，带宽与产品页冲突"
     ],
     "confidence": "冲突",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-07-21",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW06",
@@ -76,7 +111,14 @@
       "BlueField-4/Astra独立基础设施域；受保护CPU/GPU/NVLink机架级域"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-01-05（页面注明2026-03-16更新）",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW07",
@@ -89,7 +131,14 @@
       "热插拔交换托盘、动态重路由、部分配置运行；不是未公开容错SLA"
     ],
     "confidence": "冲突",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-07-20",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW08",
@@ -101,7 +150,14 @@
       "计算与交换托盘无风扇的表述不能推导整柜无风扇"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW09",
@@ -113,7 +169,14 @@
       "功率预算、散热、动态功率分配的综合能力，不是单机柜实测节电40%"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW10",
@@ -125,7 +188,14 @@
       "不能把ConnectX产品系列泛称TLS能力当成该机架配置已支持"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW11",
@@ -137,7 +207,14 @@
       "RDMA、RoCEv2、GPUDirect RDMA/Storage；具体SKU/软件版本决定能力"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW12",
@@ -149,7 +226,14 @@
       "C2C最高1.8TB/s CPU-GPU一致性带宽"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW13",
@@ -161,7 +245,14 @@
       "800Gb/s端到端网络；ConnectX SuperNIC最高1.6Tb/s每GPU"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW14",
@@ -172,7 +263,14 @@
       "Spectrum交换机与ConnectX SuperNIC协同；RoCE以太网RDMA网络"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "HW90",
@@ -184,7 +282,14 @@
       "按章节引用；未渲染分页，不宣称某DOCX物理页码"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "user",
+    "issuer": "用户提供",
+    "purpose": "technical",
+    "access": "unpublished",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "未提供公开链接。仅能核对书目信息和已记录章节；原文由用户持有，不能充当可公开复核的唯一证据。"
   },
   {
     "id": "HW91",
@@ -196,7 +301,14 @@
       "第4页整柜HBM已写约1400TB/s；1580TB/s并非该页当前记录"
     ],
     "confidence": "已确认",
-    "accessedAt": "2026-10-10"
+    "accessedAt": "2026-10-10",
+    "kind": "user",
+    "issuer": "用户提供",
+    "purpose": "technical",
+    "access": "unpublished",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "未提供公开链接。仅能核对书目信息和已记录章节；原文由用户持有，不能充当可公开复核的唯一证据。"
   },
   {
     "id": "SEC01",
@@ -207,7 +319,14 @@
       "Astra 在 BlueField-4 上建立独立于租户主机的 SuperNIC 控制面；专用连接用于编程、配置、监控 ConnectX-9。",
       "策略经 DPU 带外端口进入，在 SuperNIC 硬件执行；DOCA HBN、加速 OVS、Argus、SNAP、DMS 分担网络、安全、存储和管理。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC02",
@@ -218,7 +337,14 @@
       "Astra 配置下 ConnectX-9 与 BlueField-4 配对，SuperNIC 按设计锁定，仅由 DPU 管理。",
       "此页其余非 Astra 锁定密钥管理细节不可移植为 Astra 专用链路的加密协议。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC03",
@@ -229,7 +355,14 @@
       "Scale-In 覆盖 AI 工厂南北向接入、安全、数据与存储流动及基础设施操作，范围不只机柜内部。",
       "BlueField-4 提供独立于主机的基础设施处理，DOCA 提供服务，Spectrum-X 提供接入网络。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC04",
@@ -241,7 +374,14 @@
       "指南支持 Linux x86 与 Arm64，解析进程、线程、执行上下文和 SHA-256 摘要；需匹配内核内存映射。",
       "指南未证明 Argus 可越过 Realm 私有内存隔离，也未保证所有 Sentry 检测均使用 Argus。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC05",
@@ -251,7 +391,14 @@
     "claims": [
       "官方称 DOCA Argus 检测速度最高为现有无代理方案的 1,000 倍；属厂商上限声明，不能当作本项目实测或 Sentry 的 SLA。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC06",
@@ -262,7 +409,14 @@
       "2026-09-28 公布的 Open Agent Safety Platform 组合 OpenShell 与 Sentry 参考系统设计。",
       "Sentry 是基于 DOCA、运行于 BlueField-4 的带外 watchdog，在独立信任域持续观察和执行；毫秒级隔离为厂商声明。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC07",
@@ -273,7 +427,14 @@
       "参考设计把 BlueField-4 放在指定 Vera Rubin POD 中 agent 节点通往模型的必要路径。",
       "该拓扑限定不能外推为所有 NVLink 流量经过 DPU、所有服务器出口均不可绕过，或 Sentry 替代 IMEX。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC08",
@@ -284,7 +445,14 @@
       "OpenShell 可在受支持的本地、私有部署、云和 Kubernetes 环境运行，不要求 BlueField-4。",
       "配备 BlueField-4 时 Sentry 增加硬件隔离的观察和执行；仍需具体版本及部署支持矩阵。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC09",
@@ -294,7 +462,14 @@
     "claims": [
       "Gateway 管理身份、生命周期和策略；Supervisor 在工作负载外检查出站访问；Sandbox 承载内核层文件、进程及网络约束。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC10",
@@ -305,7 +480,14 @@
       "Vera 的机密计算建立在 Arm CCA/RME 上，具有每 VM 加密密钥、TDISP 设备安全分配及 authenticated C2C encryption。",
       "该公开章节没有给出密钥生成状态机、轮换、销毁和迁移的 Vera 具体实现。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC11",
@@ -316,7 +498,14 @@
       "官方描述横跨 CPU、GPU、互联的机架级 TEE，以及 NVLink-C2C 加密、GPU 间 NVLink 加密、PCIe IDE 和 TDISP。",
       "未公开 NVLink 数据密钥生成者、端到端或逐跳实现及交换机密钥角色。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-01-05（页面注明2026-03-16更新）",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC12",
@@ -327,7 +516,14 @@
       "Realm 属于隔离的 Realm 安全状态；RMM 与 Root 固件参与管理，GPC/GPT 实施内存访问控制。",
       "Realm 隔离不等于任何外设都被授权读取私有内存；可信设备分配需独立建立。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "standard",
+    "issuer": "Arm",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC13",
@@ -338,7 +534,14 @@
       "IMEX 协调跨 OS 域 GPU 显存导入、导出与映射生命周期，服务与 GPU 驱动交互，节点间走 TCP/IP 与 gRPC。",
       "内存映射控制通路与 NVLink 上的显存读写数据通路不同；Vera Rubin 的具体部署绑定仍待核实。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC14",
@@ -349,7 +552,14 @@
       "IMEX_ENABLE_AUTH_ENCRYPTION 默认 0，表示关闭认证及加密。",
       "启用后可选 SSL_TLS、GSS_AUTH_ENCRYPT 或 GSS_AUTH_ONLY；最后一种不加密。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC15",
@@ -360,7 +570,14 @@
       "驱动使用用户可访问的最低编号 channel；应使用户仅访问其授权 channel。",
       "全员可访问 channel0 时，新增 channel1/channel2 不能隔离两用户；跨节点 channel 分配须一致。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC16",
@@ -371,7 +588,14 @@
       "NCCL MNNVL 从 2.21 提供，要求受支持系统/驱动、cuMem 支持以及完整可用的 IMEX domain。",
       "这些通用要求不证明 Vera Rubin 当前出厂软件绑定。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC17",
@@ -381,7 +605,14 @@
     "claims": [
       "SPDM 提供设备认证、证明相关测量与密钥交换，承载绑定与设备数据保护应分别核验。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "standard",
+    "issuer": "DMTF",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC18",
@@ -392,7 +623,14 @@
       "PCIe IDE 与 TDISP 分别解决链路数据保护与 TEE 设备接口分配安全。",
       "教学流程应要求设备接口与 IDE 均已就绪才允许机密 DMA；不能把先开放 DMA、后启用加密当作安全配置。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "standard",
+    "issuer": "PCI-SIG",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC19",
@@ -403,7 +641,14 @@
       "已解析用户本地文档，发布身份与边界参见 p.1-3；数据/控制/证据流参见 p.5；可见性与机密计算边界参见 p.9-10。",
       "毫秒级指标条件参见 p.11；NVLink、IMEX、Astra 分层参见 p.12、16；原始资料列表参见 p.18-19。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "user",
+    "issuer": "用户提供",
+    "purpose": "technical",
+    "access": "unpublished",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "未提供公开链接。仅能核对书目信息和已记录章节；原文由用户持有，不能充当可公开复核的唯一证据。"
   },
   {
     "id": "SEC20",
@@ -413,7 +658,14 @@
     "claims": [
       "Arm 官方通用测试先建立 RootPort 与 Endpoint 的 IDE Stream，再转入 TDISP RUN；不能把此测试当作 Vera 的完整部署说明。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "Arm",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC21",
@@ -423,7 +675,14 @@
     "claims": [
       "NVSentinel 面向 Kubernetes GPU 故障检测与修复，与 agent 安全参考设计 Sentry 不同。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC22",
@@ -433,7 +692,14 @@
     "claims": [
       "Caliptra 是可集成的硬件信任根项目；其 Vera Rubin 各芯片采用版本与证明绑定在本次 NVIDIA 一手资料核验中尚未确认。"
     ],
-    "confidence": "待核实"
+    "confidence": "待核实",
+    "kind": "code",
+    "issuer": "CHIPS Alliance",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC23",
@@ -443,7 +709,14 @@
     "claims": [
       "Apache-2.0开放运行时；与Sentry参考系统的公开程度分别评估。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC24",
@@ -455,7 +728,14 @@
       "Sandbox Protocol使用认证HTTP/2通道；Docker/Podman用Unix socket，Kubernetes用TCP，VM用vsock。",
       "Gateway JWT与Sandbox JWT按sandbox及generation绑定；这不是Sentry身份协议披露。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC25",
@@ -467,7 +747,14 @@
       "within_boundary仅覆盖模型语义；unsupported/inconclusive不是通过。",
       "GraphQL/MCP等运行时支持不等于当前boundary prover也覆盖。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC26",
@@ -479,7 +766,14 @@
       "L7默认audit记录违规但继续转发；enforce才阻断相应规则违规。",
       "连接授权不自动授权发送provider凭证。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC27",
@@ -490,7 +784,14 @@
       "托管凭证以占位符呈现给agent；代理按network policy和credential binding双重授权替换。",
       "目标host/port/path不匹配、占位符无效时拒绝；TLS skip和非HTTP隧道不能重写。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC28",
@@ -502,7 +803,14 @@
       "metadata.uid是事件标识，container.uid关联sandbox；队列、落盘与外部采集决定保留和丢失。",
       "OCSF结构本身不是Sentry attested telemetry的签名或证明协议。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC29",
@@ -513,7 +821,14 @@
       "agent可提出网络规则；默认需人工审批，advisor默认关闭。",
       "提案不自行生效，自动审批是另行启用的选项；风险检查不等于任务意图完备证明。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC30",
@@ -524,7 +839,14 @@
       "network_mode=none及无非托管网络附件用于生成和校验外层隔离条件。",
       "源码范围是OpenShell Docker运行时，不能当成BlueField硬件证明。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC31",
@@ -535,7 +857,14 @@
       "冻结自有工作负载进程并阻止新操作是可见源码机制。",
       "它不能证明Sentry在DPU上使用相同信号机制，也不是实机毫秒级测量。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC32",
@@ -545,7 +874,14 @@
     "claims": [
       "稳定版、预发布版和main开发快照需区分；支持范围按runtime、OS和kernel核验。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC33",
@@ -556,7 +892,14 @@
       "TLS终止使代理能做L7检查；tls:skip保留不透明载荷，不等于内容检查。",
       "不将软件Supervisor独立进程等同于DPU主机外硬件信任域。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC34",
@@ -567,7 +910,14 @@
       "不传--policy不保证使用默认策略；镜像、全局策略和provider组合会改变有效策略。",
       "需要检查base/full与实际运行时附加权限。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SEC35",
@@ -577,7 +927,14 @@
     "claims": [
       "此处sentry指gVisor组件，不是NVIDIA Sentry硬件治理实现。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "code",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "2026-10-09（固定v0.1.3提交）",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "VIS01",
@@ -587,7 +944,14 @@
     "claims": [
       "据用户提供的文章改进计算托盘、冷板、金属外壳和组件图片展示。图片实际引用NVIDIA原始来源，不复制报道的未核实规格。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "third-party",
+    "issuer": "StorageReview",
+    "purpose": "visual",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅作外观视觉参考，不据此证明精确布线、数量、端口映射或性能。"
   },
   {
     "id": "NC01",
@@ -598,7 +962,14 @@
       "ReduceScatter后接AllGather等价于AllReduce；各rank必须匹配collective的count和datatype。",
       "教学Ring数值模拟不证明任何Vera Rubin跨Realm配置已受支持。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "NC02",
@@ -609,7 +980,14 @@
       "communicator为参与CUDA设备分配唯一rank；unique ID经主机通信机制在进程间共享。",
       "NCCL初始化不是Realm证明或密钥释放协议。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-12",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SW01",
@@ -619,7 +997,14 @@
     "claims": [
       "Dynamo提供分布式推理服务相关能力；实际配置以版本文档为准。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "vendor",
+    "issuer": "NVIDIA",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "SW02",
@@ -629,7 +1014,14 @@
     "claims": [
       "TensorRT-LLM为大模型推理提供优化执行能力；模型与硬件支持需核验具体版本。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "third-party",
+    "issuer": "nvidia.github.io",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "CR01",
@@ -639,7 +1031,14 @@
     "claims": [
       "用于解释通用AEAD与GCM，不作为NVLink6密码算法或参数的证据。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "standard",
+    "issuer": "NIST",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "CR02",
@@ -649,7 +1048,14 @@
     "claims": [
       "浏览器AES-GCM教学演示使用Web Crypto；不是NVLink6实现。"
     ],
-    "confidence": "已确认"
+    "confidence": "已确认",
+    "kind": "standard",
+    "issuer": "W3C",
+    "purpose": "technical",
+    "access": "public",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "仅支持原文给定平台、版本和章节范围；不自动扩展为实机或默认部署结果。"
   },
   {
     "id": "USER",
@@ -658,6 +1064,13 @@
     "claims": [
       "1580 TB/s 原始历史页面快照未复现"
     ],
-    "confidence": "待核实"
+    "confidence": "待核实",
+    "kind": "user",
+    "issuer": "用户提供",
+    "purpose": "technical",
+    "access": "unpublished",
+    "publishedAt": "未知",
+    "checkedAt": "2026-10-10（上轮核对）",
+    "scopeNote": "未提供公开链接。仅能核对书目信息和已记录章节；原文由用户持有，不能充当可公开复核的唯一证据。"
   }
 ]

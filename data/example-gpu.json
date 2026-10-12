@@ -46,7 +46,32 @@
           "HW03",
           "HW05"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "19.2",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每GPU HBM4",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "动态产品页；修订号未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "22",
+            "unit": "TB/s",
+            "source": "HW05",
+            "scope": "每GPU HBM4",
+            "direction": "未知",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-21",
+            "version": "Rubin架构博客；与产品页配置关系待核实",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "NVLink 双向",
@@ -55,7 +80,32 @@
           "HW03",
           "HW07"
         ],
-        "confidence": "冲突"
+        "confidence": "冲突",
+        "observations": [
+          {
+            "value": "3.0",
+            "unit": "TB/s",
+            "source": "HW03",
+            "scope": "每GPU",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "未知",
+            "version": "动态产品页；修订号未知",
+            "countObject": "不适用"
+          },
+          {
+            "value": "3.6",
+            "unit": "TB/s",
+            "source": "HW07",
+            "scope": "每GPU",
+            "direction": "双向聚合",
+            "platform": "Vera Rubin NVL72",
+            "date": "2026-07-20",
+            "version": "NVLink技术博客；与产品页配置关系待核实",
+            "countObject": "不适用"
+          }
+        ],
+        "comparison": "先核对版本、平台与统计口径；尚不能认定同一配置下的矛盾"
       },
       {
         "label": "GPU 间保护",
@@ -64,6 +114,28 @@
           "SEC11"
         ],
         "confidence": "已确认"
+      },
+      {
+        "label": "组件计数",
+        "value": "72个GPU器件 / 机架",
+        "source": [
+          "HW01"
+        ],
+        "confidence": "已确认",
+        "observations": [
+          {
+            "value": "72",
+            "unit": "个",
+            "source": "HW01",
+            "scope": "每机架",
+            "direction": "不适用",
+            "countObject": "GPU器件",
+            "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+            "date": "2026-10-07",
+            "version": "DGX VR Hardware"
+          }
+        ],
+        "comparison": "计数对象独立记录，不自动推算其他层级。"
       }
     ],
     "functions": [

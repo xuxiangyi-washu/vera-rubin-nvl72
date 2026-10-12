@@ -1,0 +1,103 @@
+v24.21.0
+
+> vera-rubin-nvl72-explorer@1.0.0 typecheck
+> tsc -b --pretty false
+
+
+> vera-rubin-nvl72-explorer@1.0.0 test
+> node --test tests/*.test.mjs
+
+✔ 教学AES-GCM正常验签解密，且密钥不可导出 (4.774708ms)
+✔ 篡改密文或AAD不会释放教学明文 (0.852834ms)
+✔ 重放检测是独立状态校验，合法认证标签本身不会拒绝重复包 (0.655625ms)
+✔ 教学策略仅在匹配的读请求上允许转发和凭证使用 (0.410959ms)
+✔ L7 audit记录写入而enforce阻断，不把审计表现为阻断 (0.073458ms)
+✔ audit不绕过网络授权和凭证目标绑定 (0.0615ms)
+✔ 未知模式不会产生假定放行的教学结果 (0.106958ms)
+✔ 独立100r+k数据遵循规范Reduce-Scatter输出和AllGather结果 (0.748625ms)
+✔ 每轮每分块值恰好等于累计来源之和，无重复来源或提前完成 (0.526584ms)
+✔ NCCL前后定位可重现同一快照，OS和Realm分组不改变数学状态 (0.554625ms)
+✔ 播放时钟重复启动仍只有一个任务，暂停/隐藏/卸载后旧回调无效 (0.11675ms)
+✔ 渲染初始化失败与上下文丢失均能进入二维，再试只有一个新代次 (0.073666ms)
+✔ 深链接恢复GPU72、托盘18与NCCL离散状态，默认不播放 (0.426833ms)
+✔ 无效深链接安全回退且不把注入内容作为实体或专题 (0.10525ms)
+✔ VIS01按第三方视觉参考分类；本地材料明确不可公开核对 (0.299542ms)
+✔ CX9卡、软件接口和逻辑端点独立计数，每个逐值记录有来源和范围 (0.456625ms)
+✔ Astra与管理关系不能进入载荷寻路或粒子列表 (0.242875ms)
+✔ 环形Reduce-Scatter与AllGather得到每个rank相同的正确求和结果 (1.542833ms)
+✔ 示例数据不被动画修改，每轮仅向相邻逻辑rank发送一个分块 (0.195041ms)
+✔ 拒绝不匹配的示例rank/分块数与非法值 (0.121042ms)
+✔ 拓扑遵循 JSON Schema 2020-12 (25.057209ms)
+✔ 整柜硬件总量与每托盘构成一致 (0.503667ms)
+✔ 实体 ID、父子、逻辑端口和链接引用完整 (0.658458ms)
+✔ 关键规格、实体与链接都有可解析证据 (0.497334ms)
+✔ 每个 DPU 控制本托盘 8 端点，不跨租户主机猜接线 (0.264083ms)
+✔ NVLink 逻辑 fabric 可达全部 72 GPU，未伪造直接 GPU-交换芯片接线 (0.408083ms)
+✔ C2C 仅连接同一 Superchip，1.8TB/s不重复视为单边独享 (0.120209ms)
+✔ 保留已核验纠错及安全边界 (0.054208ms)
+✔ 没有未经授权再分发的官方图片，外链清单来自官方域 (0.340291ms)
+✔ 机柜分区遵循官方上10计算、中9交换、下8计算及上下各2电源层 (0.28775ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.479583
+
+> vera-rubin-nvl72-explorer@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 2524 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                         0.26 kB │ gzip:   0.21 kB
+dist/index.html                              1.02 kB │ gzip:   0.63 kB
+dist/assets/index-B3d-AxtL.css              66.85 kB │ gzip:  14.12 kB
+dist/assets/hardware-counts-D_MRG5pV.js      0.66 kB │ gzip:   0.56 kB
+dist/assets/Tabs-rpCn609W.js                 1.27 kB │ gzip:   0.72 kB
+dist/assets/ResearchModal-B1hnu0j1.js        5.79 kB │ gzip:   2.52 kB
+dist/assets/SecurityGuide-BbIj5MBn.js      114.57 kB │ gzip:  38.51 kB
+dist/assets/index-C03Hnwnk.js              214.06 kB │ gzip:  68.27 kB
+dist/assets/SceneCanvas-D6xoNkFF.js        889.81 kB │ gzip: 240.05 kB
+dist/assets/format-CQhb4zyo.js           1,246.37 kB │ gzip:  99.14 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 1100 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 255ms
+
+> vera-rubin-nvl72-explorer@1.0.0 typecheck
+> tsc -b --pretty false
+
+
+> vera-rubin-nvl72-explorer@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 2524 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                         0.26 kB │ gzip:   0.21 kB
+dist/index.html                              1.02 kB │ gzip:   0.63 kB
+dist/assets/index-B3d-AxtL.css              66.85 kB │ gzip:  14.12 kB
+dist/assets/hardware-counts-D_MRG5pV.js      0.66 kB │ gzip:   0.56 kB
+dist/assets/Tabs-Ddskklac.js                 1.27 kB │ gzip:   0.72 kB
+dist/assets/ResearchModal-CiynIive.js        5.79 kB │ gzip:   2.52 kB
+dist/assets/SecurityGuide-lGCopkSV.js      114.57 kB │ gzip:  38.51 kB
+dist/assets/index-BsU8BwYz.js              214.15 kB │ gzip:  68.30 kB
+dist/assets/SceneCanvas-DVi4rfzc.js        889.81 kB │ gzip: 240.06 kB
+dist/assets/format-CQhb4zyo.js           1,246.37 kB │ gzip:  99.14 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 1100 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 315ms

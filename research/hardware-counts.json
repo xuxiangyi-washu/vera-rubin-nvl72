@@ -1,0 +1,30 @@
+{
+  "rack": {
+    "compute": 18,
+    "superchip": 36,
+    "gpu": 72,
+    "cpu": 36,
+    "nic": 144,
+    "dpu": 18,
+    "switchTray": 9,
+    "switch": 36,
+    "cartridge": 4,
+    "power": 4
+  },
+  "tray": {
+    "superchip": 2,
+    "gpu": 4,
+    "cpu": 2,
+    "nic": 8,
+    "dpu": 1,
+    "cx9Cards": 2,
+    "cx9Interfaces": 8
+  },
+  "switchTray": {
+    "switch": 4
+  },
+  "platform": "DGX Vera Rubin NVL72参考配置；其他OEM配置需单独核对",
+  "date": "2026-10-07",
+  "cx9Note": "本图按CX9逻辑端点展示。端点、软件接口、I/O卡、芯片与外部连接器属于不同计数层级，不能直接互换；具体配置以参考平台和版本资料为准。",
+  "astraNote": "BlueField Astra控制链路用于CX9的配置、策略下发与监控；本线不表示全部GPU数据载荷必须经过DPU处理器。"
+}

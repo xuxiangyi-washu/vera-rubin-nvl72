@@ -1,10 +1,12 @@
 import fs from 'node:fs';
+import {sourceKinds} from '../src/utils/evidence.mjs';
 const sourceOrigins=[...JSON.parse(fs.readFileSync('research/hardware-sources.json')),...JSON.parse(fs.readFileSync('research/security-sources.json')),...JSON.parse(fs.readFileSync('research/visual-sources.json')),...JSON.parse(fs.readFileSync('research/communication-sources.json'))];
 const sources=JSON.parse(fs.readFileSync('src/data/sources.json')).map(s=>({...s,...sourceOrigins.find(original=>original.id===s.id)})),images=JSON.parse(fs.readFileSync('research/official-assets.json'));
-let text=`# Vera Rubin NVL72 来源与素材登记\n\n核验日期：2026-10-10。${sources.length} 条事实来源记录（包含用户输入与本地材料）；${images.length} 条 NVIDIA 官方图片外链。来源注册表为 src/data/sources.json，事实与 ID 的关联为 src/data/catalog.json 及 data/nvl72-topology.json。\n\n## 使用规则\n\n优先读取本地 A、B、C 再用官方资料交叉核验。硬件配置采用 DGX VR 公开实例，不能把参考规格泛化为所有 OEM 出货规格。当前产品表与有日期博客冲突时并列，不任选最大值。文档 A 按章节引用，未渲染页码；B/C 按实际 PDF 页码。原始文件保留在 Downloads/集群，项目不复制用户文档全文。\n\n“已确认”表示原始公开资料支持，不表示实测或在所有软件/SKU上均启用；“冲突”保留不同官方口径；“待核实”表示本次材料不能证实。协议通用标准不能替代 Vera Rubin 的产品支持矩阵。\n\n## 事实来源清单\n\n`;
+let text=`# Vera Rubin NVL72 来源与素材登记\n\n本轮核对日期：2026-10-12；逐条核对日期见各记录，未复核项保留上轮日期。${sources.length} 条事实来源记录（包含用户输入与本地材料）；${images.length} 条 NVIDIA 官方图片外链。来源注册表为 src/data/sources.json，事实与 ID 的关联为 src/data/catalog.json 及 data/nvl72-topology.json。\n\n## 使用规则\n\n优先读取本地 A、B、C 再用官方资料交叉核验。硬件配置采用 DGX VR 公开实例，不能把参考规格泛化为所有 OEM 出货规格。当前产品表与有日期博客冲突时并列，不任选最大值。文档 A 按章节引用，未渲染页码；B/C 按实际 PDF 页码。原始文件保留在 Downloads/集群，项目不复制用户文档全文。\n\n“已确认”表示原始公开资料支持，不表示实测或在所有软件/SKU上均启用；“冲突”保留不同官方口径；“待核实”表示本次材料不能证实。协议通用标准不能替代 Vera Rubin 的产品支持矩阵。\n\n## 事实来源清单\n\n`;
 for(const s of sources){
  text+=`### ${s.id} · ${s.title}\n\n`;
  text+=s.url?`原始资料：[${s.title}](${s.url})\n\n`:`本地/用户材料：${s.path??s.file??'用户在本轮消息给出的规格说明'}\n\n`;
+ text+=`类型：${sourceKinds[s.kind]}${s.purpose==='visual'?' / 视觉参考':''}。机构：${s.issuer}。资料日期：${s.publishedAt}。核对日期：${s.checkedAt}。\n\n${s.scopeNote}\n\n`;
  text+=`定位：${s.section??'见原文'}。状态：${s.confidence??'已确认'}。\n\n`;
  if(s.claims)text+=s.claims.map(c=>`- ${c}`).join('\n')+'\n\n';
 }

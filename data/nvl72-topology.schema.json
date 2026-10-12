@@ -168,6 +168,56 @@
         },
         "note": {
           "type": "string"
+        },
+        "comparison": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "value",
+              "unit",
+              "source",
+              "scope",
+              "direction",
+              "platform",
+              "date",
+              "version",
+              "countObject"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string"
+              },
+              "platform": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "countObject": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
         }
       },
       "additionalProperties": false

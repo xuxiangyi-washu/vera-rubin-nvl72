@@ -1,3 +1,4 @@
+import {hardwareCounts} from '../data';
 import { useMemo } from 'react';
 import { useExplorer } from '../stores/useExplorer';
 import { Block, Chip, Paths, Annotation, InstanceBank, type PathSpec } from './Primitives';
@@ -14,11 +15,11 @@ export default function TrayScene() {
   const dpu:Vec3=[0,.3+lift,2.25];
   const paths=useMemo(()=>{
     const p:PathSpec[]=[];
-    for(let g=0;g<4;g++){
+    for(let g=0;g<hardwareCounts.tray.gpu;g++){
       p.push({points:[cpu(Math.floor(g/2)),gpu(g)],type:'c2c'});
       p.push({points:[gpu(g),[gpu(g)[0],.4+lift,-2.65],[0,.4,-3.4]],type:'nvlink'});
     }
-    for(let n=0;n<8;n++){
+    for(let n=0;n<hardwareCounts.tray.nic;n++){
       p.push({points:[dpu,[-3.8+(n*.07),.75,-1.4],[-3.8+(n*.07),.65,2.4],nic(n)],type:'astra',dashed:true});
       p.push({points:[cpu(Math.floor(n/4)),[nic(n)[0],.26,1.95],nic(n)],type:'pcie',dashed:true});
       p.push({points:[nic(n),[nic(n)[0],.24,3.7]],type:'scaleout'});
@@ -42,7 +43,7 @@ export default function TrayScene() {
     {visible('gpu')&&[0,1,2,3].map(g=><group key={g}><Chip id={`gpu-${pad(t*4+g)}`} position={gpu(g)} size={[1.1,.3,1.05]} label={`RUBIN ${pad(t*4+g)}`}/>
       <InstanceBank interactive={false} items={[-.64,.64].flatMap(x=>[-.42,-.14,.14,.42].map(z=>({position:[gpu(g)[0]+x,.29+lift,-2.05+z] as Vec3,size:[.16,.13,.23] as Vec3,color:'#485149'})))}/>
     </group>)}
-    {visible('nic')&&Array.from({length:8},(_,n)=><Chip key={n} id={`cx9-${pad(t*8+n,3)}`} position={nic(n)} size={[.58,.18,.58]} label={`CX9 ${pad(t*8+n,3)}`}/>)}
+    {visible('nic')&&Array.from({length:hardwareCounts.tray.nic},(_,n)=><Chip key={n} id={`cx9-${pad(t*8+n,3)}`} position={nic(n)} size={[.58,.18,.58]} label={`CX9逻辑端点 ${pad(t*8+n,3)}`}/>)}
     {visible('dpu')&&<Chip id={`dpu-${pad(t)}`} position={dpu} size={[.95,.25,1.04]} label={`BLUEFIELD-4 · ${pad(t)}`}/>}
     <Block id={`bmc-${pad(t)}`} position={[-3.5,.18,-1.6]} size={[.45,.17,.6]} color="#869399" label="BMC"/>
     <Block id={`hmc-${pad(t)}`} position={[-3.1,.18,-2.3]} size={[.38,.17,.4]} color="#869399" label="HMC"/>

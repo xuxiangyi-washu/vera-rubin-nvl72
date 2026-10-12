@@ -1,0 +1,3 @@
+export const sourceKinds={vendor:'厂商官方资料',standard:'标准文档',code:'源码仓库','third-party':'第三方报道',visual:'视觉参考',user:'用户提供材料'};
+export function sourceLabel(source){return source.purpose==='visual'?'打开视觉参考报道':({vendor:'打开厂商原文',standard:'打开标准资料',code:'打开源码仓库','third-party':'打开第三方报道',user:'查看材料来源'}[source.kind]??'打开原文')}
+export function filterSources(sources,query='',kind='all'){const terms=query.trim().toLowerCase().split(/\s+/).filter(Boolean);return sources.filter(s=>(kind==='all'||(kind==='visual'?s.purpose==='visual':s.kind===kind))&&terms.every(t=>`${s.id} ${s.title} ${s.issuer} ${s.section??''} ${(s.claims??[]).join(' ')} ${s.scopeNote}`.toLowerCase().includes(t)))}

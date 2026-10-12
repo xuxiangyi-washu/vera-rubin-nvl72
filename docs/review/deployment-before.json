@@ -1,0 +1,122 @@
+{
+  "checkedAt": "2026-10-12T00:54:02.170Z",
+  "rows": [
+    {
+      "site": "cloudflare",
+      "test": "entry",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": null,
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudflare",
+      "test": "no-slash",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": null,
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudflare",
+      "test": "missing-js",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": null,
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudflare",
+      "test": "browser-navigation",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": null,
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudbase",
+      "test": "entry",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": "attachment",
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudbase",
+      "test": "no-slash",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": "attachment",
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    },
+    {
+      "site": "cloudbase",
+      "test": "missing-js",
+      "status": 404,
+      "location": null,
+      "type": "text/html",
+      "disposition": "attachment",
+      "sha256": "0bf71fca1bc642f99dbfe631997007cc94650c70dc2f17b7d5c21e50b7c2cba0",
+      "assets": [],
+      "interstitial": false
+    },
+    {
+      "site": "cloudbase",
+      "test": "browser-navigation",
+      "status": 200,
+      "location": null,
+      "type": "text/html",
+      "disposition": "attachment",
+      "sha256": "7400e9bedcfecd9059b386624cb9db44dcb244bed3b4930b162b87d3a03cee33",
+      "assets": [
+        "./assets/index-BeWXU1-c.js",
+        "./assets/format-CFkABvWX.js",
+        "./assets/index-8ecogPSU.css"
+      ],
+      "interstitial": false
+    }
+  ],
+  "probeMethod": "Node HTTP fetch；browser-navigation仅表示设置了请求头，不等于浏览器验收。实际CloudBase平台页与应用观察见VERIFICATION.md及截图。"
+}

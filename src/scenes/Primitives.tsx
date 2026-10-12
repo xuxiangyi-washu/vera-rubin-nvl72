@@ -4,6 +4,7 @@ import { Edges, Html, Line } from '@react-three/drei';
 import * as THREE from 'three';
 import { useExplorer } from '../stores/useExplorer';
 import { catalog, entityById } from '../data';
+import { controlTypes,isPayloadPath,matchesFlow } from '../utils/link-semantics.mjs';
 import { linkColors } from '../utils/format';
 import type { LinkType, Vec3 } from '../models/types';
 
@@ -56,13 +57,13 @@ export function InstanceBank({ items, interactive = true }: { items: InstanceIte
     <meshStandardMaterial metalness={.55} roughness={.38}/>
   </instancedMesh>;
 }
-export interface PathSpec { points: Vec3[]; type: LinkType; dashed?: boolean }
+export interface PathSpec { points: Vec3[]; type: LinkType; dashed?: boolean; flow?: string }
 export function Paths({ paths, opacity = .6 }: { paths: PathSpec[]; opacity?: number }) {
   const layers = useExplorer(s=>s.layers), flow=useExplorer(s=>s.flow), animated=useExplorer(s=>s.animated||(s.view==='inference'&&s.inferencePlaying)), lowPower=useExplorer(s=>s.lowPower);
-  const filtered=useMemo(()=>paths.filter(p=>layers[p.type] && (flow==='all' || (flow==='compute'&&['nvlink','c2c','scaleout','pcie'].includes(p.type)) || (flow==='control'&&['astra','management','trust'].includes(p.type)) || (flow==='storage'&&p.type==='storage') || (flow==='infrastructure'&&['power','cooling'].includes(p.type)))),[paths,layers,flow]);
+  const filtered=useMemo(()=>paths.filter(p=>layers[p.type] && matchesFlow(p,flow)),[paths,layers,flow]);
   return <>
-    {filtered.map((p,i)=><Line key={`${i}-${p.type}`} points={p.points} color={linkColors[p.type]} lineWidth={p.type==='cooling'?2:1.25} transparent opacity={opacity} dashed={p.dashed} dashSize={.12} gapSize={.08}/>) }
-    {animated&&<FlowParticles paths={filtered.slice(0,lowPower?16:96)}/>}
+    {filtered.map((p,i)=><Line key={`${i}-${p.type}`} points={p.points} color={linkColors[p.type]} lineWidth={p.type==='cooling'?2:1.25} transparent opacity={opacity} dashed={p.dashed||controlTypes.has(p.type)} dashSize={.12} gapSize={.08}/>) }
+    {animated&&<FlowParticles paths={filtered.filter(isPayloadPath).slice(0,lowPower?16:96)}/>}
   </>;
 }
 function FlowParticles({paths}:{paths:PathSpec[]}) {

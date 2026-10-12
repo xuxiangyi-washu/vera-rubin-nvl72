@@ -1,0 +1,10 @@
+import {catalog,entityById,topology,hardwareCounts} from '../data';
+import {useExplorer} from '../stores/useExplorer';
+import {linkNames} from '../utils/format';
+import {linkRoles,matchesFlow} from '../utils/link-semantics.mjs';
+export default function DiagramFallback(){
+ const s=useExplorer();
+ const items=topology.entities.filter(e=>s.view==='rack'?['compute','switchTray'].includes(e.type):s.view==='tray'?e.trayIndex===s.trayIndex&&['cpu','gpu','nic','dpu'].includes(e.type):s.view==='fabric'?['gpu','switch'].includes(e.type):s.view==='network'?['external','storage','management'].includes(e.type)||(e.trayIndex===s.trayIndex&&['nic','dpu'].includes(e.type)):s.view==='inference'?e.type==='gpu'&&(e.index??99)<6:['root','firmware','realm','io','astra','argus','sentry','imex'].includes(e.id)).filter(e=>s.moduleFilter==='all'||e.type===s.moduleFilter);
+ const links=topology.links.filter(l=>(l.source===s.selectedId||l.target===s.selectedId)&&s.layers[l.type]&&matchesFlow(l,s.flow));
+ return <section className="diagram-fallback" aria-label="二维拓扑与组件目录"><h2>二维组件目录</h2><p>与三维共用拓扑数据。选择组件可查看详情、连接和证据；手机上可使用“组件详情”按钮。</p><div className="fallback-grid">{items.map(e=><button key={e.id} aria-pressed={s.selectedId===e.id} onClick={()=>{s.select(e.id,e.trayIndex);if(e.type==='compute')s.setView('tray');else if(e.type==='switchTray')s.setView('fabric')}}><span>{e.name}</span><small>{e.id} · {catalog[e.type].name}</small></button>)}</div>{!items.length&&<p className="empty-state">当前模块筛选没有组件，可在过滤器中选择“全部模块”。</p>}<p className="count-note">{hardwareCounts.cx9Note}</p><h3>当前组件关联：{entityById.get(s.selectedId)?.name}</h3>{links.length?<ul className="fallback-links">{links.slice(0,16).map(l=><li key={l.id}><strong>{linkNames[l.type]} · {linkRoles[l.type]}</strong><span>{entityById.get(l.source)?.name} ↔ {entityById.get(l.target)?.name}</span><small>{l.confidence} · {l.semantics}</small></li>)}</ul>:<p>当前筛选下没有直接关联边，可选择托盘内芯片或查看模块说明。</p>}{links.length>16&&<p>显示前16条；完整关联可在模块详情或拓扑JSON中查看。</p>}<p className="count-note">{hardwareCounts.astraNote}</p></section>;
+}
